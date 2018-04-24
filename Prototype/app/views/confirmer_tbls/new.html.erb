@@ -1,0 +1,12 @@
+
+<h1>CREATE CONFIRMER_TBL </h1>
+<%= form_for(@confs) do |f| %>
+
+  <%= f.label :POSITION %>
+  <%= f.text_field :POSITION, class: 'form-control' %>
+
+  <%= f.label :NAME %>
+  <%= f.text_field :NAME, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,63 @@
+<% breadcrumb :root %>
+<div class="ransack-pagination">
+	<%= will_paginate @base_cmds %>
+</div>
+<div class="table-view">
+	<table>
+		<caption>LIST OF BASE COMMANDS</caption>
+		<thead>
+			<tr>
+				<th>DESCRIPTION </th>
+				<th> SUBSYSTEM </th>
+				<th class="column-hider"> FORMATION_TYPE </th>
+				<th> CMD_TYPE </th>
+				<th class="column-hider"> BASE_CMD_CODE </th>
+				<th class="column-hider"> CRITICALITY </th>
+				<th class="column-hider"> PULSE_WIDTH </th>
+				<th class="column-hider"> MAP_ID </th>
+				<th> UI_TYPE </th>
+				<th class="column-hider"> PREFERRABLE_DECODER </th>
+				<th class="column-hider"> CONFIRMATION_TYPE </th>
+				<th> REMARKS </th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @base_cmds.each do |f| %>
+			<tr data-href="<%= edit_base_cmd_tbl_path(f) %>" data-value="<%=f.CMD_ID%>" class="theShower text-center">
+				<td class="scroller"><div><%= f.DESCRIPTION %></div></td>
+				<td><%= f.subsystem_tbl.SUBSYSTEM_NAME %></td>
+				<td class="column-hider"><%= f.FORMATION_TYPE %></td>
+				<td><%= f.cmd_types_tbl.CMD_TYPE %></td>
+				<td class="column-hider"><%= f.BASE_CMD_CODE %></td>
+				<td class="column-hider"><%= f.CRITICALITY %></td>
+				<td class="column-hider"><%= f.PULSE_WIDTH %></td>
+				<td class="column-hider"><%= f.MAP_ID %></td>
+				<td><%= f.ui_types_tbl.UI_TYPE %></td>
+				<td class="column-hider"><%= f.PREFERRABLE_DECODER %></td>
+				<td class="column-hider scroller">
+					<div>
+						|
+						<% f.DecoderArray(@confirmer_hash).each do |n| %>
+		         			<%= n %> |
+		     			<% end %>
+	     			</div>
+	    		</td>
+				<td><%= f.REMARKS %></td>
+				<% if current_user.admin? %>
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
+				<% end %>
+			</tr>
+		<% end %>	
+		</tbody>
+	</table>
+</div>
+
+<div class="lower-options">
+	<form action="" class="resizer_form">
+		<input id="shrink" type="radio" name="table_resize" checked="checked">
+		<label for="shrink">Shrink</label>
+		<input id="expand" type="radio" name="table_resize">
+		<label for="expand">Expand</label>
+	</form>	
+	<%= link_to 'Add', new_base_cmd_tbl_path, class: "add-new-table" %>
+</div>

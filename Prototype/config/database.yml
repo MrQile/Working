@@ -1,0 +1,38 @@
+development: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  host: localhost
+  username: Ruby
+  password: Ruby_123
+  port: 3306
+  socket: /var/lib/mysql/mysql.sock
+  database: rubyappdb
+
+development2: &default2
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  host: localhost
+  username: Ruby
+  password: Ruby_123
+  port: 3306
+  socket: /var/lib/mysql/mysql.sock
+  database: AllConfig
+
+secondrubydb:
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  host: localhost
+  username: seconduser
+  password: Seconduser_123
+  port: 3306
+  socket: /var/lib/mysql/mysql.sock
+  database: secondrubydb
+
+test:
+  <<: *default
+
+production:
+  <<: *default

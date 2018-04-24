@@ -1,0 +1,48 @@
+<% breadcrumb :edit_cmd_part, [@base_cmds,@cmd_parts]%>
+<h1>EDIT CMD_PART_TBL </h1>
+<%= form_for(@cmd_parts) do |f| %>
+
+  <%= f.label :CMD_ID %>
+  <%= f.collection_select(:CMD_ID, BASE_CMD_TBL.all, :CMD_ID, :DESCRIPTION, {:prompt => "Please select"})%></br>
+
+  <%= f.label :CMD_PART_NO %>
+  <%= f.text_field :CMD_PART_NO, class: 'form-control' %>
+
+  <%= f.label :CMD_PART_MNEMONIC%>
+  <%= f.text_field :CMD_PART_MNEMONIC, class: 'form-control' %>
+
+  <%= f.label :CMD_PART_TYPE %>
+  <%= f.collection_select(:CMD_PART_TYPE, CMD_PART_TYPES_TBL.all, :CMD_PART_TYPE_ID, :CMD_PART_TYPE, {:prompt => "Please select"})%></br>
+
+  <%= f.label :START_BIT %>
+  <%= f.text_field :START_BIT, class: 'form-control' %>
+
+  <%= f.label :NO_OF_BITS%>
+  <%= f.text_field :NO_OF_BITS, class: 'form-control' %>
+
+  <%= f.label :PART_MASK %>
+  <%= f.text_field :PART_MASK, class: 'form-control' %>
+
+  <%= f.label :RESOLUTION %>
+  <%= f.text_field :RESOLUTION, class: 'form-control' %>
+
+  <%= f.label :OFFSET%>
+  <%= f.text_field :OFFSET, class: 'form-control' %>
+
+  <%= f.label :INPUT_FORMAT %>
+  <%= f.text_field :INPUT_FORMAT, class: 'form-control' %>
+
+  <%= f.label :LL %>
+  <%= f.text_field :LL, class: 'form-control' %>
+
+  <%= f.label :UL%>
+  <%= f.text_field :UL, class: 'form-control' %>
+
+  <%= f.label :UNITS %>
+  <%= f.text_field :UNITS, class: 'form-control' %>
+
+  <%= f.label :REMARKS%>
+  <%= f.text_field :REMARKS, class: 'form-control' %>  
+  <%= f.submit 'Update', class: "btn btn-primary" %>
+<% end %>
+

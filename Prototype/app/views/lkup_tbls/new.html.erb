@@ -1,0 +1,18 @@
+
+<h1>CREATE LKUP_TBL </h1>
+<%= form_for(@lkups) do |f| %>
+
+  <%= f.label :LKUP_TBL_NO %>
+  <%= f.collection_select(:LKUP_TBL_NO, LKUP_TBL_INFO.all, :LKUP_TBL_NO, :LKUP_TBL_NAME, {:prompt => "Please select"})%></br>
+
+  <%= f.label :LKUP_ENTRY_INDEX %>
+  <%= f.text_field :LKUP_ENTRY_INDEX, class: 'form-control' %>
+
+  <%= f.label :BYTE_CODE%>
+  <%= f.text_field :BYTE_CODE, class: 'form-control' %>
+
+  <%= f.label :VALUE%>
+  <%= f.text_field :VALUE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

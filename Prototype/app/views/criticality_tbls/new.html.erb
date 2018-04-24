@@ -1,0 +1,9 @@
+
+<h1>CREATE CRITICALITY_TBL </h1>
+<%= form_for(@crity) do |f| %>
+
+  <%= f.label :CRITICALITY %>
+  <%= f.text_field :CRITICALITY, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

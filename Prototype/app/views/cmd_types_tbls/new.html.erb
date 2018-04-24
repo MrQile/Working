@@ -1,0 +1,15 @@
+
+<h1>CREATE CMD_TYPES_TBL </h1>
+<%= form_for(@cmd_types) do |f| %>
+
+  <%= f.label :CMD_TYPE_ID %>
+  <%= f.text_field :CMD_TYPE_ID, class: 'form-control' %>
+
+  <%= f.label :CMD_TYPE %>
+  <%= f.text_field :CMD_TYPE, class: 'form-control' %>
+
+  <%= f.label :CMD_TYPES_TBL_CMD_TYPE %>
+  <%= f.text_field :CMD_TYPES_TBL_CMD_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

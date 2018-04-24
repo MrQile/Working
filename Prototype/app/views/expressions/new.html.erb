@@ -1,0 +1,24 @@
+<% breadcrumb :new_expr,@base_cmds %>
+<h1>CREATE EXPRESSION </h1>
+<%= form_for(@exprs) do |f| %>
+
+  <%= f.label :EXPR_ID %>
+  <%= f.text_field :EXPR_ID, class: 'form-control' %>
+
+  <%= f.label :EXPR_TYPE %>
+  <%= f.text_field :EXPR_TYPE, class: 'form-control' %>
+
+  <%= f.label :TM_PID%>
+  <%= f.text_field :TM_PID, class: 'form-control' %>
+
+  <%= f.label :REL_OP%>
+  <%= f.text_field :REL_OP, class: 'form-control' %>
+
+  <%= f.label :VALUE%>
+  <%= f.text_field :VALUE, class: 'form-control' %>
+
+  <%= f.label :VALUE_TYPE%>
+  <%= f.text_field :VALUE_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

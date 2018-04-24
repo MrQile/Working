@@ -1,0 +1,2 @@
+module PulseWidthTblsHelper
+end

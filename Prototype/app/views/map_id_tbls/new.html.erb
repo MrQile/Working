@@ -1,0 +1,9 @@
+
+<h1>CREATE MAP_ID_TBL </h1>
+<%= form_for(@map_id) do |f| %>
+
+  <%= f.label :MAP_ID %>
+  <%= f.text_field :MAP_ID, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,30 @@
+<h1>EDIT BIT_SEL_TBL </h1>
+<%= form_for(@bit_sels) do |f| %>
+
+  <%= f.label :BIT_SEL_TBL_NO %>
+  <%= f.collection_select(:BIT_SEL_TBL_NO, BIT_SEL_TBL_INFO.all, :BIT_SEL_TBL_NO, :BIT_SEL_TBL_NAME, {:prompt => "Please select"})%></br>
+
+  <%= f.label :FIELD_NO %>
+  <%= f.text_field :FIELD_NO, class: 'form-control' %>
+
+  <%= f.label :START_BIT%>
+  <%= f.text_field :START_BIT, class: 'form-control' %>
+
+  <%= f.label :NO_OF_BITS %>
+  <%= f.text_field :NO_OF_BITS, class: 'form-control' %>
+
+  <%= f.label :VALUE %>
+  <%= f.text_field :VALUE, class: 'form-control' %>
+
+  <%= f.label :FIELD_MNEMONICS%>
+  <%= f.text_field :FIELD_MNEMONICS, class: 'form-control' %>
+
+  <%= f.label :VALUE_MNEMONICS%>
+  <%= f.text_field :VALUE_MNEMONICS, class: 'form-control' %>
+
+  <%= f.label :LOGICAL_OP%>
+  <%= f.text_field :LOGICAL_OP, class: 'form-control' %>
+
+
+  <%= f.submit 'Update', class: "btn btn-primary" %>
+<% end %>

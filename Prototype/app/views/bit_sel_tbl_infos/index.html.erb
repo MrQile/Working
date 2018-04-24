@@ -1,0 +1,12 @@
+
+<h1>ALL BIT_SEL_TBL_INFOS </h1>
+
+<% @bit_infos.each do |f| %>
+	<div class="theShower text-center">
+		<%= link_to f do %>
+			<div><%=f.BIT_SEL_TBL_NAME%></div>
+		<% end %>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_bit_sel_tbl_info_path %>

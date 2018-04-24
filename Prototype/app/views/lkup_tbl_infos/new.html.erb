@@ -1,0 +1,15 @@
+
+<h1>CREATE LKUP_TBL_INFO </h1>
+<%= form_for(@lkup_infos) do |f| %>
+
+  <%= f.label :LKUP_TBL_NO %>
+  <%= f.text_field :LKUP_TBL_NO, class: 'form-control' %>
+
+  <%= f.label :LKUP_TBL_NAME %>
+  <%= f.text_field :LKUP_TBL_NAME, class: 'form-control' %>
+
+  <%= f.label :LKUP_TBL_TYPE%>
+  <%= f.text_field :LKUP_TBL_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

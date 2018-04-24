@@ -1,0 +1,44 @@
+<% breadcrumb :base_cmds, @base_cmds %>
+<h1> CMD_TYPES_TBL </h1>
+<table border='2'>
+	<tr>
+		<th>DESCRIPTION</th><td><%=@base_cmds.DESCRIPTION%></td>
+	</tr>
+	<tr>
+		<th>SUBSYSTEM</th><td><%=@base_cmds.SUBSYSTEM%></td>
+	</tr>
+	<tr>
+		<th>FORMATION_TYPE</th><td><%=@base_cmds.FORMATION_TYPE%></td>
+	</tr>
+	<tr>
+		<th>CMD_TYPE</th><td><%=@base_cmds.CMD_TYPE%></td>
+	</tr>
+	<tr>
+		<th>BASE_CMD_CODE</th><td><%=@base_cmds.BASE_CMD_CODE%></td>
+	</tr>
+	<tr>
+		<th>BASE_CMD_MASK</th><td><%=@base_cmds.BASE_CMD_MASK%></td>
+	</tr>
+	<tr>
+		<th>CRITICALITY</th><td><%=@base_cmds.CRITICALITY%></td>
+	</tr>
+	<tr>
+		<th>PULSE_WIDTH</th><td><%=@base_cmds.PULSE_WIDTH%></td>
+	</tr>
+	<tr>
+		<th>MAP_ID</th><td><%=@base_cmds.MAP_ID%></td>
+	</tr>
+	<tr>
+		<th>UI_TYPE</th><td><%=@base_cmds.UI_TYPE%></td>
+	</tr>
+	<tr>
+		<th>PREFERRABLE_DECODER</th><td><%=@base_cmds.PREFERRABLE_DECODER%></td>
+	</tr>
+	<tr>
+		<th>CONFIRMATION_TYPE</th><td><%=@base_cmds.CONFIRMATION_TYPE%></td>
+	</tr>
+	<tr>
+		<th>REMARKS</th><td><%=@base_cmds.REMARKS%></td>
+	</tr>	
+</table>
+<%= link_to 'Back', base_cmd_tbls_path %>

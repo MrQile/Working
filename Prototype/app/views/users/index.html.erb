@@ -1,0 +1,13 @@
+<h1>USERS</h1>
+<div class="row">
+	<% @users.each do |user| %>
+		<div class="col col-md-6 col-xs-12">
+
+			<h3><%= user.name %></h3>
+			<h3><%= user.satellite_name %></h3>
+			<% if current_user.admin? %>
+				<%= link_to "Remove", user, method: :delete, data: {confirm: "Are You Sure?"} %>
+			<% end %>
+		</div>
+	<% end %>
+</div>

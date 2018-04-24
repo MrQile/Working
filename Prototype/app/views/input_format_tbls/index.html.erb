@@ -1,0 +1,9 @@
+<h1>ALL INPUT_FORMAT_TBLS </h1>
+
+<% @input_format.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.INPUT_FORMAT%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_input_format_tbl_path %>

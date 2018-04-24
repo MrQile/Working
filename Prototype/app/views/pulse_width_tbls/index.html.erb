@@ -1,0 +1,9 @@
+<h1>ALL PULSE_WIDTH_TBLS </h1>
+
+<% @pulse_width.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.PULSE_WIDTH%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_pulse_width_tbl_path %>

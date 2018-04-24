@@ -1,0 +1,12 @@
+
+<h1>CREATE UI_TYPES_TBL </h1>
+<%= form_for(@ui_types) do |f| %>
+
+  <%= f.label :UI_TYPE_ID %>
+  <%= f.text_field :UI_TYPE_ID, class: 'form-control' %>
+
+  <%= f.label :UI_TYPE %>
+  <%= f.text_field :UI_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

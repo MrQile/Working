@@ -1,0 +1,9 @@
+
+<h1>CREATE LOGICAL_OP_TBL </h1>
+<%= form_for(@logic_op) do |f| %>
+
+  <%= f.label :LOGICAL_OP %>
+  <%= f.text_field :LOGICAL_OP, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,48 @@
+<div class="options_bar">
+
+	<% if controller_name == 'base_cmd_tbls' && action_name == 'edit' %>
+
+		<div class="btn-group btn-group-sm">
+
+			<%= link_to "PREREQ CONF TABLE", prereq_conf_expr_tbls_path, class: "btn btn-info" %>
+			<%=link_to "+", new_prereq_conf_expr_tbl_path, class: "btn btn-info" %>
+
+  		</div>
+
+
+  		<div class="btn-group btn-group-sm">
+
+			<%= link_to "CMD PART TABLE", cmd_part_tbls_path, class: "btn btn-info" %>
+			<%=link_to "+", new_cmd_part_tbl_path, class: "btn btn-info" %>
+
+  		</div>
+
+
+  		<div class="btn-group btn-group-sm">
+
+			<%= link_to "CPID TABLE", cpid_tbls_path, class: "btn btn-info" %>
+			<%=link_to "+", new_cpid_tbl_path, class: "btn btn-info" %>
+
+  		</div>
+  
+	<% elsif controller_name == 'bit_sel_tbl_infos' && action_name == 'show' %>
+
+		<div class="btn-group btn-group-sm">
+
+			<%= link_to "BIT SEL TABLE", bit_sel_tbls_path(bits: @bit_infos), class: "btn btn-info" %>
+			<%=link_to "+", new_bit_sel_tbl_path, class: "btn btn-info" %>
+
+		</div>
+			
+	<% elsif controller_name == 'lkup_tbl_infos' && action_name == 'show' %>
+		
+		<div class="btn-group btn-group-sm">
+
+			<%= link_to "LKUP TABLE", lkup_tbls_path, class: "btn btn-info" %>
+			<%=link_to "+", new_lkup_tbl_path, class: "btn btn-info" %>
+
+		</div>
+	        
+	<% end %>
+	
+</div>

@@ -1,0 +1,41 @@
+<h1> Edit User</h1>
+
+
+<div class="perfect-forms">
+
+	<%= form_for(@user) do |f| %>
+
+	<p class="form-row">	
+
+	  <%= f.label :name %>
+	  <%= f.text_field :name, class: 'form-control' %>
+
+	</p>  
+
+	<p class="form-row">
+
+	  <%= f.label :password %>
+	  <%= f.password_field :password, class: 'form-control' %>
+
+	</p>  
+
+	<p class="form-row">
+
+	  <%= f.label :password_confirmation, "Confirmation" %>
+	  <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+	</p> 
+
+	<p class="form-row">
+
+	  <%= f.label :satellite_name %>
+	  <%= f.password_field :satellite_name, class: 'form-control' %>  
+
+	</p>  
+
+	<p class="form-row">
+
+	  <%= f.submit 'Update', class: "btn btn-primary" %>
+
+	</p> 
+	<% end %>

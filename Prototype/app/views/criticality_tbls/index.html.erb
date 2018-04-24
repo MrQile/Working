@@ -1,0 +1,9 @@
+<h1>ALL CRITICALITY_TBLS </h1>
+
+<% @crity.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.CRITICALITY%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_criticality_tbl_path %>

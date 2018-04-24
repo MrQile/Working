@@ -1,0 +1,9 @@
+<h1>ALL LOGICAL_OP_TBLS </h1>
+
+<% @logic_op.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.LOGICAL_OP%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_logical_op_tbl_path %>

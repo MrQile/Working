@@ -1,0 +1,9 @@
+
+<h1>CREATE PART_TYPE_TBL </h1>
+<%= form_for(@part_type) do |f| %>
+
+  <%= f.label :PART_TYPE %>
+  <%= f.text_field :PART_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

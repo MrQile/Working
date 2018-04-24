@@ -1,0 +1,9 @@
+<% content_for(:option_bar) do %>
+	<%= render 'shared/option_list' %>
+<% end %>
+<h1> LKUP_TBL_INFO </h1>
+		<h5>LKUP_TBL_NO:<%=@lkup_infos.LKUP_TBL_NO%></h5>
+		<h5>LKUP_TBL_NAME:<%=@lkup_infos.LKUP_TBL_NAME%></h5>
+		<h5>LKUP_TBL_TYPE:<%=@lkup_infos.LKUP_TBL_TYPE%></h5>
+
+		<%= link_to 'Back', lkup_tbl_infos_path %>

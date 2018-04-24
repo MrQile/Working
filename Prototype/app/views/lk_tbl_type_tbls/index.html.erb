@@ -1,0 +1,9 @@
+<h1>ALL LK_TBL_TYPE_TBLS </h1>
+
+<% @lk_up_type.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.LK_TBL_TYPE%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_lk_tbl_type_tbl_path %>

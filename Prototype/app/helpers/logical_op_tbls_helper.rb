@@ -1,0 +1,2 @@
+module LogicalOpTblsHelper
+end

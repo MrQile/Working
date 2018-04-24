@@ -1,0 +1,9 @@
+<% breadcrumb :show_bit_sel_info, [@base_cmds,@bit_infos] %>
+<% content_for(:option_bar) do %>
+	<%= render 'shared/option_list' %>
+<% end %>
+<h1> BIT_SEL_TBL_INFO </h1>
+		<h5>BIT_SEL_TBL_NO:<%=@bit_infos.BIT_SEL_TBL_NO%></h5>
+		<h5>BIT_SEL_TBL_NAME:<%=@bit_infos.BIT_SEL_TBL_NAME%></h5>
+
+		<%= link_to 'Back', bit_sel_tbl_infos_path %>

@@ -1,0 +1,16 @@
+<div class="field">
+  <div class="search_field">
+    <%= f.attribute_fields do |a| %>
+      <%= a.attribute_select associations: [:bit_sel_tbls], class: "radius" %>
+    <% end %>
+  </div>
+  <div class="search_field">
+    <%= f.predicate_select Hash.new, class: "radius" %>
+  </div>
+  <div class="insert_field">
+    <%= f.value_fields do |v| %>
+      <%= v.text_field :value, class: "radius search_input", placeholder: '  Search Input' %>
+    <% end %>
+    <p class="remove_fields"><%= link_to "Remove", "", class: "remove_fields" %></p>
+  </div>
+</div>

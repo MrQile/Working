@@ -1,0 +1,9 @@
+<h1>ALL PREFERRABLE_DECODER_TBLS </h1>
+
+<% @pref_decoder.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.PREFERRABLE_DECODER%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_preferrable_decoder_tbl_path %>

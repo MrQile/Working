@@ -1,0 +1,9 @@
+
+<h1>CREATE PREFERRABLE_DECODER_TBL </h1>
+<%= form_for(@pref_decoder) do |f| %>
+
+  <%= f.label :PREFERRABLE_DECODER %>
+  <%= f.text_field :PREFERRABLE_DECODER, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

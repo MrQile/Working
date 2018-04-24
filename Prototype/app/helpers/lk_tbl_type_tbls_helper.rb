@@ -1,0 +1,2 @@
+module LkTblTypeTblsHelper
+end

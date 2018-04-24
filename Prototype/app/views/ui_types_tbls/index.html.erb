@@ -1,0 +1,11 @@
+<h1>ALL UI_TYPES_TBLS </h1>
+
+<% @ui_types.each do |f| %>
+	<div class="theShower text-center">
+		<%= link_to f do %>
+			<div><%=f.UI_TYPE%></div>
+		<% end %>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_ui_types_tbl_path %>

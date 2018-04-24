@@ -1,0 +1,15 @@
+<% breadcrumb :cmd_part_index, [@base_cmds,@cmd_parts]%>
+<h1>ALL CMD_PART_TBLS </h1>
+<table border="1">
+	<tr><th>CMD PART NO </th>  <th> CMD PART MNEMONIC</th></tr>
+</table>
+<% @cmd_parts.each do |f| %>
+	<div class="theShower text-center">
+		<%= link_to f do %>
+			<div><%=f.CMD_PART_NO%>|<%=f.CMD_PART_MNEMONIC%></div>
+		<% end %>
+	</div>
+<% end %>
+
+
+<%= link_to 'New', new_cmd_part_tbl_path %>

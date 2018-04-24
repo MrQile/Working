@@ -1,0 +1,9 @@
+<h1>ALL MAP_ID_TBLS </h1>
+
+<% @map_id.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.MAP_ID%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_map_id_tbl_path %>

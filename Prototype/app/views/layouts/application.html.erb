@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prototype</title>
+    <%= render 'layouts/partials/rails_defaults'%>
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
+    <%= render 'layouts/partials/header' %>
+    <div class="HolyGrail-body">
+      <main class="HolyGrail-content">
+        <div class="forBreadcrumbs">
+          <%= breadcrumbs pretext: "You are here", display_single_fragment: true %>
+        </div>
+        
+        <%= render 'layouts/partials/nav' %>
+
+        <%= yield %>
+
+      </main>
+      <nav class="HolyGrail-nav">
+        <div class="content">
+          <%= render "shared/search_list" %>
+        </div>
+        <div class="nav-rod"></div>
+      </nav>
+        <aside class="HolyGrail-ads">
+          <div class="nav-rod"></div>
+          <div class="content">
+            <%= render 'shared/table_list' %>
+            <%= yield :option_bar %>
+          </div>
+        </aside>
+    </div>
+  </body>
+  <%= render 'layouts/partials/footer' %>
+</html>

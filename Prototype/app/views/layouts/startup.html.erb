@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prototype</title>
+    <%= render 'layouts/partials/rails_defaults'%>
+  </head>
+  
+  <body>
+    <%= render 'layouts/partials/header' %>
+    <div class="HolyGrail-body">
+      <main class="HolyGrail-content pushdown">
+        <%= yield %>
+      </main>
+      <nav class="HolyGrail-nav">
+        <div class="content">
+
+        </div>
+        <div class="nav-rod"></div>
+      </nav>
+        <aside class="HolyGrail-ads">
+          <div class="nav-rod"></div>
+          <div class="content">
+
+          </div>
+        </aside>
+    </div>
+  </body>
+  <%= render 'layouts/partials/footer' %>
+</html>

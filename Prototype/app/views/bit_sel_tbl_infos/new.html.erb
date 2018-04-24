@@ -1,0 +1,12 @@
+<% breadcrumb :new_bit_info, [@base_cmds,@bit_infos] %>
+<h1>CREATE BIT_SEL_TBL_INFO </h1>
+<%= form_for(@bit_infos) do |f| %>
+
+  <%= f.label :BIT_SEL_TBL_NO %>
+  <%= f.text_field :BIT_SEL_TBL_NO, class: 'form-control' %>
+
+  <%= f.label :BIT_SEL_TBL_NAME %>
+  <%= f.text_field :BIT_SEL_TBL_NAME, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

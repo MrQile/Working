@@ -1,0 +1,9 @@
+
+<h1>CREATE PULSE_WIDTH_TBL </h1>
+<%= form_for(@pulse_width) do |f| %>
+
+  <%= f.label :PULSE_WIDTH %>
+  <%= f.text_field :PULSE_WIDTH, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

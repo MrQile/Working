@@ -1,0 +1,9 @@
+
+<h1>CREATE INPUT_FORMAT_TBL </h1>
+<%= form_for(@input_format) do |f| %>
+
+  <%= f.label :INPUT_FORMAT %>
+  <%= f.text_field :INPUT_FORMAT, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

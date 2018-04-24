@@ -1,0 +1,11 @@
+<h1>ALL CMD_PART_TYPES_TBLS </h1>
+
+<% @cmd_part_types.each do |f| %>
+	<div class="theShower text-center">
+		<%= link_to f do %>
+			<div><%=f.CMD_PART_TYPE%></div>
+		<% end %>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_cmd_part_types_tbl_path %>

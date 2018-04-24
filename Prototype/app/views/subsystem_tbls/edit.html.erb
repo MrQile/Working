@@ -1,0 +1,12 @@
+<h1>EDIT SUBSYSTEM_TBL </h1>
+<%= form_for(@subs) do |f| %>
+
+  <%= f.label :SUBSYSTEM_ID %>
+  <%= f.text_field :SUBSYSTEM_ID, class: 'form-control' %>
+
+  <%= f.label :SUBSYSTEM_NAME %>
+  <%= f.text_field :SUBSYSTEM_NAME, class: 'form-control' %>
+
+  <%= f.submit 'Update', class: "btn btn-primary" %>
+<% end %>
+

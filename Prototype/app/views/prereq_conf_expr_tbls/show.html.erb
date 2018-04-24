@@ -1,0 +1,9 @@
+<% breadcrumb :show_preconf, [@base_cmds,@prereqs] %>
+<h1> PREREQ_CONF_EXPR_TBL </h1>
+		<h5>CMD_ID:<%=@prereqs.CMD_ID%></h5>
+		<h5>ENTRY_TYPE:<%=@prereqs.ENTRY_TYPE%></h5>
+		<h5>FIELD_NO:<%=@prereqs.FIELD_NO%></h5>
+		<h5>EXPR_ID:<%=@prereqs.EXPR_ID%></h5>
+		<h5>LOGICAL_OP:<%=@prereqs.LOGICAL_OP%></h5>
+
+		<%= link_to 'Back', prereq_conf_expr_tbls_path %>

@@ -1,0 +1,2 @@
+class MinorConfig < AllConfigAccess
+end

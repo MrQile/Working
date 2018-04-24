@@ -1,0 +1,11 @@
+<h1>ALL CPID_TBLS </h1>
+
+<% @cpids.each do |f| %>
+	<div class="theShower text-center">
+		<%= link_to f do %>
+			<div><%=f.CPID_DESC%></div>
+		<% end %>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_cpid_tbl_path %>

@@ -1,0 +1,2 @@
+module CmdPartTblsHelper
+end

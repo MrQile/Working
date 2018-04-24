@@ -1,0 +1,37 @@
+<%= will_paginate @versions %>
+<div class="table-view">
+	<table>
+		<caption>MANAGE VERSIONS</caption>
+		<thead>
+			<tr>
+				<th> ID </th>
+				<th> DATABASE </th>
+				<th> TABLE NAME </th>
+				<th> RECORD ID </th>    <!--Swaroop column-hider class is for hiding the columns , dont add if not required-->
+				<th> ACTION </th>
+				<th> USER </th>
+				<th> PREVIOUS STATE </th>
+				<th> THINGS CHANGED </th>
+				<th> TIME </th>
+			</tr>
+		</thead>
+		<tbody>
+
+		<% @versions.each do |f| %>
+			<tr class="theShower text-center">
+				<td><%= f.id %></td>
+				<td><%= f.db_name %></td>
+				<td><%= f.item_type %></td>
+				<td><%= f.item_id %></td>
+				<td><%= f.event %></td>
+				<td><%= f.user.name %></td>
+				<td class="scroller"><div><%= f.object%></div></td>
+				<td class="scroller"><div><%= f.changeset%></div></td>
+				<td><%= f.created_at %></td>
+				<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
+			</tr>
+		<% end %>	
+		</tbody>
+
+	</table>
+</div>

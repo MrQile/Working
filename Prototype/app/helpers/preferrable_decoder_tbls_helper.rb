@@ -1,0 +1,2 @@
+module PreferrableDecoderTblsHelper
+end

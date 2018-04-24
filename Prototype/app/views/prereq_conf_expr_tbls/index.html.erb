@@ -1,0 +1,11 @@
+<% breadcrumb :preconf_index, [@base_cmds,@prereqs]%>
+<h1>ALL PREREQ_CONF_EXPR_TBLS </h1>
+
+<% @prereqs.each do |f| %>
+	<div class="theShower text-center">
+		<%= link_to f do %>
+			<div><%=f.LOGICAL_OP%></div>
+		<% end %>
+	</div>
+<% end %>
+<%= link_to 'New', new_prereq_conf_expr_tbl_path %>

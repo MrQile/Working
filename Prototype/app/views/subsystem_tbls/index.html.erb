@@ -1,0 +1,11 @@
+<h1>ALL SUBSYSTEM_TBLS </h1>
+
+<% @subs.each do |f| %>
+	<div class="theShower text-center">
+		<%= link_to f do %>
+			<div><%=f.SUBSYSTEM_NAME%></div>
+		<% end %>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_subsystem_tbl_path %>

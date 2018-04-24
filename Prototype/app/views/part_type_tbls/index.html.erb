@@ -1,0 +1,9 @@
+<h1>ALL PART_TYPE_TBLS </h1>
+
+<% @part_type.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.PART_TYPE%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_part_type_tbl_path %>

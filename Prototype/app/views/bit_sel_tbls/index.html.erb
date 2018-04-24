@@ -1,0 +1,12 @@
+<% breadcrumb :bit_sel_index, [@base_cmds,params[:bits]] %>
+<h1>ALL BIT_SEL_TBLS </h1>
+
+<% @bit_sels.each do |f| %>
+	<div class="theShower text-center">
+		<%= link_to f do %>
+			<div><%=f.LOGICAL_OP%></div>
+		<% end %>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_bit_sel_tbl_path(bits: params[:bits]) %>

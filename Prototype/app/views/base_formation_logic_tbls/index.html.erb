@@ -1,0 +1,9 @@
+<h1>ALL BASE_FORMATION_LOGIC_TBLS </h1>
+
+<% @base_form_logic.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.BASE_FORMATION_LOGIC%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_base_formation_logic_tbl_path %>
