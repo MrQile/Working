@@ -16,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-
+	<% if current_user.admin? %>
 		<% @versions.each do |f| %>
 			<tr class="theShower text-center">
 				<td><%= f.id %></td>
@@ -32,6 +32,21 @@
 			</tr>
 		<% end %>	
 		</tbody>
-
+	<% else %>
+		<% @versions.each do |f| %>
+			<tr class="theShower text-center">
+				<td><%= f.id %></td>
+				<td><%= f.db_name %></td>
+				<td><%= f.item_type %></td>
+				<td><%= f.item_id %></td>
+				<td><%= f.event %></td>
+				<td><%= f.user.name %></td>
+				<td class="scroller"><div><%= f.object%></div></td>
+				<td class="scroller"><div><%= f.changeset%></div></td>
+				<td><%= f.created_at %></td>
+			</tr>
+		<% end %>	
+		</tbody>	
+	<% end %>
 	</table>
 </div>

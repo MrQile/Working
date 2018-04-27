@@ -25,14 +25,14 @@
 		<% @base_cmds.each do |f| %>
 			<tr data-href="<%= edit_base_cmd_tbl_path(f) %>" data-value="<%=f.CMD_ID%>" class="theShower text-center">
 				<td class="scroller"><div><%= f.DESCRIPTION %></div></td>
-				<td><%= f.subsystem_tbl.SUBSYSTEM_NAME %></td>
+				<td><%= f.SUBSYSTEM %></td>
 				<td class="column-hider"><%= f.FORMATION_TYPE %></td>
-				<td><%= f.cmd_types_tbl.CMD_TYPE %></td>
+				<td><%= f.CMD_TYPE %></td>
 				<td class="column-hider"><%= f.BASE_CMD_CODE %></td>
 				<td class="column-hider"><%= f.CRITICALITY %></td>
 				<td class="column-hider"><%= f.PULSE_WIDTH %></td>
 				<td class="column-hider"><%= f.MAP_ID %></td>
-				<td><%= f.ui_types_tbl.UI_TYPE %></td>
+				<td><%= f.UI_TYPE %></td>
 				<td class="column-hider"><%= f.PREFERRABLE_DECODER %></td>
 				<td class="column-hider scroller">
 					<div>

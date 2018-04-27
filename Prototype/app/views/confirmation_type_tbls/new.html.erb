@@ -1,0 +1,15 @@
+
+<h1>CREATE CONFIRMATION_TYPE_TBL </h1>
+<%= form_for(@confs) do |f| %>
+
+  <%= f.label :BIT_POSITION %>
+  <%= f.text_field :BIT_POSITION, class: 'form-control' %>
+
+  <%= f.label :CONFIRMATION_TYPE %>
+  <%= f.text_field :CONFIRMATION_TYPE, class: 'form-control' %>
+
+  <%= f.label :BIT_VAL %>
+  <%= f.text_field :BIT_VAL, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

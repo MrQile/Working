@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 	resources :cmd_types_tbls do
 		match :search, to: 'cmd_types_tbls#index', via: :post, on: :collection
 	end
-	resources :confirmer_tbls do
-		match :search, to: 'confirmer_tbls#index', via: :post, on: :collection
+	resources :confirmation_type_tbls do
+		match :search, to: 'confirmation_type_tbls#index', via: :post, on: :collection
 	end
 	resources :expressions do
 		match :search, to: 'expressions#index', via: :post, on: :collection
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 	end
 		
 	resources :base_cmd_tbls do
-		post :save_cmd, on: :collection
+		post :sub_short_name, on: :collection
 		match :search, to: 'base_cmd_tbls#index', via: [:get, :post], on: :collection
 	end
 	resources :cmd_part_tbls

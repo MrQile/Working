@@ -2,8 +2,7 @@
 <h1>CREATE PREREQ_CONF_EXPR_TBL </h1>
 <%= form_for(@prereqs) do |f| %>
 
-  <%= f.label :CMD_ID %>
-  <%= f.collection_select(:CMD_ID, BASE_CMD_TBL.all, :CMD_ID, :DESCRIPTION, {:prompt => "Please select"})%></br>
+  <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
 
   <%= f.label :ENTRY_TYPE %>
   <%= f.text_field :ENTRY_TYPE, class: 'form-control' %></br>

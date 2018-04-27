@@ -3,8 +3,8 @@ class BaseCmdTblsController < ParentController
 
 	def index
 		session[:cmd_id] = 0
-		@confirmer = CONFIRMER_TBL.all
-		@confirmer_hash = Hash[ @confirmer.map { |c| [c.POSITION,c.NAME] }].stringify_keys!
+		@confirmer = CONFIRMATION_TYPE_TBL.all
+		@confirmer_hash = Hash[ @confirmer.map { |c| [c.BIT_POSITION,c.CONFIRMATION_TYPE] }].stringify_keys!
 		# @confirmer_hash.stringify_keys!
 		@search = BASE_CMD_TBL.ransack(params[:q])
 		@search.build_condition
@@ -12,12 +12,12 @@ class BaseCmdTblsController < ParentController
 
 			@column = params[:column]
 			@column_entry = params[:column_entry]
-			@base_cmds = @search.result.where(@column => @column_entry).includes(:subsystem_tbl, :ui_types_tbl, :cmd_types_tbl).paginate(page: params[:page], :per_page => 30)
+			@base_cmds = @search.result.where(@column => @column_entry).paginate(page: params[:page], :per_page => 30)
 
 		elsif params[:Base].present?		 #Use .has_key? if the param is of boolean type :true or :false 
 
-			@base_cmds = @search.result.paginate(page: params[:page], :per_page => 20).includes(:subsystem_tbl, :ui_types_tbl, :cmd_types_tbl)
-
+			@base_cmds = @search.result.paginate(page: params[:page], :per_page => 20)
+			
 		elsif params[:BitSel].present?
 
 			name = params[:BitSelTblName]
@@ -31,7 +31,7 @@ class BaseCmdTblsController < ParentController
 			@base_cmds = BASE_CMD_TBL.joins(:cmd_part_tbls).joins("INNER JOIN LKUP_TBL_INFO ON (LKUP_TBL_INFO.LKUP_TBL_NO = CMD_PART_TBL.RESOLUTION) AND (LKUP_TBL_INFO.LKUP_TBL_NAME LIKE '%#{name}%')").paginate(page: params[:page], :per_page => 20)
 			
 		else
-			@base_cmds = @search.result.includes(:subsystem_tbl, :ui_types_tbl, :cmd_types_tbl).paginate(page: params[:page], :per_page => 15)
+			@base_cmds = @search.result.paginate(page: params[:page], :per_page => 15)
 		end
 	end
 
@@ -51,6 +51,7 @@ class BaseCmdTblsController < ParentController
 	def create
 		@base_cmds = BASE_CMD_TBL.new(base_cmd_params)
 		if @base_cmds.save
+			flash[:success] = "Successfully created BASE CMD #{@base_cmds.CMD_ID}"
 			redirect_to base_cmd_tbls_path
 		else
 			render 'new'
@@ -61,6 +62,7 @@ class BaseCmdTblsController < ParentController
 		if params[:commit] == "Create"	
 			@base_cmds = BASE_CMD_TBL.new(base_cmd_params)
 			if @base_cmds.save
+				flash[:success] = "Successfully created BASE CMD #{@base_cmds.CMD_ID}"
 				redirect_to base_cmd_tbls_path
 			else
 				render 'edit'
@@ -68,6 +70,7 @@ class BaseCmdTblsController < ParentController
 		else
 			@base_cmds = BASE_CMD_TBL.find(params[:id])
 			if @base_cmds.update_attributes(base_cmd_params)
+				flash[:success] = "Successfully updated BASE CMD #{@base_cmds.CMD_ID}"
 				redirect_to base_cmd_tbls_path
 			else
 				render 'edit'
@@ -88,6 +91,13 @@ class BaseCmdTblsController < ParentController
 	# 		format.js
 	# 	end
 	# end
+
+	def sub_short_name
+		@sub_short = SUBSYSTEM_TBL.where(SUBSYSTEM_NAME: params[:subsystem_name]).pluck(:SUBSYSTEM_SHORT_NAME)*""
+		respond_to do |format|
+			format.js
+		end
+	end
 
 	private
 		def base_cmd_params

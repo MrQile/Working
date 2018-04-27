@@ -1,0 +1,74 @@
+	begin
+    self.foo << bar
+  rescue Exception => e      # only for debug purposes, don't rescue Exception in real code
+    logger.debug "#{e.class}"
+  end
+def db_check
+  begin 
+    schema_call = ActiveRecord::Base.establish_connection(
+      :adapter => 'mysql2',
+      :host => 'localhost',
+      :database => 'dev_db',
+      :username => 'dev_user',
+      :password => 'dev_pw').connection.execute("SELECT * FROM schema_migrations LIMIT 1")
+
+    if schema_call
+      render :status => 200, :file => "public/success.html"
+    else
+      render :status => 500, :file => "public/query_fail.html"
+    end
+  rescue Exception => e
+    puts "#{e.class} ;; #{e.message}"
+    logger.debug "#{e.class}"
+    render :status => 500, :file => "public/500.html"
+  end
+end
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin-top: 30px;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+.flash {
+  margin-top: 70px;
+  .alert{
+    margin-bottom: 0px;
+  }
+}
+
+  def database_change(user,defaults, server, db_name, db_username, db_password)
+    begin
+      config = ActiveRecord::Base.configurations["#{defaults}"]
+      config["host"] = server
+      config["database"] = db_name
+      config["username"] = db_username
+      config["password"] = db_password
+      ExternalDbAccess.establish_connection config
+      schema_call = ExternalDbAccess.connection.execute("SELECT * FROM SUBSYSTEM_TBL LIMIT 1")
+      if schema_call
+        redirect_to user
+      end
+    rescue Mysql2::Error => e
+      log_out
+        render :status => 500, :file => "public/mysql_fail.html"
+        return
+    end
+  end
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  ^[0-9A-F]+$
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    validates :email, presence: true, length: { maximum: 255 },
+                      format: { with: VALID_EMAIL_REGEX }

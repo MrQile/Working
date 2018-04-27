@@ -10,15 +10,16 @@ $(document).on("turbolinks:load", function() {
 		var theSelector = $('#cmd_part_tbl_CMD_PART_TYPE');
 		var theDivOfSelector = $('#CMD_PART_SELECTOR');
 		function resolutionChanger() {
-			if ($(this).val() == 1){
+			console.log($(this).val());
+			if ($(this).val() == "BIT_SEL_TBL_INFO"){
 				bit_sel.insertAfter(theDivOfSelector);
 				user.detach();											//Changed to detach as the select doesn't repond with the select2 gem when we try to use remove() 
 				lkup.detach();
-			} else if ($(this).val() == 2) {
+			} else if ($(this).val() == "LKUP_TBL_INFO") {
 				lkup.insertAfter(theDivOfSelector);     
 				user.detach();
 				bit_sel.detach();
-			} else if ($(this).val() == 3) {
+			} else if ($(this).val() == "USER_DATA") {
 					user.insertAfter(theDivOfSelector);
 					lkup.detach();
 					bit_sel.detach();
@@ -27,6 +28,48 @@ $(document).on("turbolinks:load", function() {
 		function divShower() {
 			$(".hidden-attrs").css("display", "block");
 		}
+		theSelector.on("change", resolutionChanger);
+		user.on("focus","#USER_DATA", divShower);
+		bit_sel.on("change", divShower);
+		lkup.on("change", divShower);
+	});
+	
+	$(".bit_sel_tbl_infos.show").ready( function() {
+		$(".options_bar").css("display", "block");
+	});
+	$(".lkup_tbl_infos.show").ready( function() {
+		$(".options_bar").css("display", "block");
+	});
+
+	$(".cmd_part_tbls.edit").ready( function() {
+		console.log("good luck");
+		var user;
+		var bit_sel;
+		var lkup;
+		user = $("#user_data").detach();
+		bit_sel = $("#bit_sel_tbl").detach();
+		lkup = $("#lkup_tbl").detach();
+		var theSelector = $('#cmd_part_tbl_CMD_PART_TYPE');
+		var theDivOfSelector = $('#CMD_PART_SELECTOR');
+		function resolutionChanger() {
+
+			if (theSelector.val() == "BIT_SEL_TBL_INFO"){
+				bit_sel.insertAfter(theDivOfSelector);
+				user.detach();											//Changed to detach as the select doesn't repond with the select2 gem when we try to use remove() 
+				lkup.detach();
+			} else if (theSelector.val() == "LKUP_TBL_INFO") {
+				lkup.insertAfter(theDivOfSelector);     
+				user.detach();
+				bit_sel.detach();
+			} else if (theSelector.val() == "USER_DATA") {
+					user.insertAfter(theDivOfSelector);
+					lkup.detach();
+					bit_sel.detach();
+			}
+		}
+		
+		setTimeout(resolutionChanger, 1);
+
 		theSelector.on("change", resolutionChanger);
 		user.on("focus","#USER_DATA", divShower);
 		bit_sel.on("change", divShower);

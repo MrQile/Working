@@ -1,9 +1,8 @@
 <% breadcrumb :edit_cmd_part, [@base_cmds,@cmd_parts]%>
-<h1>EDIT CMD_PART_TBL </h1>
+<h1 onload="location.reload(true);"><h1>EDIT CMD_PART_TBL </h1>
 <%= form_for(@cmd_parts) do |f| %>
 
-  <%= f.label :CMD_ID %>
-  <%= f.collection_select(:CMD_ID, BASE_CMD_TBL.all, :CMD_ID, :DESCRIPTION, {:prompt => "Please select"})%></br>
+  <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
 
   <%= f.label :CMD_PART_NO %>
   <%= f.text_field :CMD_PART_NO, class: 'form-control' %>
@@ -11,8 +10,24 @@
   <%= f.label :CMD_PART_MNEMONIC%>
   <%= f.text_field :CMD_PART_MNEMONIC, class: 'form-control' %>
 
-  <%= f.label :CMD_PART_TYPE %>
-  <%= f.collection_select(:CMD_PART_TYPE, CMD_PART_TYPES_TBL.all, :CMD_PART_TYPE_ID, :CMD_PART_TYPE, {:prompt => "Please select"})%></br>
+  <div id="CMD_PART_SELECTOR">
+    <%= f.label :CMD_PART_TYPE %>
+    <%= f.collection_select(:CMD_PART_TYPE, CMD_PART_TYPES_TBL.all, :CMD_PART_TYPE, :CMD_PART_TYPE, {:prompt => "Please select"},{class: 'form-control'})%></br>
+  </div>
+  <div id="user_data">
+    <%= f.label :USER_DATA %>
+    <%= f.text_field :RESOLUTION, class: 'form-control', id: 'USER_DATA' %>
+  </div>
+
+  <div id="bit_sel_tbl">
+    <%= f.label :BIT_SEL_TBL_INFO %>
+    <%= f.collection_select(:RESOLUTION, BIT_SEL_TBL_INFO.all, :BIT_SEL_TBL_NO, :BIT_SEL_TBL_NAME, {:prompt => "Please select"},{class: 'form-control', id: 'BIT_SEL_TBL_INFO'})%><%= link_to "Bit_sel Doesn't exist?", new_bit_sel_tbl_info_path%>
+  </div>
+  
+  <div id="lkup_tbl">
+    <%= f.label :LKUP_TBL_INFO %>
+    <%= f.collection_select(:RESOLUTION, LKUP_TBL_INFO.all, :LKUP_TBL_NO, :LKUP_TBL_NAME, {:prompt => "Please select"},{class: 'form-control', id: 'LKUP_TBL_INFO'})%><%= link_to "lkup Doesn't exist?", new_lkup_tbl_info_path%>
+  </div>
 
   <%= f.label :START_BIT %>
   <%= f.text_field :START_BIT, class: 'form-control' %>
@@ -22,10 +37,7 @@
 
   <%= f.label :PART_MASK %>
   <%= f.text_field :PART_MASK, class: 'form-control' %>
-
-  <%= f.label :RESOLUTION %>
-  <%= f.text_field :RESOLUTION, class: 'form-control' %>
-
+  
   <%= f.label :OFFSET%>
   <%= f.text_field :OFFSET, class: 'form-control' %>
 
@@ -42,7 +54,8 @@
   <%= f.text_field :UNITS, class: 'form-control' %>
 
   <%= f.label :REMARKS%>
-  <%= f.text_field :REMARKS, class: 'form-control' %>  
+  <%= f.text_field :REMARKS, class: 'form-control' %>
+
   <%= f.submit 'Update', class: "btn btn-primary" %>
 <% end %>
 

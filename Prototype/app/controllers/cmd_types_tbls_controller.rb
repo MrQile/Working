@@ -22,7 +22,7 @@ class CmdTypesTblsController < ParentController
 	def create
 		@cmd_types = CMD_TYPES_TBL.new(cmd_type_params)
 		if @cmd_types.save
-			redirect_to @cmd_types
+			redirect_to cmd_types_tbls_path
 		else
 			render 'new'
 		end
@@ -31,7 +31,7 @@ class CmdTypesTblsController < ParentController
 	def update
 		@cmd_types = CMD_TYPES_TBL.find(params[:id])
 		if @cmd_types.update_attributes(cmd_type_params)
-			redirect_to cmd_types_tbls_url
+			redirect_to cmd_types_tbls_path
 		else
 			render 'edit'
 		end
@@ -39,7 +39,7 @@ class CmdTypesTblsController < ParentController
 
 	def destroy
 		CMD_TYPES_TBL.find(params[:id]).destroy
-		redirect_to cmd_types_tbls_url
+		redirect_to cmd_types_tbls_path
 	end
 
 	private

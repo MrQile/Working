@@ -2,8 +2,7 @@
 <h1>CREATE CPID_TBL </h1>
 <%= form_for(@cpids) do |f| %>
 
-  <%= f.label :CMD_ID %>
-  <%= f.collection_select(:CMD_ID, BASE_CMD_TBL.all, :CMD_ID, :DESCRIPTION, {:prompt => "Please select"})%></br>
+  <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
 
   <%= f.label :CPID %>
   <%= f.text_field :CPID, class: 'form-control' %>

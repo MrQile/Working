@@ -2,6 +2,11 @@ $(document).on("turbolinks:load", function() {
 	// $("#mainRow").height($(window).height()); //same thing as setting 100vh in css, but not good in terms of resized window
 	
 
+	$(function() {
+	  setTimeout(function(){
+	    $('.alert').slideUp(500);
+	  }, 4000);
+	});
 	/* For the select 2 gem to work */
 
 	$('select').select2({
@@ -9,6 +14,8 @@ $(document).on("turbolinks:load", function() {
 		placeholder: "Please Select",
 		allowClear: true
 	});
+
+
 	
 	// For Column Selector and Sorting
 
@@ -167,7 +174,7 @@ $(document).on("turbolinks:load", function() {
 
     /* Since there is no need of single click for show */
 
-    $(".base_cmd_tbls.index tr").on({"dblclick" : function(){
+    $(".base_cmd_tbls.index tbody tr").on({"dblclick" : function(){
     	window.location = $(this).data("href");
     }});
    
@@ -204,5 +211,22 @@ $(document).on("turbolinks:load", function() {
 
 	});
 
-		
+
+	/* SUB SHORT NAME ADDER */
+
+	var sub;
+	var sub_name;
+	sub = $("#base_cmd_tbl_SUBSYSTEM");
+
+	sub.on("change", function(){
+		sub_name = $(this).val();
+		console.log(sub_name);
+		$.ajax({
+			type: 'POST',
+			url: '/base_cmd_tbls/sub_short_name',
+			data: {'subsystem_name' : sub_name}
+		});
+	})
+
+	
 });

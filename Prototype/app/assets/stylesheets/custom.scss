@@ -111,6 +111,35 @@ h1 {
 	
 }
 
+/* Errors and Validation */
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+.flash {
+	position: fixed;
+	top: 50px;
+	width: 100%;
+}
+
+/* Select 2 default truncate width problem override */
+
+.select2 {
+        width: 100% !important;
+}
+
+
+
 /* Certain defaults 
 header.navbar {
   padding: 5px 40px 5px 40px;  top right bottom left 
@@ -451,4 +480,21 @@ p.nav_arrow {
 
 .sortersubmit {
 	display: none;
+}
+
+/* User profile */
+
+.user_profile {
+	width: 100%;
+	h1{
+	background-color: $light-blue;
+	}
+	h3{
+	text-align: left;
+	background-color: $light-gray;
+	}
+}
+
+.user_profile_button {
+	width: 50%;
 }

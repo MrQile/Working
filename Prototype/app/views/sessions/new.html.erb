@@ -2,53 +2,54 @@
 <div class="perfect-forms">
 	<%= form_for(:session, url: login_path, method: :post) do |f| %>
 
-		<p class="form-row">
+
+		<div class="form-row">
 			<%= f.label :name %>
 			<%= f.text_field :name%>
-		</p>
+		</div>
 
-		<p class="form-row">
+		<div class="form-row">
 			<%= f.label :password %>
 			<%= f.password_field :password%>
-		</p>
+		</div>
 
-		<p class="form-row">
+		<div class="form-row">
 			<%= f.label :defaults %>
 			<%= f.select :defaults, options_for_select(MinorConfig.pluck(:defaults), "development"), {}%>
-		</p>
+		</div>
 
 		<div class="advanced_options">
 
-			<p class="form-row">
+			<div class="form-row">
 				<%= f.label :database_name %>
 				<%= f.text_field :database_name, value: "rubyappdb" %>
-			</p>
+			</div>
 		
-			<p class="form-row">
+			<div class="form-row">
 				<%= f.label :database_username %>
 				<%= f.text_field :database_username, value: "Ruby" %>
-			</p>
+			</div>
 
-			<p class="form-row">
-				<%= f.label :database_password %>
-				<%= f.text_field :database_password, value: "Ruby_123" %>
-			</p>
+			<div class="form-row">
+				<%= f.label :database_password %> 
+				<%= f.password_field :database_password, value: "Ruby_123" %>
+			</div>
 
-			<p class="form-row">
-				<%= f.label :server_name %>
-				<%= f.select :server_name, MinorConfig.pluck(:server_name), {}%>
-			</p>
+			<div class="form-row">
+				<%= f.label :host %>
+				<%= f.text_field :host, value: "localhost"%>
+			</div>
 
 		</div>
 
-		<p style="text-align: left">New user? <%= link_to "Sign up now!", signup_path %></p>
+		<div style="text-align: left">New user? <%= link_to "Sign up now!", signup_path %></div>
 
-		<p class="form-row btn-group btn-group-sm">
+		<div class="form-row btn-group btn-group-sm">
 
   			<span id="advanced_button" class="btn btn-warning">Advanced Options</span>
 			<%= f.submit "Log In", class: "btn btn-primary" %>
 
-		</p>
+		</div>
 
 	<% end %>
 

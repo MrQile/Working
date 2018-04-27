@@ -1,0 +1,9 @@
+<h1>ALL CONFIRMATION_TYPE_TBLS </h1>
+
+<% @confs.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.CONFIRMATION_TYPE%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_confirmation_type_tbl_path %>

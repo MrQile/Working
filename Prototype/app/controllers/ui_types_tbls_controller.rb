@@ -23,7 +23,7 @@ class UiTypesTblsController < ParentController
 	def create
 		@ui_types = UI_TYPES_TBL.new(ui_type_params)
 		if @ui_types.save
-			redirect_to @ui_types
+			redirect_to ui_types_tbls_path
 		else
 			render 'new'
 		end
@@ -40,7 +40,7 @@ class UiTypesTblsController < ParentController
 
 	def destroy
 		UI_TYPES_TBL.find(params[:id]).destroy
-		redirect_to ui_types_tbls_url
+		redirect_to ui_types_tbls_path
 	end
 
 	private

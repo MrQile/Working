@@ -1,10 +1,9 @@
 <% breadcrumb :new_cmd_part, [@base_cmds,@cmd_parts]%>
 <h1 onload="location.reload(true);">CREATE CMD_PART_TBL </h1>
 <%= form_for(@cmd_parts) do |f| %>
-  
-  <%= f.label :CMD_ID%>
-  <%= f.collection_select(:CMD_ID, BASE_CMD_TBL.all, :CMD_ID, :DESCRIPTION, {:prompt => "Please select"})%></br>
 
+  <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
+  
   <%= f.label :CMD_PART_NO %>
   <%= f.text_field :CMD_PART_NO, class: 'form-control' %>
 
@@ -13,7 +12,7 @@
 
   <div id="CMD_PART_SELECTOR">
     <%= f.label :CMD_PART_TYPE %>
-    <%= f.collection_select(:CMD_PART_TYPE, CMD_PART_TYPES_TBL.all, :CMD_PART_TYPE_ID, :CMD_PART_TYPE, {:prompt => "Please select"},{class: 'form-control'})%></br>
+    <%= f.collection_select(:CMD_PART_TYPE, CMD_PART_TYPES_TBL.all, :CMD_PART_TYPE, :CMD_PART_TYPE, {:prompt => "Please select"},{class: 'form-control'})%></br>
   </div>
   <div id="user_data">
     <%= f.label :USER_DATA %>

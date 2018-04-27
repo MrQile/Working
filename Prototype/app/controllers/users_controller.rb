@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
+			flash[:success] = "Please log in to continue"
 			redirect_to login_path
 		else
 			render 'new'
@@ -34,7 +35,8 @@ class UsersController < ApplicationController
 		if @user != current_user
 			redirect_to user_path(current_user)
 		elsif @user.update_attributes(user_params)
-			redirect_to root_url
+			flash[:success] = "Successfully updated"
+			redirect_to @user
 		else
 			render 'edit'
 		end
@@ -42,6 +44,7 @@ class UsersController < ApplicationController
 
 	def destroy
 		User.find(params[:id]).destroy
+		flash[:destroy] = "Successfully deleted"
 		redirect_to users_path
 	end
 

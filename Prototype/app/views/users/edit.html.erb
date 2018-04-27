@@ -5,37 +5,39 @@
 
 	<%= form_for(@user) do |f| %>
 
-	<p class="form-row">	
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<div class="form-row">	
 
 	  <%= f.label :name %>
 	  <%= f.text_field :name, class: 'form-control' %>
 
-	</p>  
+	</div>  
 
-	<p class="form-row">
+	<div class="form-row">
 
 	  <%= f.label :password %>
 	  <%= f.password_field :password, class: 'form-control' %>
 
-	</p>  
+	</div>  
 
-	<p class="form-row">
+	<div class="form-row">
 
 	  <%= f.label :password_confirmation, "Confirmation" %>
 	  <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-	</p> 
+	</div> 
 
-	<p class="form-row">
+	<div class="form-row">
 
 	  <%= f.label :satellite_name %>
-	  <%= f.password_field :satellite_name, class: 'form-control' %>  
+	  <%= f.text_field :satellite_name, class: 'form-control' %>  
 
-	</p>  
+	</div>  
 
-	<p class="form-row">
+	<div class="form-row">
 
 	  <%= f.submit 'Update', class: "btn btn-primary" %>
 
-	</p> 
+	</div> 
 	<% end %>

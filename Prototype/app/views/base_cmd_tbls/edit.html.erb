@@ -4,84 +4,91 @@
 <% breadcrumb :edit_base_cmds, @base_cmds %>
 <h1>EDIT BASE COMMAND  </h1>
 <% @base_cmds.DecoderForEdit %>
-<h5>Currently Editing Base Cmd With Cmd Id <%=session[:cmd_id]%></h5>
+<h5>Currently editing base cmd with cmd_id <%=session[:cmd_id]%></h5>
 
 <div class="perfect-forms">
 
   <%= form_for(@base_cmds) do |f| %>
 
-  <p class="form-row">
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-row">
+    <%= f.label :CMD_ID %>
+    <%= f.text_field :CMD_ID, class: 'form-control'%>
+  </div>
+
+  <div class="form-row">
     <%= f.label :DESCRIPTION %>
-    <%= f.text_area :DESCRIPTION%>
-  </p>
+    <%= f.text_area :DESCRIPTION, class: 'form-control'%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :SUBSYSTEM %>
-    <%= f.collection_select(:SUBSYSTEM, SUBSYSTEM_TBL.all, :SUBSYSTEM_ID, :SUBSYSTEM_NAME, {:prompt => "Please select"})%>
-  </p>
+    <%= f.collection_select(:SUBSYSTEM, SUBSYSTEM_TBL.all, :SUBSYSTEM_NAME, :SUBSYSTEM_NAME, {:prompt => "Please select"},{class: 'form-control'})%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :FORMATION_TYPE %>
-    <%= f.collection_select(:FORMATION_TYPE, BASE_FORMATION_LOGIC_TBL.all, :BASE_FORMATION_LOGIC, :BASE_FORMATION_LOGIC, {:prompt => "Please select"})%>
-  </p>
+    <%= f.collection_select(:FORMATION_TYPE, BASE_FORMATION_LOGIC_TBL.all, :BASE_FORMATION_LOGIC, :BASE_FORMATION_LOGIC, {:prompt => "Please select"},{class: 'form-control'})%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :CMD_TYPE %>
-    <%= f.collection_select(:CMD_TYPE, CMD_TYPES_TBL.all, :CMD_TYPE_ID, :CMD_TYPE, {:prompt => "Please select"}) %>
-  </p>
+    <%= f.collection_select(:CMD_TYPE, CMD_TYPES_TBL.all, :CMD_TYPE, :CMD_TYPE, {:prompt => "Please select"} ,{class: 'form-control'})%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :BASE_CMD_CODE %>
-    <%= f.text_field :BASE_CMD_CODE%>
-  </p>
+    <%= f.text_field :BASE_CMD_CODE, class: 'form-control'%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :BASE_CMD_MASK %>
-    <%= f.text_field :BASE_CMD_MASK%>
-  </p>
+    <%= f.text_field :BASE_CMD_MASK, class: 'form-control'%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :CRITICALITY %>
-    <%= f.collection_select(:CRITICALITY, CRITICALITY_TBL.all, :CRITICALITY, :CRITICALITY, {:prompt => "Please select"})%>
-  </p>
+    <%= f.collection_select(:CRITICALITY, CRITICALITY_TBL.all, :CRITICALITY, :CRITICALITY, {:prompt => "Please select"},{class: 'form-control'})%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :PULSE_WIDTH %>
-    <%= f.collection_select(:PULSE_WIDTH, PULSE_WIDTH_TBL.all, :PULSE_WIDTH, :PULSE_WIDTH, {:prompt => "Please select"})%>
-  </p>
+    <%= f.collection_select(:PULSE_WIDTH, PULSE_WIDTH_TBL.all, :PULSE_WIDTH, :PULSE_WIDTH, {:prompt => "Please select"},{class: 'form-control'})%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :MAP_ID %>
-    <%= f.collection_select(:MAP_ID, MAP_ID_TBL.all, :MAP_ID, :MAP_ID, {:prompt => "Please select"})%>
-  </p>
+    <%= f.collection_select(:MAP_ID, MAP_ID_TBL.all, :MAP_ID, :MAP_ID, {:prompt => "Please select"},{class: 'form-control'})%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :UI_TYPE %>
-    <%= f.collection_select(:UI_TYPE, UI_TYPES_TBL.all, :UI_TYPE_ID, :UI_TYPE, {:prompt => "Please select"})  %>
-  </p>
+    <%= f.collection_select(:UI_TYPE, UI_TYPES_TBL.all, :UI_TYPE, :UI_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :PREFERRABLE_DECODER %>
-    <%= f.collection_select(:PREFERRABLE_DECODER, PREFERRABLE_DECODER_TBL.all, :PREFERRABLE_DECODER, :PREFERRABLE_DECODER, {:prompt => "Please select"})%>
-  </p>
+    <%= f.collection_select(:PREFERRABLE_DECODER, PREFERRABLE_DECODER_TBL.all, :PREFERRABLE_DECODER, :PREFERRABLE_DECODER, {:prompt => "Please select"},{class: 'form-control'})%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :CONFIRMATION_TYPE %>
-    <%= f.collection_select(:CONFIRMATION_TYPE, CONFIRMER_TBL.all, :POSITION, :NAME, {:prompt => "Please Select", :include_hidden => false, :selected => @base_cmds.CONFIRMATION_TYPE}, {:multiple => true}) %>
-  </p>
+    <%= f.collection_select(:CONFIRMATION_TYPE, CONFIRMATION_TYPE_TBL.all, :BIT_POSITION, :CONFIRMATION_TYPE, {:prompt => "Please Select", :include_hidden => false, :selected => @base_cmds.CONFIRMATION_TYPE}, {:multiple => true, class: 'form-control'}) %>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.label :REMARKS %>
-    <%= f.text_field :REMARKS%>
-  </p>
+    <%= f.text_field :REMARKS, class: 'form-control'%>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.submit 'Update', class: "btn btn-primary" %>
-  </p>
+  </div>
 
-  <p class="form-row">
+  <div class="form-row">
     <%= f.submit 'Create', class: "btn btn-primary" %>
-  </p>
+  </div>
 
   <% end %>
 

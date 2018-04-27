@@ -23,7 +23,7 @@ class SubsystemTblsController < ParentController
 	def create
 		@subs = SUBSYSTEM_TBL.new(sub_params)
 		if @subs.save
-			redirect_to @subs
+			redirect_to subsystem_tbls_path
 		else
 			render 'new'
 		end
@@ -32,7 +32,7 @@ class SubsystemTblsController < ParentController
 	def update
 		@subs = SUBSYSTEM_TBL.find(params[:id])
 		if @subs.update_attributes(sub_params)
-			redirect_to subsystem_tbls_url
+			redirect_to subsystem_tbls_path
 		else
 			render 'edit'
 		end
@@ -40,12 +40,12 @@ class SubsystemTblsController < ParentController
 
 	def destroy
 		SUBSYSTEM_TBL.find(params[:id]).destroy
-		redirect_to subsystem_tbls_url
+		redirect_to subsystem_tbls_path
 	end
 
 	private
 
 		def sub_params
-			params.require(:subsystem_tbl).permit(:SUBSYSTEM_ID, :SUBSYSTEM_NAME)
+			params.require(:subsystem_tbl).permit(:SUBSYSTEM_ID, :SUBSYSTEM_NAME, :SUBSYSTEM_SHORT_NAME)
 		end
 end

@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 	def logged_in_user
     
     unless logged_in?
+      flash[:warning] = "Please login to continue"
     	redirect_to root_url
     end
   end
@@ -25,7 +26,8 @@ class ApplicationController < ActionController::Base
   def admin_user
 
     if !current_user.admin?
-    	redirect_back(fallback_location: root_path)
+      flash[:warning] = "You don't have superuser privileges"
+    	redirect_back(fallback_location: user_path(current_user))
 	  end
   end
 

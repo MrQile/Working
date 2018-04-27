@@ -2,7 +2,7 @@ CREATE DATABASE AllConfig;
 
 USE AllConfig;
 
-CREATE TABLE minor_configs(id INT PRIMARY KEY AUTO_INCREMENT, database_name VARCHAR(255), server_name VARCHAR(255));
+CREATE TABLE minor_configs(id INT PRIMARY KEY AUTO_INCREMENT, database_name VARCHAR(48);
 
 CREATE TABLE users(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), password_digest VARCHAR(255), satellite_name VARCHAR(255), admin BOOLEAN NOT NULL DEFAULT 0);
 
