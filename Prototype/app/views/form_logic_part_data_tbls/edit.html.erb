@@ -1,0 +1,80 @@
+<h1 onload="location.reload(true);">EDIT FORM_LOGIC_PART_DATA_TBL </h1>
+<%= form_for(@form_logic_data) do |f| %>
+
+	<%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
+
+	<%= f.label :PART_NO %>
+	<%= f.text_field :PART_NO, class: 'form-control' %>
+
+	<%= f.label :LOGIC_LEVEL %>
+	<%= f.text_field :LOGIC_LEVEL, class: 'form-control'%>
+
+
+	<%= f.label :LOGIC_PART_NO %>
+	<%= f.text_field :LOGIC_PART_NO, class: 'form-control'%>
+
+	<%= f.label :FORM_LOGIC_PART_TYPE %>
+	<%= f.collection_select(:FORM_LOGIC_PART_TYPE, FORM_LOGIC_PART_TYPE_TBL.all, :FORM_LOGIC_PART_TYPE, :FORM_LOGIC_PART_TYPE, {:prompt => "Please select"},{class: 'form-control'})%></br>
+
+	<%= f.label :PART_MNEMONIC%>
+	<%= f.text_field :PART_MNEMONIC, class: 'form-control' %>
+
+	<input id="all" type="radio" name="sub_logic_selector" checked="checked">
+	<label for="all">All</label>
+	<input id="formation_logic" type="radio" name="sub_logic_selector">
+	<label for="formation_logic">Formation Logic</label>
+
+	<div id="all_sub_logic">
+		<%= f.hidden_field :SUB_LOGIC_TYPE, :value => "All" %>
+	</div>
+
+	<div id="form_sub_logic">
+		<%= f.label :SUB_LOGIC_TYPE %>
+		<%= f.collection_select(:SUB_LOGIC_TYPE, FORMATION_LOGIC_TBL.all, :FORMATION_LOGIC, :FORMATION_LOGIC, {:prompt => "Please select"},{class: 'form-control'})%></br>
+	</div>
+
+	<%= f.label :LOGIC_LEVEL %>
+	<%= f.text_field :LOGIC_LEVEL, class: 'form-control'%>
+
+	<div id="PART_SELECTOR">
+		<%= f.label :PART_TYPE %>
+		<%= f.collection_select(:PART_TYPE, PART_TYPE_TBL.all, :PART_TYPE, :PART_TYPE, {:prompt => "Please select"},{class: 'form-control'})%></br>
+	</div>
+
+	<div id="user_data">
+		<%= f.label :USER_DATA %>
+		<%= f.text_field :RESOLUTION, class: 'form-control', id: 'USER_DATA' %>
+	</div>
+
+	<div class="hidden-attrs">
+		<%= f.label :START_BIT %>
+		<%= f.text_field :START_BIT, class: 'form-control' %>
+
+		<%= f.label :NO_OF_BITS%>
+		<%= f.text_field :NO_OF_BITS, class: 'form-control' %>
+
+		<%= f.label :PART_MASK %>
+		<%= f.text_field :PART_MASK, class: 'form-control' %>
+
+		<%= f.label :OFFSET%>
+		<%= f.text_field :OFFSET, class: 'form-control' %>
+
+		<%= f.label :INPUT_FORMAT %>
+		<%= f.text_field :INPUT_FORMAT, class: 'form-control' %>
+
+		<%= f.label :LL %>
+		<%= f.text_field :LL, class: 'form-control' %>
+
+		<%= f.label :UL%>
+		<%= f.text_field :UL, class: 'form-control' %>
+
+		<%= f.label :UNITS %>
+		<%= f.text_field :UNITS, class: 'form-control' %>
+
+		<%= f.label :REMARKS%>
+		<%= f.text_field :REMARKS, class: 'form-control' %>
+	</div>
+
+
+  <%= f.submit 'Update', class: "btn btn-primary" %>
+<% end %>

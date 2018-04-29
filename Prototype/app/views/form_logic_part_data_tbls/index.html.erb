@@ -1,0 +1,9 @@
+<h1>ALL FORM_LOGIC_PART_DATA_TBLS </h1>
+
+<% @form_logic_data.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.LOGIC_LEVEL%><%=f.SUB_LOGIC_TYPE%><%= link_to "edit", edit_form_logic_part_data_tbl_path(f)%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_form_logic_part_data_tbl_path %>

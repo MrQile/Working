@@ -14,8 +14,8 @@
 		</div>
 
 		<div class="form-row">
-			<%= f.label :defaults %>
-			<%= f.select :defaults, options_for_select(MinorConfig.pluck(:defaults), "development"), {}%>
+			<%= f.label :default_db_env %>
+			<%= f.select :default_db_env, options_for_select(MinorConfig.pluck(:default_db_env), "development"), {}%>
 		</div>
 
 		<div class="advanced_options">

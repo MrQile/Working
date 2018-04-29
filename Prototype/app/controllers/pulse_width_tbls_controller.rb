@@ -1,5 +1,6 @@
 class PulseWidthTblsController < ParentController
 	before_action :admin_user, only: [:destroy]
+	before_action :set_base_cmd_session_to_nil
 
 	def index
 		@pulse_width= PULSE_WIDTH_TBL.all
@@ -26,6 +27,7 @@ class PulseWidthTblsController < ParentController
 		@pulse_width = PULSE_WIDTH_TBL.find(params[:id])
 		if @pulse_width.update_attributes(pulse_width_params)
 			redirect_to pulse_width_tbls_path
+		else
 			render 'edit'
 		end
 	end

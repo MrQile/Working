@@ -1,0 +1,9 @@
+<h1>ALL REL_OP_TBLS </h1>
+
+<% @rel_op.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.REL_OP%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_rel_op_tbl_path %>

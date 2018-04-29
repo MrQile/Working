@@ -1,5 +1,7 @@
 class CriticalityTblsController < ParentController
-before_action :admin_user, only: [:destroy]
+	before_action :admin_user, only: [:destroy]
+	before_action :set_base_cmd_session_to_nil
+
 
 	def index
 		@crity = CRITICALITY_TBL.all
@@ -26,6 +28,7 @@ before_action :admin_user, only: [:destroy]
 		@crity = CRITICALITY_TBL.find(params[:id])
 		if @crity.update_attributes(criticality_params)
 			redirect_to criticality_tbls_path
+		else
 			render 'edit'
 		end
 	end

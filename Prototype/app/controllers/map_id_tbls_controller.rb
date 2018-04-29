@@ -1,5 +1,6 @@
 class MapIdTblsController < ParentController
 	before_action :admin_user, only: [:destroy]
+	before_action :set_base_cmd_session_to_nil
 
 	def index
 		@map_id = MAP_ID_TBL.all
@@ -26,6 +27,7 @@ class MapIdTblsController < ParentController
 		@map_id = MAP_ID_TBL.find(params[:id])
 		if @map_id.update_attributes(map_id_params)
 			redirect_to map_id_tbls_path
+		else
 			render 'edit'
 		end
 	end

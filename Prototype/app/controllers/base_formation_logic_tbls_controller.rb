@@ -1,5 +1,7 @@
 class BaseFormationLogicTblsController < ParentController
-before_action :admin_user, only: [:destroy]
+	before_action :admin_user, only: [:destroy]
+	before_action :set_base_cmd_session_to_nil
+
 
 	def index
 		@base_form_logic = BASE_FORMATION_LOGIC_TBL.all
@@ -26,7 +28,8 @@ before_action :admin_user, only: [:destroy]
 		@base_form_logic = BASE_FORMATION_LOGIC_TBL.find(params[:id])
 		if @base_form_logic.update_attributes(base_form_logic_params)
 			redirect_to base_formation_logic_tbls_path
-			render 'edit'
+		else
+				render 'edit'
 		end
 	end
 

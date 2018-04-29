@@ -1,4 +1,5 @@
 class ConfirmationTypeTblsController < ParentController
+	before_action :set_base_cmd_session_to_nil
 
 	def index
 		session[:cmd_id] = 0

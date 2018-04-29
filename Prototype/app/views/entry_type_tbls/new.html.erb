@@ -1,0 +1,12 @@
+
+<h1>CREATE ENTRY_TYPE_TBL </h1>
+<%= form_for(@entry_type) do |f| %>
+
+  <%= f.label :ID %>
+  <%= f.text_field :ID, class: 'form-control' %>
+
+  <%= f.label :ENTRY_TYPE %>
+  <%= f.text_field :ENTRY_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

@@ -1,5 +1,5 @@
 class ExpressionsController < ParentController
-
+	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
 	def index
 		@search = EXPRESSION.ransack(params[:q])
 		@exprs = @search.result

@@ -1,4 +1,5 @@
 class CmdPartTypesTblsController < ParentController
+	before_action :set_base_cmd_session_to_nil
 
 	def index
 		@search = CMD_PART_TYPES_TBL.ransack(params[:q])

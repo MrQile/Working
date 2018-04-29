@@ -1,5 +1,5 @@
 class LkupTblInfosController < ParentController
-
+	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
 	def index
 		@search = LKUP_TBL_INFO.ransack(params[:q])
 		@lkup_infos = @search.result

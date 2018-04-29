@@ -1,5 +1,6 @@
 class InputFormatTblsController < ParentController
 	before_action :admin_user, only: [:destroy]
+	before_action :set_base_cmd_session_to_nil
 
 	def index
 		@input_format = INPUT_FORMAT_TBL.all
@@ -26,6 +27,7 @@ class InputFormatTblsController < ParentController
 		@input_format = INPUT_FORMAT_TBL.find(params[:id])
 		if @input_format.update_attributes(input_format_params)
 			redirect_to input_format_tbls_path
+		else
 			render 'edit'
 		end
 	end

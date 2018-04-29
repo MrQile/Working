@@ -1,0 +1,9 @@
+<h1>ALL VALUE_TYPE_TBLS </h1>
+
+<% @value_type.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.VALUE_TYPE%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_value_type_tbl_path %>

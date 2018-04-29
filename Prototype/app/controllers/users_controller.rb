@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :logged_in_user, except: [:new, :create]
 	before_action :admin_user, only: :destroy
+	before_action :set_base_cmd_session_to_nil
 	layout "startup"
 
 	def index

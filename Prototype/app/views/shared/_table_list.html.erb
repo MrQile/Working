@@ -7,21 +7,29 @@
     <li><%= link_to "UI Types", ui_types_tbls_path %></li>
     <li><%= link_to "Cmd Types", cmd_types_tbls_path %></li>
     <li class="divider"></li>
-    <li><%= link_to "Cmd Part Types", cmd_part_types_tbls_path %></li>
     <li><%= link_to "Expressions", expressions_path %></li>
     <li><%= link_to "Bit Sel Info", bit_sel_tbl_infos_path %></li>
     <li><%= link_to "Lkup Info", lkup_tbl_infos_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Confirmation", confirmation_type_tbls_path %></li>
-    <li><%= link_to "Base Form Logic", base_formation_logic_tbls_path %></li>
-    <li><%= link_to "Criticality", criticality_tbls_path %></li>
-    <li><%= link_to "Input Format", input_format_tbls_path %></li>
-    <li><%= link_to "Lkup Type", lk_tbl_type_tbls_path %></li>
-    <li><%= link_to "Logical OP", logical_op_tbls_path %></li>
-    <li><%= link_to "Map ID", map_id_tbls_path %></li>
-    <li><%= link_to "Part Type", part_type_tbls_path %></li>
-    <li><%= link_to "Pref Decoder", preferrable_decoder_tbls_path %></li>
-    <li><%= link_to "Pulse Width", pulse_width_tbls_path %></li>
-
+    <% if current_user.admin? %>
+        <li class="divider"></li>
+        <li><%= link_to "Cmd Part Types", cmd_part_types_tbls_path %></li>
+        <li><%= link_to "Confirmation", confirmation_type_tbls_path %></li>
+        <li><%= link_to "Base Form Logic", base_formation_logic_tbls_path %></li>
+        <li><%= link_to "Criticality", criticality_tbls_path %></li>
+        <li><%= link_to "Input Format", input_format_tbls_path %></li>
+        <li><%= link_to "Lkup Type", lk_tbl_type_tbls_path %></li>
+        <li><%= link_to "Logical OP", logical_op_tbls_path %></li>
+        <li><%= link_to "Map ID", map_id_tbls_path %></li>
+        <li><%= link_to "Part Type", part_type_tbls_path %></li>
+        <li><%= link_to "Pref Decoder", preferrable_decoder_tbls_path %></li>
+        <li><%= link_to "Pulse Width", pulse_width_tbls_path %></li>
+        <li><%= link_to "Rel OP", rel_op_tbls_path %></li>
+        <li><%= link_to "Formation Logic", formation_logic_tbls_path %></li>
+        <li><%= link_to "Form Logic Part", form_logic_part_type_tbls_path %></li>
+        <li><%= link_to "Value Type", value_type_tbls_path %></li>
+        <li><%= link_to "Entry Type", entry_type_tbls_path %></li>
+        <li><%= link_to "Form Logic Data", form_logic_part_data_tbls_path %></li>
+        <li><%= link_to "Expr Type", expr_type_tbls_path %></li>
+    <% end %>
   </ul>
 </div>

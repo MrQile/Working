@@ -1,0 +1,12 @@
+
+<h1>CREATE EXPR_TYPE_TBL </h1>
+<%= form_for(@expr_type) do |f| %>
+
+  <%= f.label :ID %>
+  <%= f.text_field :ID, class: 'form-control' %>
+
+  <%= f.label :EXPR_TYPE %>
+  <%= f.text_field :EXPR_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

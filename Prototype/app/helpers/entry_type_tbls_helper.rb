@@ -1,0 +1,2 @@
+module EntryTypeTblsHelper
+end

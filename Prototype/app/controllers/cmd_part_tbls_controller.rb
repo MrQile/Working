@@ -1,4 +1,5 @@
 class CmdPartTblsController < ParentController
+	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
 	def index
 		@cmd_parts = CMD_PART_TBL.where(CMD_ID: session[:cmd_id])
 	end

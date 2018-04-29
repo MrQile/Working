@@ -1,4 +1,5 @@
 class PrereqConfExprTblsController < ParentController
+	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
 	def index
 		@prereqs = @base_cmds.prereq_conf_expr_tbls
 	end

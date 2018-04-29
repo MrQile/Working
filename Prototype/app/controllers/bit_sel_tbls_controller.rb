@@ -1,5 +1,5 @@
 class BitSelTblsController < ParentController
-	
+	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
 	def index
 		@bit_sels = BIT_SEL_TBL.where(BIT_SEL_TBL_NO: params[:bits])
 	end

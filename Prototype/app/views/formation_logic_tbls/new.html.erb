@@ -1,0 +1,12 @@
+
+<h1>CREATE FORMATION_LOGIC_TBL </h1>
+<%= form_for(@form_logic) do |f| %>
+
+  <%= f.label :FORMATION_LOGIC %>
+  <%= f.text_field :FORMATION_LOGIC, class: 'form-control' %>
+
+  <%= f.label :FORMATION_LOGIC_LEVEL %>
+  <%= f.text_field :FORMATION_LOGIC_LEVEL, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

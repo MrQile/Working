@@ -1,0 +1,2 @@
+module FormLogicPartDataTblsHelper
+end

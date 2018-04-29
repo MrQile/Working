@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
 	  end
   end
 
+  def set_base_cmd_session_to_nil
+    session[:cmd_id] = 0
+  end
+
   # def user_for_paper_trail        #for overriding the whoduunit value stored in the versions model
   #   if logged_in?
   #     current_user.name

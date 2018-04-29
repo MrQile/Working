@@ -1,5 +1,6 @@
 class PartTypeTblsController < ParentController
 	before_action :admin_user, only: [:destroy]
+	before_action :set_base_cmd_session_to_nil
 
 	def index
 		@part_type = PART_TYPE_TBL.all
@@ -26,6 +27,7 @@ class PartTypeTblsController < ParentController
 		@part_type = PART_TYPE_TBL.find(params[:id])
 		if @part_type.update_attributes(part_type_params)
 			redirect_to part_type_tbls_path
+		else
 			render 'edit'
 		end
 	end

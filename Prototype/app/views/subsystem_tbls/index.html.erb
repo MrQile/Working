@@ -2,7 +2,7 @@
 
 <% @subs.each do |f| %>
 	<div class="theShower text-center">
-		<div><%=f.SUBSYSTEM_NAME%></div>
+		<div><%=f.SUBSYSTEM_NAME%><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></div>
 	</div>
 <% end %>
 

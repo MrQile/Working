@@ -1,0 +1,8 @@
+<h1>CREATE VALUE_TYPE_TBL </h1>
+<%= form_for(@value_type) do |f| %>
+
+  <%= f.label :VALUE_TYPE %>
+  <%= f.text_field :VALUE_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

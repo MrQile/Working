@@ -1,8 +1,12 @@
-<% breadcrumb :root %>
-<div class="ransack-pagination">
-	<%= will_paginate @base_cmds %>
-</div>
-<div class="table-view">
+<% breadcrumb :root %> <!--dont add this line -->
+<% if @ransack_true == true %> <!--dont add this line -->
+	<div class="ransack-pagination"><!--dont add this line -->
+		<%= will_paginate @base_cmds %><!--dont add this line -->
+	</div><!--dont add this line -->
+<% else %><!--dont add this line -->
+	<%= will_paginate @base_cmds %> <!-- add only this line but change the value after @ accrding to the controller instance varialbe,  For example for base_formation_logic the instance variable inside the controller is @base_form_logic -->  */
+<% end %><!--dont add this line -->
+<div class="table-view">   <!-- add everything from here on but change the instance variable and the attributes according to the table -->
 	<table>
 		<caption>LIST OF BASE COMMANDS</caption>
 		<thead>
@@ -23,7 +27,7 @@
 		</thead>
 		<tbody>
 		<% @base_cmds.each do |f| %>
-			<tr data-href="<%= edit_base_cmd_tbl_path(f) %>" data-value="<%=f.CMD_ID%>" class="theShower text-center">
+			<tr data-href="<%= edit_base_cmd_tbl_path(f) %>" data-value="<%=f.CMD_ID%>" class="theShower text-center">	<!-- add this too, but change the value inside href according to the controller , data-value attribute not needed-->
 				<td class="scroller"><div><%= f.DESCRIPTION %></div></td>
 				<td><%= f.SUBSYSTEM %></td>
 				<td class="column-hider"><%= f.FORMATION_TYPE %></td>
@@ -34,30 +38,30 @@
 				<td class="column-hider"><%= f.MAP_ID %></td>
 				<td><%= f.UI_TYPE %></td>
 				<td class="column-hider"><%= f.PREFERRABLE_DECODER %></td>
-				<td class="column-hider scroller">
+				<td class="column-hider scroller">	<!-- dont add this td from here -->
 					<div>
 						|
 						<% f.DecoderArray(@confirmer_hash).each do |n| %>
 		         			<%= n %> |
 		     			<% end %>
 	     			</div>
-	    		</td>
+	    		</td>	<!-- to here -->
 				<td><%= f.REMARKS %></td>
-				<% if current_user.admin? %>
-					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
-				<% end %>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>	<!-- add this too -->
 			</tr>
 		<% end %>	
 		</tbody>
 	</table>
 </div>
 
-<div class="lower-options">
+<div class="lower-options">	<!-- add this only for cmd_part_tbl and form_logic_part_data_tbl as they have a lot of attributes -->
 	<form action="" class="resizer_form">
 		<input id="shrink" type="radio" name="table_resize" checked="checked">
 		<label for="shrink">Shrink</label>
 		<input id="expand" type="radio" name="table_resize">
 		<label for="expand">Expand</label>
 	</form>	
-	<%= link_to 'Add', new_base_cmd_tbl_path, class: "add-new-table" %>
+	<%= link_to 'Add', new_base_cmd_tbl_path, class: "add-new-table" %>	<!-- add this for all but dont forget to change links -->
 </div>

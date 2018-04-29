@@ -2,7 +2,7 @@ CREATE DATABASE AllConfig;
 
 USE AllConfig;
 
-CREATE TABLE minor_configs(id INT PRIMARY KEY AUTO_INCREMENT, database_name VARCHAR(48);
+CREATE TABLE minor_configs(id INT PRIMARY KEY AUTO_INCREMENT, default_db_env VARCHAR(48);
 
 CREATE TABLE users(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), password_digest VARCHAR(255), satellite_name VARCHAR(255), admin BOOLEAN NOT NULL DEFAULT 0);
 
@@ -10,6 +10,7 @@ CREATE TABLE `versions` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `item_type` varchar(191) NOT NULL,
   `item_id` int(11) NOT NULL,
+  `db_name` varchar(255) NOT NULL,
   `event` varchar(255) NOT NULL,
   `whodunnit` varchar(255) DEFAULT NULL,
   `object` longtext,

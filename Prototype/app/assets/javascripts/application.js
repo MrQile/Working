@@ -16,3 +16,8 @@
 //= require select2
 //= require jquery-readyselector
 //= require_tree .
+
+/* To remove duplicate bug on back button in select2 */
+$(document).on("turbolinks:before-cache", function() {
+    $('select').select2('destroy');
+});

@@ -1,0 +1,9 @@
+<h1>ALL LKUP_TBL_TYPE_TBLS </h1>
+
+<% @lkup_type.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.LKUP_TBL_TYPE%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_lkup_tbl_type_tbl_path %>

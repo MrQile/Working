@@ -1,5 +1,5 @@
 class BitSelTblInfosController < ParentController
-
+	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
 	def index
 		@search = BIT_SEL_TBL_INFO.ransack(params[:q])
 		@bit_infos = @search.result

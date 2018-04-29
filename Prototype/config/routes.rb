@@ -58,4 +58,12 @@ Rails.application.routes.draw do
   	resources :lk_tbl_type_tbls
   	resources :logical_op_tbls
 
+  	resources :entry_type_tbls
+  	resources :value_type_tbls
+  	resources :rel_op_tbls
+  	resources :form_logic_part_type_tbls
+  	resources :formation_logic_tbls
+  	resources :form_logic_part_data_tbls
+  	resources :expr_type_tbls
+  	
 end

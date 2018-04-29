@@ -1,6 +1,7 @@
 class CmdTypesTblsController < ParentController
 	before_action :admin_user, except: [:index]
-	
+	before_action :set_base_cmd_session_to_nil
+
 	def index
 		@search = CMD_TYPES_TBL.ransack(params[:q])
 		@cmd_types = @search.result

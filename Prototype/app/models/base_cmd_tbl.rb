@@ -5,6 +5,7 @@ class BASE_CMD_TBL < ExternalDbAccess
 	has_many :prereq_conf_expr_tbls, class_name: "PREREQ_CONF_EXPR_TBL", foreign_key: "CMD_ID", primary_key: "CMD_ID", dependent: :destroy
 	has_many :cmd_part_tbls, class_name: "CMD_PART_TBL", foreign_key: "CMD_ID", primary_key: "CMD_ID", dependent: :destroy
 	has_many :cpid_tbls, class_name: "CPID_TBL", foreign_key: "CMD_ID", primary_key: "CMD_ID", dependent: :destroy
+    has_many :form_logic_part_data_tbls, class_name: "FORM_LOGIC_PART_DATA_TBL", foreign_key: "CMD_ID", primary_key: "CMD_ID", dependent: :destroy
 	has_many :expressions, through: :prereq_conf_expr_tbls
     belongs_to :subsystem_tbl, class_name: "SUBSYSTEM_TBL", foreign_key: "SUBSYSTEM", primary_key: "SUBSYSTEM_NAME", inverse_of: :base_cmd_tbls
 	belongs_to :cmd_types_tbl, class_name: "CMD_TYPES_TBL", primary_key: "CMD_TYPE", foreign_key: "CMD_TYPE"

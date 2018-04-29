@@ -1,12 +1,12 @@
-<% content_for(:option_bar) do %>
-  <%= render 'shared/option_list' %>
-<% end %>
-<% breadcrumb :edit_base_cmds, @base_cmds %>
+<% content_for(:option_bar) do %> <!-- dont add this -->
+  <%= render 'shared/option_list' %>  <!-- dont add this -->
+<% end %> <!-- dont add this -->
+<% breadcrumb :edit_base_cmds, @base_cmds %>  <!-- dont add this -->
 <h1>EDIT BASE COMMAND  </h1>
-<% @base_cmds.DecoderForEdit %>
-<h5>Currently editing base cmd with cmd_id <%=session[:cmd_id]%></h5>
+<% @base_cmds.DecoderForEdit %> <!-- dont add this -->
+<h5>Currently editing base cmd with cmd_id <%=session[:cmd_id]%></h5> <!--dont add this line -->
 
-<div class="perfect-forms">
+<div class="perfect-forms"> <!-- change everything accourding to the controller attributes -->
 
   <%= form_for(@base_cmds) do |f| %>
 

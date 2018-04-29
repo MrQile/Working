@@ -1,0 +1,9 @@
+<h1>ALL FORM_LOGIC_PART_TYPE_TBLS </h1>
+
+<% @form_logic_part.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.FORM_LOGIC_PART_TYPE%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_form_logic_part_type_tbl_path %>

@@ -1,5 +1,6 @@
 class PreferrableDecoderTblsController < ParentController
 	before_action :admin_user, only: [:destroy]
+	before_action :set_base_cmd_session_to_nil
 
 	def index
 		@pref_decoder = PREFERRABLE_DECODER_TBL.all
@@ -26,6 +27,7 @@ class PreferrableDecoderTblsController < ParentController
 		@pref_decoder = PREFERRABLE_DECODER_TBL.find(params[:id])
 		if @pref_decoder.update_attributes(preferrable_decoder_params)
 			redirect_to preferrable_decoder_tbls_path
+		else
 			render 'edit'
 		end
 	end

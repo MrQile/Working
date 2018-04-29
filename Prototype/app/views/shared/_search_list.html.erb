@@ -30,6 +30,7 @@
         <p><strong>Choose Required Fields</strong></p>
         <%= search_form_for @search, url: search_base_cmd_tbls_path, method: :post, class: 'ransack-form' do |f| %>
           <%= hidden_field_tag 'page', '1', {class: 'ransack-page'} %>  <!-- for ransack paginate with post method -->
+          <%= hidden_field_tag 'ransack_true', true %> <!-- for ransack paginate with post method -->
           <%= f.condition_fields do |c| %>
 
             <%= render "condition_fields", f: c %>
@@ -46,7 +47,7 @@
         <%= form_tag base_cmd_tbls_path, :method => 'get' do %>
           <p>
             <%= text_field_tag :BitSelTblName, params[:BitSelTblName], placeholder: "  Bit Sel Name" %>
-            <%= submit_tag "Search", :name => "BitSel" %>
+            <%= submit_tag "Search", :name => "BitSel", class: "search_input" %>
           </p>
         <% end %>
       </div>
@@ -58,7 +59,7 @@
         <%= form_tag base_cmd_tbls_path, :method => 'get' do %>
           <p>
             <%= text_field_tag :LkupTblName, params[:LkupTblName], placeholder: "  Lkup Name" %>
-            <%= submit_tag "Search", :name => "Lkup" %>
+            <%= submit_tag "Search", :name => "Lkup", class: "search_input"%>
           </p>
         <% end %>
       </div> 

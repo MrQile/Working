@@ -1,6 +1,5 @@
 class BaseCmdTblsController < ParentController
 	before_action :admin_user, only: :destroy
-
 	def index
 		session[:cmd_id] = 0
 		@confirmer = CONFIRMATION_TYPE_TBL.all
@@ -14,14 +13,15 @@ class BaseCmdTblsController < ParentController
 			@column_entry = params[:column_entry]
 			@base_cmds = @search.result.where(@column => @column_entry).paginate(page: params[:page], :per_page => 30)
 
-		elsif params[:Base].present?		 #Use .has_key? if the param is of boolean type :true or :false 
+		elsif params[:ransack_true].present?		 #Use .has_key? if the param is of boolean type :true or :false 
 
-			@base_cmds = @search.result.paginate(page: params[:page], :per_page => 20)
+			@base_cmds = @search.result.paginate(page: params[:page], :per_page => 30)
+			@ransack_true = true
 			
 		elsif params[:BitSel].present?
 
 			name = params[:BitSelTblName]
-			@base_cmds = BASE_CMD_TBL.joins("INNER JOIN CMD_PART_TBL ON (CMD_PART_TBL.CMD_ID = BASE_CMD_TBL.CMD_ID) AND (CMD_PART_TBL.CMD_PART_TYPE = 1) INNER JOIN BIT_SEL_TBL_INFO ON (BIT_SEL_TBL_INFO.BIT_SEL_TBL_NO = CMD_PART_TBL.RESOLUTION) AND (BIT_SEL_TBL_INFO.BIT_SEL_TBL_NAME LIKE '%#{name}%')").paginate(page: params[:page], :per_page => 20)
+			@base_cmds = BASE_CMD_TBL.joins("INNER JOIN CMD_PART_TBL ON (CMD_PART_TBL.CMD_ID = BASE_CMD_TBL.CMD_ID) AND (CMD_PART_TBL.CMD_PART_TYPE = 'BIT_SEL_TBL_INFO') INNER JOIN BIT_SEL_TBL_INFO ON (BIT_SEL_TBL_INFO.BIT_SEL_TBL_NO = CMD_PART_TBL.RESOLUTION) AND (BIT_SEL_TBL_INFO.BIT_SEL_TBL_NAME LIKE '%#{name}%')").paginate(page: params[:page], :per_page => 30)
 
 			# Alternate between this sql statement or one of Lkup to find which suits best on large scale database
 		
@@ -31,7 +31,7 @@ class BaseCmdTblsController < ParentController
 			@base_cmds = BASE_CMD_TBL.joins(:cmd_part_tbls).joins("INNER JOIN LKUP_TBL_INFO ON (LKUP_TBL_INFO.LKUP_TBL_NO = CMD_PART_TBL.RESOLUTION) AND (LKUP_TBL_INFO.LKUP_TBL_NAME LIKE '%#{name}%')").paginate(page: params[:page], :per_page => 20)
 			
 		else
-			@base_cmds = @search.result.paginate(page: params[:page], :per_page => 15)
+			@base_cmds = @search.result.paginate(page: params[:page], :per_page => 30)
 		end
 	end
 
@@ -79,6 +79,7 @@ class BaseCmdTblsController < ParentController
 	end
 
 	def destroy
+		flash.now[:success] = "Please wait.."
 		BASE_CMD_TBL.find(params[:id]).destroy
 		redirect_to base_cmd_tbls_path
 	end

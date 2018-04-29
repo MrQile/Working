@@ -1,0 +1,10 @@
+<h1>ALL ENTRY_TYPE_TBL </h1>
+
+<% @entry_type.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.ID%></div>
+		<div><%=f.ENTRY_TYPE%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_entry_type_tbl_path %>

@@ -1,0 +1,8 @@
+<h1>CREATE FORM_LOGIC_PART_TYPE_TBL </h1>
+<%= form_for(@form_logic_part) do |f| %>
+
+  <%= f.label :FORM_LOGIC_PART_TYPE %>
+  <%= f.text_field :FORM_LOGIC_PART_TYPE, class: 'form-control' %>
+
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>

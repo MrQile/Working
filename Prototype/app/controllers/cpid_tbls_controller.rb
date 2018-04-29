@@ -1,5 +1,5 @@
 class CpidTblsController < ParentController
-
+	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
 	def index
 		@cpids = CPID_TBL.where(CMD_ID: session[:cmd_id])
 	end

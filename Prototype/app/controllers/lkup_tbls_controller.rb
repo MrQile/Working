@@ -1,5 +1,5 @@
 class LkupTblsController < ParentController
-
+	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
 	def index
 		@lkups = LKUP_TBL.where(LKUP_TBL_NO: session[:lkup_id])
 	end

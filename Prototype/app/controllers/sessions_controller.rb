@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 	before_action :is_logged_in?, except: :destroy
+	before_action :set_base_cmd_session_to_nil
 	layout "startup"
 	def new
 		@minor = MinorConfig.all
@@ -10,14 +11,14 @@ class SessionsController < ApplicationController
 		if user && user.authenticate(params[:session][:password])
 			log_in user
 			host = params[:session][:host]
-			defaults = params[:session][:defaults]
+			defaults = params[:session][:default_db_env]
 			db_name = params[:session][:database_name]
 			db_username = params[:session][:database_username]
 			db_password = params[:session][:database_password]
-			database_change(user, defaults, host, db_name, db_username, db_password)
+			database_change(user, defaults, host, db_name, db_username, db_password)	
 		else
 			flash.now[:danger] = "Invalid username/password combination"
-			render 'new'
+			render 'edit'
 		end
 	end
 

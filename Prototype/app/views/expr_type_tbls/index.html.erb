@@ -1,0 +1,10 @@
+<h1>ALL EXPR_TYPE_TBL </h1>
+
+<% @expr_type.each do |f| %>
+	<div class="theShower text-center">
+		<div><%=f.ID%></div>
+		<div><%=f.EXPR_TYPE%></div>
+	</div>
+<% end %>
+
+<%= link_to 'New', new_expr_type_tbl_path %>

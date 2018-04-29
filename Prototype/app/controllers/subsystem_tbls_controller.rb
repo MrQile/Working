@@ -1,5 +1,6 @@
 class SubsystemTblsController < ParentController
 	before_action :admin_user, except: [:index]
+	before_action :set_base_cmd_session_to_nil
 	
 	def index
 		session[:cmd_id] = 0
@@ -40,6 +41,7 @@ class SubsystemTblsController < ParentController
 
 	def destroy
 		SUBSYSTEM_TBL.find(params[:id]).destroy
+		flash[:success] = "Delete Successful"
 		redirect_to subsystem_tbls_path
 	end
 
