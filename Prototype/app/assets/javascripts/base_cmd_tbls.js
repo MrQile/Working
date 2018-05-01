@@ -175,8 +175,10 @@ $(document).on("turbolinks:load", function() {
 
     /* Since there is no need of single click for show */
 
-    $(".base_cmd_tbls.index tbody tr").on({"dblclick" : function(){
-    	window.location = $(this).data("href");
+    $(".index tbody tr").on({"dblclick" : function(){
+    	if (($(this).data("href"))!=null){
+    		window.location = $(this).data("href");
+    	}
     }});
    
 

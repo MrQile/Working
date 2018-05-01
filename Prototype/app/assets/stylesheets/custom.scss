@@ -132,6 +132,12 @@ h1 {
 	width: 100%;
 }
 
+.value_error_text{
+	display: none;
+	color: $state-danger-text;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 /* Select 2 default truncate width problem override */
 
 .select2 {
@@ -226,7 +232,7 @@ table {
 }
 
 .table-view{
-	height: 83%;
+	height: 75%;
 	overflow: auto;
 }
 
@@ -286,15 +292,21 @@ table {
 	display: flex;
 	justify-content: space-between;
 	.add-new-table{
-		font-size: 34px;
+		font-size: 2vw;
 		font-weight: bold;
+		flex: 1;
+		text-align: right;
 
 	}
 	.resizer_form{
+		flex: 1;
 		padding-top: 5px;
-		font-size: 16px;
+		font-size: 20px;
 		font-weight: 300;
 		color: orange;
+	}
+	.pagination{
+		flex: 6;
 	}
 }
 

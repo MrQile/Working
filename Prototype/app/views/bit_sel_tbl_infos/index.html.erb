@@ -1,12 +1,31 @@
+<% breadcrumb :bit_infos %>
+<div class="table-view">
+	<table>
+		<caption>LIST OF BIT_SEL COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> BIT_SEL_TBL_NO </th>
+				<th> BIT_SEL_TBL_NAME </th>
 
-<h1>ALL BIT_SEL_TBL_INFOS </h1>
-
-<% @bit_infos.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.BIT_SEL_TBL_NAME%></div>
+			</tr>
+		</thead>
+		<tbody>
+		<% @bit_infos.each do |f| %>
+		<tr data-href="<%= edit_bit_sel_tbl_info_path(f) %>"  class="theShower text-center">
+	
+		
+		<td><%= f.BIT_SEL_TBL_NO  %></td>
+				<td><%= f.BIT_SEL_TBL_NAME %></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
 		<% end %>
-	</div>
-<% end %>
+		</tbody>
+	</table>
 
-<%= link_to 'New', new_bit_sel_tbl_info_path %>
+	</div>
+<div class="lower-options">
+	<%= link_to 'Add', new_bit_sel_tbl_info_path, class: "add-new-table" %>
+</div>

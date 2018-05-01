@@ -39,10 +39,6 @@ class BaseCmdTblsController < ParentController
 		@base_cmds = BASE_CMD_TBL.new
 	end
 
-	def show
-		@base_cmds = BASE_CMD_TBL.find(session[:cmd_id])
-	end
-
 	def edit
 		@base_cmds = BASE_CMD_TBL.find(params[:id])
 		session[:cmd_id] = @base_cmds.CMD_ID
@@ -52,7 +48,7 @@ class BaseCmdTblsController < ParentController
 		@base_cmds = BASE_CMD_TBL.new(base_cmd_params)
 		if @base_cmds.save
 			flash[:success] = "Successfully created BASE CMD #{@base_cmds.CMD_ID}"
-			redirect_to base_cmd_tbls_path
+			redirect_to edit_base_cmd_tbl_path(@base_cmds)
 		else
 			render 'new'
 		end

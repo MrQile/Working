@@ -1,6 +1,12 @@
-
+<% if session[:cmd_id]==0 %>
+	<% breadcrumb :lkup_info_new, @lkup_infos %>
+<% else %>
+	<% breadcrumb :new_lkup_info, [@base_cmds,@lkup_infos] %>
+<% end %>
 <h1>CREATE LKUP_TBL_INFO </h1>
 <%= form_for(@lkup_infos) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :LKUP_TBL_NO %>
   <%= f.text_field :LKUP_TBL_NO, class: 'form-control' %>

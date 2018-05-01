@@ -5,14 +5,14 @@ crumb :root do
   link "Home", base_cmd_tbls_path
 end
 
-crumb :new_base_cmds do |base_cmd|
-	link "New Base Cmd", base_cmd
+crumb :new_base_cmds do
+	link "New", new_base_cmd_tbl_path
 	parent :root
 end
 
 crumb :edit_base_cmds do |base_cmd|
-	link "Edit Base Cmd #{base_cmd.CMD_ID}", base_cmd
-	parent :root, base_cmd
+	link "Edit", edit_base_cmd_tbl_path(base_cmd)
+	parent :root
 end
 
 # crumb :preconf_index do |preconf,base_cmd|

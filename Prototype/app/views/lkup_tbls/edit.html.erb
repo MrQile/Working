@@ -1,8 +1,13 @@
-<h1>EDIT LKUPTBL </h1>
+<% if session[:cmd_id]==0 %>
+  <% breadcrumb :lkup_edit, @lkup_infos %>
+<% else %>
+  <% breadcrumb :edit_lkup, [@base_cmds,@lkup_infos] %>
+<% end %>
+
+<h1 data-value="<%= @lkup_infos.LKUP_TBL_TYPE %>">EDIT LKUPTBL </h1>
 <%= form_for(@lkups) do |f| %>
 
-  <%= f.label :LKUP_TBL_NO %>
-  <%= f.collection_select(:LKUP_TBL_NO, LKUP_TBL_INFO.all, :LKUP_TBL_NO, :LKUP_TBL_NAME, {:prompt => "Please select"})%></br>
+  <%= f.hidden_field :LKUP_TBL_NO, :value => @lkups.LKUP_TBL_NO %>
 
   <%= f.label :LKUP_ENTRY_INDEX %>
   <%= f.text_field :LKUP_ENTRY_INDEX, class: 'form-control' %>
@@ -12,6 +17,7 @@
 
   <%= f.label :VALUE%>
   <%= f.text_field :VALUE, class: 'form-control' %>
+  <div class="value_error_text"></div>
 
   <%= f.submit 'Update', class: "btn btn-primary" %>
 <% end %>

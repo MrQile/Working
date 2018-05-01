@@ -1,6 +1,8 @@
 <h1>EDIT CONFIRMATION_TYPE_TBL </h1>
 <%= form_for(@confs) do |f| %>
 
+  <%= render 'shared/error_messages', object: f.object %>
+
   <%= f.label :BIT_POSITION %>
   <%= f.text_field :BIT_POSITION, class: 'form-control' %>
 

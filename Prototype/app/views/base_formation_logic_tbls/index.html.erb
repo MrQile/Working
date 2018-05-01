@@ -1,9 +1,35 @@
-<h1>ALL BASE_FORMATION_LOGIC_TBLS </h1>
 
-<% @base_form_logic.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.BASE_FORMATION_LOGIC%></div>
-	</div>
-<% end %>
+  
 
-<%= link_to 'New', new_base_formation_logic_tbl_path %>
+<div class="table-view"> 
+
+		<table>
+		<caption>LIST OF BASE COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> ID </th>
+				<th> 	BASE_FORMATION_LOGIC </th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		<% @base_form_logic.each do |f| %>
+
+			<tr data-href="<%= edit_base_formation_logic_tbl_path(f) %>"  class="theShower text-center">
+	
+		<td><%= f.ID %></td>
+			
+		<td><%=f.BASE_FORMATION_LOGIC%></td>
+	
+
+<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>	<!-- add this too -->
+			</tr>
+		<% end %>	
+		</tbody>
+	</table>
+</div>
+<div class="lower-options">
+<%= link_to 'Add', new_base_formation_logic_tbl_path, class: "add-new-table" %>
+</div>

@@ -1,12 +1,52 @@
-<% breadcrumb :bit_sel_index, [@base_cmds,params[:bits]] %>
-<h1>ALL BIT_SEL_TBLS </h1>
-
-<% @bit_sels.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.LOGICAL_OP%></div>
-		<% end %>
-	</div>
+<% if session[:cmd_id]==0 %>
+  <% breadcrumb :bit_sels, @bit_infos %>
+<% else %>
+  <% breadcrumb :bit_sel_index, [@base_cmds,@bit_infos] %>
 <% end %>
 
-<%= link_to 'New', new_bit_sel_tbl_path(bits: params[:bits]) %>
+<% content_for(:option_bar) do %>
+
+	<%= render 'shared/option_list' %>
+
+<% end %>
+<div class="table-view">
+	<table>
+		<caption>LIST OF BIT_SEL_TBL COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> BIT_SEL_TBL_NO </th>
+				<th> FIELD_NO </th>
+				<th> START_BIT</th>
+				<th> NO_OF_BITS   </th>
+				<th>  BIT_MASK </th>
+				<th> VALUE</th>
+				<th> FIELD_MNEMONICS</th>
+				<th> VALUE_MNEMONICS   </th>
+				<th> LOGICAL_OP    </th>
+
+			</tr>
+		</thead>
+<tbody>
+<% @bit_sels.each do |f| %>
+	<tr data-href="<%= edit_bit_sel_tbl_path(f) %>" class="theShower text-center">
+		
+			<td><%=f.BIT_SEL_TBL_NO%></td>
+			<td><%=f.FIELD_NO%></td>
+			<td><%=f.START_BIT%></td>
+			<td><%=f.NO_OF_BITS%></td>
+			<td><%=f.BIT_MASK%></td>
+			<td><%=f.VALUE%></td>
+			<td><%=f.FIELD_MNEMONICS%></td>
+			<td><%=f.VALUE_MNEMONICS%></td>
+			<td><%=f.LOGICAL_OP%></td>
+			<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+	</div>
+<div class="lower-options">
+<%= link_to 'Add', new_bit_sel_tbl_path, class: "add-new-table" %>
+</div>

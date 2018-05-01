@@ -1,11 +1,36 @@
-<h1>ALL LKUP_TBL_INFOS </h1>
+<% breadcrumb :lkup_infos %>
+
+
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF LKUP_INFO</caption>
+		<thead>
+			<tr>
+				<th>  LKUP_TBL_NO </th>
+				<th> LKUP_TBL_NAME </th>
+				<th> LKUP_TBL_TYPE </th>
+
+			</tr>
+		</thead>
+<tbody>
 
 <% @lkup_infos.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.LKUP_TBL_NAME%></div>
-		<% end %>
-	</div>
-<% end %>
+<tr data-href="<%= edit_lkup_tbl_info_path(f) %>"  class="theShower text-center">
+	
+		
+						<td><%= f.LKUP_TBL_NO  %></td>
+				<td><%= f.LKUP_TBL_NAME  %></td>
+								<td><%= f.LKUP_TBL_TYPE  %></td>
 
-<%= link_to 'New', new_lkup_tbl_info_path %>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
+					<%end%>
+			</tr>
+  			<% end %>
+				</tbody>
+	</table>
+	</div>
+<div class="lower-options">
+<%= link_to 'Add', new_lkup_tbl_info_path, class: "add-new-table" %>
+</div>

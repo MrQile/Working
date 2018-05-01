@@ -1,9 +1,37 @@
-<h1>ALL SUBSYSTEM_TBLS </h1>
 
-<% @subs.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.SUBSYSTEM_NAME%><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></div>
+
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF SUBSYSTEM COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> SUBSYSTEM_ID  </th>
+				<th> SUBSYSTEM_NAME </th>
+				<th> SUBSYSTEM_SHORT_NAME </th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+		<% @subs.each do |f| %>
+		<tr data-href="<%= edit_subsystem_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+		<td><%= f.SUBSYSTEM_ID   %></td>
+				<td><%= f.SUBSYSTEM_NAME%></td>
+				<td><%= f.SUBSYSTEM_SHORT_NAME%></td>
+				
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
+		<% end %>
+		</tbody>
+	</table>
+
 	</div>
-<% end %>
-
-<%= link_to 'New', new_subsystem_tbl_path %>
+<div class="lower-options">
+	<%= link_to 'Add', new_subsystem_tbl_path, class: "add-new-table" %>
+</div>

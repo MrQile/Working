@@ -79,6 +79,72 @@ $(document).on("turbolinks:load", function() {
 	$(".lkup_tbl_infos.show").ready( function() {
 		$(".options_bar").css("display", "block");
 	});
+	var float_regex = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
+	var integer_regex = /^[0-9]+$/;
+	var error_text = $(".value_error_text");
+	var validate_type;
+	var value_enter_field;
+	function validator() {
+		var input = $(this).val();
+		var is_valid;
+		if(validate_type == "INTEGER_TYPE"){
+			is_valid = integer_regex.test(input);
+			if (is_valid){
+				$(".btn").removeAttr("disabled");
+				$(this).css("color", "green");
+				$(this).css("border-color","green");
+				error_text.css("display","none");
+			} else{
+				$(".btn").attr("disabled", true);
+				$(this).css("color", "#a94442");
+				$(this).css("border-color","#a94442");
+				error_text.text("Enter a proper integer").css("display","block");
+			}
+		}else if(validate_type == "FLOAT_TYPE"){
+			is_valid = float_regex.test(input);
+			if (is_valid){
+				$(".btn").removeAttr("disabled");
+				$(this).css("color", "green");
+				$(this).css("border-color","green");
+				error_text.css("display","none");
+			} else{
+				$(".btn").attr("disabled", true);
+				$(this).css("color", "#a94442");
+				$(this).css("border-color","#a94442");
+				error_text.text("Enter a proper floating point number").css("display","block");
+			}
+		}
+	}
+	$(".lkup_tbls").ready( function(){
+		validate_type = $("h1").data("value");
+		$("#lkup_tbl_VALUE").on("input", validator);
+	});
+
+	$(".cpid_tbls").ready( function(){
+		value_enter_field = $("#cpid_tbl_TM_VAL");
+		validate_type = $("#cpid_tbl_PROC_TYPE").val();
+		$("#cpid_tbl_PROC_TYPE").on("change", function(){
+			validate_type = $(this).val();
+			value_enter_field.css("color", "#555555");
+			value_enter_field.css("border-color","#ccc");
+			error_text.css("display","none");
+			value_enter_field.ready( validator );
+		});
+		value_enter_field.on("input", validator);
+	});
+
+	$(".expressions").ready( function(){
+		value_enter_field = $("#expression_VALUE");
+		validate_type = $("#expression_VALUE_TYPE").val();
+		$("#expression_VALUE_TYPE").on("change", function(){
+			validate_type = $(this).val();
+			value_enter_field.css("color", "#555555");
+			value_enter_field.css("border-color","#ccc");
+			error_text.css("display","none");
+			value_enter_field.ready( validator );
+		});
+		value_enter_field.on("input", validator);
+	});
 });
 
 // example of ajax

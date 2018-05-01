@@ -1,11 +1,40 @@
-<h1>ALL LKUP_TBLS </h1>
-
-<% @lkups.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.LKUP_ENTRY_INDEX%> |<%=f.BYTE_CODE%></div>
-		<% end %>
-	</div>
+<% if session[:cmd_id]==0 %>
+  <% breadcrumb :lkups, @lkup_infos %>
+<% else %>
+  <% breadcrumb :lkup_index, [@base_cmds,@lkup_infos] %>
 <% end %>
 
-<%= link_to 'New', new_lkup_tbl_path %>
+<div class="table-view">
+	<table>
+		<caption>LIST OF LKUP COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> LKUP_TBL_NO  </th>
+				<th> LKUP_ENTRY_INDEX </th>
+				<th> BYTE_CODE   </th>
+				<th> VALUE  </th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @lkups.each do |f| %>
+		<tr data-href="<%= edit_lkup_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+		<td><%= f.LKUP_TBL_NO  %></td>
+				<td><%= f.LKUP_ENTRY_INDEX %></td>
+				<td><%= f.BYTE_CODE   %></td>
+				<td><%= f.VALUE  %></td>
+
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
+		<% end %>
+		</tbody>
+	</table>
+
+	</div>
+<div class="lower-options">
+	<%= link_to 'Add', new_lkup_tbl_path, class: "add-new-table" %>
+</div>

@@ -1,5 +1,15 @@
+<% if session[:cmd_id]==0 %>
+	<% breadcrumb :lkup_edit, @lkup_infos %>
+<% else %>
+	<% breadcrumb :edit_lkup_info, [@base_cmds,@lkup_infos] %>
+<% end %>
+<% content_for(:option_bar) do %>
+  <%= render 'shared/option_list' %>
+<% end %>
 <h1>EDIT LKUP_TBL_INFO </h1>
 <%= form_for(@lkup_infos) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :LKUP_TBL_NO %>
   <%= f.text_field :LKUP_TBL_NO, class: 'form-control' %>

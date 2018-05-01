@@ -9,7 +9,7 @@ $(document).on("turbolinks:load", function() {
 		var form_logic_val;
 		// user = $("#user_data").detach();
 		user = $("#user_data");
-		user.on("focus","#USER_DATA", function(){
+		user.on("input","#USER_DATA", function(){
 			$(".hidden-attrs").css("display", "block");
 		})
 		all_logic = $("#all_sub_logic");

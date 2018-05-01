@@ -1,9 +1,36 @@
-<h1>ALL FORMATION_LOGIC_TBLS </h1>
 
-<% @form_logic.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.FORMATION_LOGIC%><%=f.FORMATION_LOGIC_LEVEL%></div>
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF FORMATION_LOGIC COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> FORMATION_LOGIC_ID   </th>
+				<th> FORMATION_LOGIC  </th>
+				<th> FORMATION_LOGIC_LEVEL  </th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+		<% @form_logic.each do |f| %>
+		<tr data-href="<%= edit_formation_logic_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+		<td><%= f.FORMATION_LOGIC_ID  %></td>
+				<td><%= f.FORMATION_LOGIC %></td>
+				<td><%= f.FORMATION_LOGIC_LEVEL %></td>
+
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
+		<% end %>
+		</tbody>
+	</table>
+
 	</div>
-<% end %>
-
-<%= link_to 'New', new_formation_logic_tbl_path %>
+<div class="lower-options">
+	<%= link_to 'Add', new_formation_logic_tbl_path, class: "add-new-table" %>
+</div>

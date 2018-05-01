@@ -1,9 +1,34 @@
-<h1>ALL FORM_LOGIC_PART_TYPE_TBLS </h1>
 
-<% @form_logic_part.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.FORM_LOGIC_PART_TYPE%></div>
+
+<!--<%= link_to 'New', new_form_logic_part_type_tbl_path %>-->
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF FORM_LOGIC_PART_TYPE COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> ID </th>
+				<th> FORM_LOGIC_PART_TYPE </th>
+
+			</tr>
+		</thead>
+		<tbody>
+		<% @form_logic_part.each do |f| %>
+		<tr data-href="<%= edit_form_logic_part_type_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+		<td><%= f.ID  %></td>
+				<td><%= f.FORM_LOGIC_PART_TYPE %></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
+		<% end %>
+		</tbody>
+	</table>
+
 	</div>
-<% end %>
-
-<%= link_to 'New', new_form_logic_part_type_tbl_path %>
+<div class="lower-options">
+	<%= link_to 'Add', new_form_logic_part_type_tbl_path, class: "add-new-table" %>
+</div>

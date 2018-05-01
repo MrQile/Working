@@ -1,8 +1,15 @@
+<% if session[:cmd_id]==0 %>
+  <% breadcrumb :bit_sel_edit, @bit_infos %>
+<% else %>
+  <% breadcrumb :edit_bit_sel, [@base_cmds,@bit_infos] %>
+<% end %>
+
 <h1>EDIT BIT_SEL_TBL </h1>
 <%= form_for(@bit_sels) do |f| %>
 
-  <%= f.label :BIT_SEL_TBL_NO %>
-  <%= f.collection_select(:BIT_SEL_TBL_NO, BIT_SEL_TBL_INFO.all, :BIT_SEL_TBL_NO, :BIT_SEL_TBL_NAME, {:prompt => "Please select"})%></br>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.hidden_field :BIT_SEL_TBL_NO, :value => @bit_sels.BIT_SEL_TBL_NO %>
 
   <%= f.label :FIELD_NO %>
   <%= f.text_field :FIELD_NO, class: 'form-control' %>
@@ -12,6 +19,9 @@
 
   <%= f.label :NO_OF_BITS %>
   <%= f.text_field :NO_OF_BITS, class: 'form-control' %>
+
+  <%= f.label :BIT_MASK%>
+  <%= f.text_field :BIT_MASK, class: 'form-control' %>
 
   <%= f.label :VALUE %>
   <%= f.text_field :VALUE, class: 'form-control' %>

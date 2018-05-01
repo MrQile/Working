@@ -1,9 +1,33 @@
-<h1>ALL LOGICAL_OP_TBLS </h1>
 
-<% @logic_op.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.LOGICAL_OP%></div>
+
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF LOGICAL_OP COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> ID </th>
+				<th> LOGICAL_OP </th>
+
+			</tr>
+		</thead>
+		<tbody>
+		<% @logic_op.each do |f| %>
+		<tr data-href="<%= edit_logical_op_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+		<td><%= f.ID  %></td>
+				<td><%= f.LOGICAL_OP %></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
+		<% end %>
+		</tbody>
+	</table>
+
 	</div>
-<% end %>
-
-<%= link_to 'New', new_logical_op_tbl_path %>
+<div class="lower-options">
+	<%= link_to 'Add', new_logical_op_tbl_path, class: "add-new-table" %>
+</div>

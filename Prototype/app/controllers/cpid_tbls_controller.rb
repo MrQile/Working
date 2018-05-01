@@ -1,15 +1,11 @@
 class CpidTblsController < ParentController
-	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
+	before_action :find_base_cmd, except: :destroy
 	def index
-		@cpids = CPID_TBL.where(CMD_ID: session[:cmd_id])
+		@cpids = @base_cmds.cpid_tbls
 	end
 
 	def new
 		@cpids = CPID_TBL.new(CMD_ID: session[:cmd_id])
-	end
-
-	def show
-		@cpids = CPID_TBL.find(params[:id])
 	end
 
 	def edit
@@ -19,7 +15,7 @@ class CpidTblsController < ParentController
 	def create
 		@cpids = CPID_TBL.new(cpid_params)
 		if @cpids.save
-			redirect_to @cpids
+			redirect_to cpid_tbls_path
 		else
 			render 'new'
 		end
@@ -28,7 +24,7 @@ class CpidTblsController < ParentController
 	def update
 		@cpids = CPID_TBL.find(params[:id])
 		if @cpids.update_attributes(cpid_params)
-			redirect_to cpid_tbls_url
+			redirect_to cpid_tbls_path
 		else
 			render 'edit'
 		end
@@ -36,7 +32,7 @@ class CpidTblsController < ParentController
 
 	def destroy
 		CPID_TBL.find(params[:id]).destroy
-		redirect_to cpid_tbls_url
+		redirect_to cpid_tbls_path
 	end
 
 	private

@@ -1,9 +1,76 @@
-<h1>ALL FORM_LOGIC_PART_DATA_TBLS </h1>
+<% breadcrumb :form_data_index, @base_cmds %>
 
-<% @form_logic_data.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.LOGIC_LEVEL%><%=f.SUB_LOGIC_TYPE%><%= link_to "edit", edit_form_logic_part_data_tbl_path(f)%></div>
-	</div>
-<% end %>
 
-<%= link_to 'New', new_form_logic_part_data_tbl_path %>
+<div class="table-view">   <!-- add everything from here on but change the instance variable and the attributes according to the table -->
+	<table>
+		<caption>LIST OF FORM LOGIC DATA</caption>
+		<thead>
+			<tr>
+				<th>CMD_ID </th>
+				<th> PART_NO </th>
+				<th> LOGIC_LEVEL </th>
+				<th> LOGIC_PART_NO </th>
+				<th> FORM_LOGIC_PART_TYPE </th>
+
+
+				<th> PART_MNEMONIC </th>
+				<th class="column-hider"> SUB_LOGIC_TYPE </th>
+				<th class="column-hider"> PART_TYPE </th>
+				
+				<th class="column-hider"> START_BIT </th>
+				<th class="column-hider"> NO_OF_BITS </th>
+				<th class="column-hider"> PART_MASK </th>
+				<th class="column-hider"> RESOLUTION </th>
+				<th> OFFSET </th>
+				<th class="column-hider"> INPUT_FORMAT </th>
+				<th class="column-hider"> LL </th>
+				<th class="column-hider"> UL </th>
+				<th class="column-hider"> UNITS </th>
+
+				<th> REMARKS </th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @form_logic_data.each do |f| %>
+			<tr data-href="<%= edit_form_logic_part_data_tbl_path (f) %>"  class="theShower text-center">	<!-- add this too, but change the value inside href according to the controller , data-value attribute not needed-->
+				<td><%= f.CMD_ID %></td>
+				<td><%= f.PART_NO %></td>
+				<td><%= f.LOGIC_LEVEL %></td>
+				<td><%= f.LOGIC_PART_NO %></td>
+				<td><%= f.FORM_LOGIC_PART_TYPE %></td>
+
+
+
+				<td><%= f.PART_MNEMONIC %></td>
+				<td class="column-hider"><%= f.SUB_LOGIC_TYPE %></td>
+				<td class="column-hider"><%= f.PART_TYPE %></td>
+			
+				<td class="column-hider"><%= f.START_BIT %></td>
+				<td class="column-hider"><%= f.NO_OF_BITS %></td>
+				<td class="column-hider"><%= f.PART_MASK %></td>
+				<td class="column-hider"><%= f.RESOLUTION %></td>
+				<td><%= f.OFFSET %></td>
+				<td class="column-hider"><%= f.INPUT_FORMAT %></td>
+				<td class="column-hider"><%= f.LL %></td>
+				<td class="column-hider"><%= f.UL %></td>
+				<td class="column-hider"><%= f.UNITS %></td>
+				<td><%= f.REMARKS %></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
+					<% end %>	<!-- add this too -->
+			</tr>
+		<% end %>	
+		</tbody>
+	</table>
+</div>
+
+
+<div class="lower-options">	<!-- add this only for cmd_part_tbl and form_logic_part_data_tbl as they have a lot of attributes -->
+	<form action="" class="resizer_form">
+		<input id="shrink" type="radio" name="table_resize" checked="checked">
+		<label for="shrink">Shrink</label>
+		<input id="expand" type="radio" name="table_resize">
+		<label for="expand">Expand</label>
+	</form>	
+	<%= link_to 'Add', new_form_logic_part_data_tbl_path, class: "add-new-table" %>	<!-- add this for all but dont forget to change links -->
+</div>

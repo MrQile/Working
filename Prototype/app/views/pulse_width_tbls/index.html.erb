@@ -1,9 +1,30 @@
-<h1>ALL PULSE_WIDTH_TBLS </h1>
 
-<% @pulse_width.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.PULSE_WIDTH%></div>
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF PULSE_WIDTH COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> ID </th>
+				<th> PULSE_WIDTH </th>
+
+			</tr>
+		</thead>
+		<tbody>
+		<% @pulse_width.each do |f| %>
+		<tr data-href="<%= edit_pulse_width_tbl_path(f) %>"  class="theShower text-center">
+				<td><%= f.ID  %></td>
+				<td><%= f.PULSE_WIDTH%></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
+		<% end %>
+		</tbody>
+	</table>
+
 	</div>
-<% end %>
-
-<%= link_to 'New', new_pulse_width_tbl_path %>
+<div class="lower-options">
+	<%= link_to 'Add', new_pulse_width_tbl_path, class: "add-new-table" %>
+</div>

@@ -1,10 +1,34 @@
-<h1>ALL ENTRY_TYPE_TBL </h1>
+
+
+<!--<%= link_to 'New', new_entry_type_tbl_path %>-->
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF ENTRY_TYPE</caption>
+		<thead>
+			<tr>
+				<th>  ID</th>
+				<th> ENTRY_TYPE </th>
+
+			</tr>
+		</thead>
+<tbody>
 
 <% @entry_type.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.ID%></div>
-		<div><%=f.ENTRY_TYPE%></div>
+<tr data-href="<%= edit_entry_type_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+						<td><%= f.ID %></td>
+				<td><%= f.ENTRY_TYPE  %></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
+					<%end%>
+			</tr>
+  			<% end %>
+				</tbody>
+	</table>
 	</div>
-<% end %>
 
-<%= link_to 'New', new_entry_type_tbl_path %>
+<div class="lower-options">
+<%= link_to 'Add', new_entry_type_tbl_path, class: "add-new-table" %>
+</div>

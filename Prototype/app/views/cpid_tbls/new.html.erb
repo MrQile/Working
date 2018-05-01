@@ -1,6 +1,8 @@
-
+<% breadcrumb :new_cpid, @base_cmds %>
 <h1>CREATE CPID_TBL </h1>
 <%= form_for(@cpids) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
 
@@ -10,14 +12,15 @@
   <%= f.label :CPID_DESC%>
   <%= f.text_field :CPID_DESC, class: 'form-control' %>
 
+  <%= f.label :PROC_TYPE%>
+  <%= f.collection_select(:PROC_TYPE, LKUP_TBL_TYPE_TBL.all, :LKUP_TBL_TYPE, :LKUP_TBL_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
+
   <%= f.label :TM_VAL %>
   <%= f.text_field :TM_VAL, class: 'form-control' %>
+  <div class="value_error_text"></div>
 
   <%= f.label :TM_COUNT %>
   <%= f.text_field :TM_COUNT, class: 'form-control' %>
-
-  <%= f.label :PROC_TYPE%>
-  <%= f.collection_select(:PROC_TYPE, LKUP_TBL_TYPE_TBL.all, :LKUP_TBL_TYPE, :LKUP_TBL_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
 
   <%= f.submit 'Create', class: "btn btn-primary" %>
 <% end %>

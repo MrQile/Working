@@ -1,11 +1,37 @@
-<h1>ALL EXPRESSIONS </h1>
+<% breadcrumb :exprs %>
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF EXPRESSIONS</caption>
+		<thead>
+			<tr>
+				<th>  EXPR_ID </th>
+				<th> EXPR_TYPE  </th>
+				<th>  TM_PID  </th>
+				<th> REL_OP </th>
+				<th> VALUE   </th>
+				<th> VALUE_TYPE  </th>
+
+			</tr>
+		</thead>
+<tbody>
 
 <% @exprs.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.EXPR_TYPE%></div>
+			<tr data-href="<%= edit_expression_path(f) %>"  class="theShower text-center">		
+			<td><%= f.EXPR_ID %></td>
+				<td><%= f.EXPR_TYPE%></td>
+				<td><%= f.TM_PID   %></td>
+				<td><%= f.REL_OP  %></td>
+				<td><%= f.VALUE  %></td>
+				<td><%= f.VALUE_TYPE%></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
+					<% end %>
+			</tr>
 		<% end %>
+		</tbody>
+	</table>
 	</div>
-<% end %>
-
-<%= link_to 'New', new_expression_path %>
+<div class="lower-options">
+	<%= link_to 'Add', new_expression_path, class: "add-new-table" %>
+</div>

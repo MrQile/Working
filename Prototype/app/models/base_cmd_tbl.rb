@@ -12,19 +12,21 @@ class BASE_CMD_TBL < ExternalDbAccess
 	belongs_to :ui_types_tbl, class_name: "UI_TYPES_TBL", primary_key: "UI_TYPE", foreign_key: "UI_TYPE", inverse_of: :base_cmd_tbls
 	before_save :ConverterArray
 
-    validates :DESCRIPTION, presence: true
+
+    validates :CMD_ID, presence: true, length: { is: 8 }, uniqueness: true
+    validates :DESCRIPTION, presence: true, length: { maximum: 40 }
     validates :SUBSYSTEM, presence: true
     validates :FORMATION_TYPE, presence: true
     validates :CMD_TYPE, presence: true
-    validates :BASE_CMD_CODE, presence: true
-    validates :BASE_CMD_MASK, presence: true
+    validates :BASE_CMD_CODE, presence: true, length: { maximum: 32 }
+    validates :BASE_CMD_MASK, presence: true, length: { maximum: 32 }
     validates :CRITICALITY, presence: true
     validates :PULSE_WIDTH, presence: true
     validates :MAP_ID, presence: true
     validates :UI_TYPE, presence: true
     validates :PREFERRABLE_DECODER, presence: true
     validates :CONFIRMATION_TYPE, presence: true
-    validates :REMARKS, presence: true
+    validates :REMARKS, presence: true, length: { maximum: 40 }
     
     attr_accessor :valv
 

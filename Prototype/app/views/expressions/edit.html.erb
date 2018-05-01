@@ -1,5 +1,12 @@
+<% if session[:cmd_id]==0 %>
+  <% breadcrumb :expr_edit, @base_cmds %>
+<% else %>
+  <% breadcrumb :edit_expr,@base_cmds %>
+<% end %>
 <h1>EDIT EXPRESSION </h1>
 <%= form_for(@exprs) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :EXPR_ID %>
   <%= f.text_field :EXPR_ID, class: 'form-control' %>
@@ -13,11 +20,12 @@
   <%= f.label :REL_OP%>
   <%= f.collection_select(:REL_OP, REL_OP_TBL.all, :REL_OP, :REL_OP, {:prompt => "Please select"},{class: 'form-control'})%>
 
-  <%= f.label :VALUE%>
-  <%= f.text_field :VALUE, class: 'form-control' %>
-
   <%= f.label :VALUE_TYPE%>
   <%= f.collection_select(:VALUE_TYPE, VALUE_TYPE_TBL.all, :VALUE_TYPE, :VALUE_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
+
+  <%= f.label :VALUE%>
+  <%= f.text_field :VALUE, class: 'form-control' %>
+  <div class="value_error_text"></div>
 
   <%= f.submit 'Update', class: "btn btn-primary" %>
 <% end %>

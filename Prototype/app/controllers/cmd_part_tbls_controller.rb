@@ -1,15 +1,11 @@
 class CmdPartTblsController < ParentController
-	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
+	before_action :find_base_cmd, except: :destroy
 	def index
-		@cmd_parts = CMD_PART_TBL.where(CMD_ID: session[:cmd_id])
+		@cmd_parts = @base_cmds.cmd_part_tbls
 	end
 
 	def new
 		@cmd_parts = CMD_PART_TBL.new(CMD_ID: session[:cmd_id])
-	end
-
-	def show
-		@cmd_parts = CMD_PART_TBL.find(params[:id])
 	end
 
 	def edit
@@ -19,7 +15,7 @@ class CmdPartTblsController < ParentController
 	def create
 		@cmd_parts = CMD_PART_TBL.new(cmd_part_params)
 		if @cmd_parts.save
-			redirect_to @cmd_parts
+			redirect_to cmd_part_tbls_path
 		else
 			render 'new'
 		end
@@ -28,7 +24,7 @@ class CmdPartTblsController < ParentController
 	def update
 		@cmd_parts = CMD_PART_TBL.find(params[:id])
 		if @cmd_parts.update_attributes(cmd_part_params)
-			redirect_to cmd_part_tbls_url
+			redirect_to cmd_part_tbls_path
 		else
 			render 'edit'
 		end
@@ -36,7 +32,7 @@ class CmdPartTblsController < ParentController
 
 	def destroy
 		CMD_PART_TBL.find(params[:id]).destroy
-		redirect_to cmd_part_tbls_url
+		redirect_to cmd_part_tbls_path
 	end
 
 	private

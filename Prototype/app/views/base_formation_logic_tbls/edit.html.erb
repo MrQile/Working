@@ -1,6 +1,8 @@
 <h1>EDIT BASE_FORMATION_LOGIC_TBL </h1>
 <%= form_for(@base_form_logic) do |f| %>
 
+  <%= render 'shared/error_messages', object: f.object %>
+
   <%= f.label :BASE_FORMATION_LOGIC %>
   <%= f.text_field :BASE_FORMATION_LOGIC, class: 'form-control' %>
 

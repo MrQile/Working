@@ -1,11 +1,40 @@
-<h1>ALL CPID_TBLS </h1>
+<% breadcrumb :cpid_index, @base_cmds %>
+
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF CP_IDS</caption>
+		<thead>
+			<tr>
+				<th> CMD_ID</th>
+				<th> CPID  </th>
+				<th> CPID_DESC</th>
+				<th> TM_VAL   </th>
+				<th> TM_COUNT</th>
+				<th> PROC_TYPE  </th>
+
+			</tr>
+		</thead>
+<tbody>
 
 <% @cpids.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.CPID_DESC%></div>
+				<tr data-href="<%= edit_cpid_tbl_path(f) %>"  class="theShower text-center">
+		
+			<td><%=f.CMD_ID%></td>
+			<td><%=f.CPID%></td>
+			<td><%=f.CPID_DESC%></td>
+			<td><%=f.TM_VAL%></td>
+			<td><%=f.TM_COUNT%></td>
+			<td><%=f.PROC_TYPE%></td>
+			
+			<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
+					<%end%>
+		</tr>
 		<% end %>
+	</tbody>
+</table>
 	</div>
-<% end %>
-
-<%= link_to 'New', new_cpid_tbl_path %>
+<div class="lower-options">
+<%= link_to 'Add', new_cpid_tbl_path, class: "add-new-table" %>	
+</div>

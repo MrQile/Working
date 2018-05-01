@@ -1,9 +1,36 @@
-<h1>ALL CRITICALITY_TBLS </h1>
+
+
+
+
+<!--<%= link_to 'New', new_criticality_tbl_path %>-->
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF CRITICALITY</caption>
+		<thead>
+			<tr>
+				<th>  ID</th>
+				<th> CRITICALITY </th>
+
+			</tr>
+		</thead>
+<tbody>
 
 <% @crity.each do |f| %>
-	<div class="theShower text-center">
-		<div><%=f.CRITICALITY%></div>
+<tr data-href="<%= edit_criticality_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+						<td><%= f.ID %></td>
+				<td><%= f.CRITICALITY  %></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>
+					<%end%>
+			</tr>
+  			<% end %>
+				</tbody>
+	</table>
 	</div>
-<% end %>
 
-<%= link_to 'New', new_criticality_tbl_path %>
+<div class="lower-options">
+<%= link_to 'Add', new_criticality_tbl_path, class: "add-new-table" %>
+</div>

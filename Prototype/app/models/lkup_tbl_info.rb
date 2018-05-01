@@ -3,4 +3,8 @@ class LKUP_TBL_INFO < ExternalDbAccess
 	has_many :lkup_tbls, class_name: "LKUP_TBL", primary_key: "LKUP_TBL_NO", foreign_key: "LKUP_TBL_NO", dependent: :destroy
 	# has_many :cmd_part_tbls, class_name: "CMD_PART_TBL", primary_key: "LKUP_TBL_NO", foreign_key: "RESOLUTION"
 	has_paper_trail class_name: 'Version'
+
+	validates :LKUP_TBL_NO, presence: true, numericality: { only_integer: true }
+    validates :LKUP_TBL_NAME, presence: true, length: { maximum: 31 }
+    validates :LKUP_TBL_TYPE, presence: true
 end

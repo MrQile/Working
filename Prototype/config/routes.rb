@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   	resources :preferrable_decoder_tbls
   	resources :criticality_tbls
   	resources :pulse_width_tbls
-  	resources :lk_tbl_type_tbls
+  	resources :lkup_tbl_type_tbls
   	resources :logical_op_tbls
 
   	resources :entry_type_tbls

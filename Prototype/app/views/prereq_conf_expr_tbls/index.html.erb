@@ -1,11 +1,40 @@
-<% breadcrumb :preconf_index, [@base_cmds,@prereqs]%>
-<h1>ALL PREREQ_CONF_EXPR_TBLS </h1>
+<% breadcrumb :preconf_index, @base_cmds %>
 
-<% @prereqs.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.LOGICAL_OP%></div>
+
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF PREREQ COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> CMD_ID   </th>
+				<th> ENTRY_TYPE  </th>
+				<th> FIELD_NO    </th>
+				<th> EXPR_ID  </th>
+				<th> LOGICAL_OP  </th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @prereqs.each do |f| %>
+		<tr data-href="<%= edit_prereq_conf_expr_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+		<td><%= f.CMD_ID   %></td>
+				<td><%= f.ENTRY_TYPE  %></td>
+				<td><%= f.FIELD_NO    %></td>
+				<td><%= f.EXPR_ID  %></td>
+				<td><%= f.LOGICAL_OP  %></td>
+
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
 		<% end %>
+		</tbody>
+	</table>
+
 	</div>
-<% end %>
-<%= link_to 'New', new_prereq_conf_expr_tbl_path %>
+<div class="lower-options">
+	<%= link_to 'Add', new_prereq_conf_expr_tbl_path, class: "add-new-table" %>
+</div>

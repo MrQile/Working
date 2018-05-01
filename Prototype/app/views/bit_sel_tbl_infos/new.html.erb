@@ -1,6 +1,12 @@
-<% breadcrumb :new_bit_info, [@base_cmds,@bit_infos] %>
+<% if session[:cmd_id]==0 %>
+	<% breadcrumb :bit_info_new, @bit_infos %>
+<% else %>
+	<% breadcrumb :new_bit_info, [@base_cmds,@bit_infos] %>
+<% end %>
 <h1>CREATE BIT_SEL_TBL_INFO </h1>
 <%= form_for(@bit_infos) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :BIT_SEL_TBL_NO %>
   <%= f.text_field :BIT_SEL_TBL_NO, class: 'form-control' %>

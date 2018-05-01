@@ -1,5 +1,6 @@
 class ExpressionsController < ParentController
-	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
+	before_action :find_base_cmd, except: :destroy
+	before_action :set_base_cmd_session_to_nil, only: :index
 	def index
 		@search = EXPRESSION.ransack(params[:q])
 		@exprs = @search.result
@@ -21,7 +22,7 @@ class ExpressionsController < ParentController
 	def create
 		@exprs = EXPRESSION.new(expr_params)
 		if @exprs.save
-			redirect_to new_prereq_conf_expr_tbl_path
+			redirect_to edit_expression_path(@exprs)
 		else
 			render 'new'
 		end
@@ -30,7 +31,7 @@ class ExpressionsController < ParentController
 	def update
 		@exprs = EXPRESSION.find(params[:id])
 		if @exprs.update_attributes(expr_params)
-			redirect_to expressions_url
+			redirect_to expressions_path
 		else
 			render 'edit'
 		end
@@ -38,7 +39,7 @@ class ExpressionsController < ParentController
 
 	def destroy
 		EXPRESSION.find(params[:id]).destroy
-		redirect_to expressions_url
+		redirect_to expressions_path
 	end
 
 	private

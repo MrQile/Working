@@ -1,7 +1,7 @@
 class FormLogicPartDataTblsController < ParentController
-	before_action :find_base_cmd, only: [:index, :new, :edit]
+	before_action :find_base_cmd, except: :destroy
 	def index
-		@form_logic_data = FORM_LOGIC_PART_DATA_TBL.where(CMD_ID: session[:cmd_id])
+		@form_logic_data = @base_cmds.form_logic_part_data_tbls	
 	end
 
 	def new

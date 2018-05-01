@@ -1,5 +1,6 @@
 class BitSelTblInfosController < ParentController
-	before_action :find_base_cmd, only: [:index, :show, :new, :edit]
+	before_action :find_base_cmd, except: :destroy
+	before_action :set_base_cmd_session_to_nil, only: :index
 	def index
 		@search = BIT_SEL_TBL_INFO.ransack(params[:q])
 		@bit_infos = @search.result
@@ -10,22 +11,15 @@ class BitSelTblInfosController < ParentController
 		@bit_infos = BIT_SEL_TBL_INFO.new
 	end
 
-	def show
-		if params[:bits].blank?
-			@bit_infos = BIT_SEL_TBL_INFO.find(params[:id])
-		else
-			@bit_infos = BIT_SEL_TBL_INFO.find(BIT_SEL_TBL_NO: params[:val])
-		end
-	end
-
 	def edit
 		@bit_infos = BIT_SEL_TBL_INFO.find(params[:id])
+		save_bit @bit_infos
 	end
 
 	def create
 		@bit_infos = BIT_SEL_TBL_INFO.new(bit_sel_info_params)
 		if @bit_infos.save
-			redirect_to @bit_infos
+			redirect_to edit_bit_sel_tbl_info_path(@bit_infos)
 		else
 			render 'new'
 		end
@@ -34,7 +28,7 @@ class BitSelTblInfosController < ParentController
 	def update
 		@bit_infos = BIT_SEL_TBL_INFO.find(params[:id])
 		if @bit_infos.update_attributes(bit_sel_info_params)
-			redirect_to bit_sel_tbl_infos_url
+			redirect_to bit_sel_tbl_infos_path
 		else
 			render 'edit'
 		end
@@ -42,7 +36,7 @@ class BitSelTblInfosController < ParentController
 
 	def destroy
 		BIT_SEL_TBL_INFO.find(params[:id]).destroy
-		redirect_to bit_sel_tbl_infos_url
+		redirect_to bit_sel_tbl_infos_path
 	end
 
 	private

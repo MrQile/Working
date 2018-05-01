@@ -41,4 +41,5 @@ class LkupTblTypeTblsController < ParentController
 		def lkup_tbl_type_params
 			params.require(:lkup_tbl_type_tbl).permit(:LKUP_TBL_TYPE)
 		end
+
 end

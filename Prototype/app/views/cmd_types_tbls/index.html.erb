@@ -1,11 +1,34 @@
-<h1>ALL CMD_TYPES_TBLS </h1>
 
+
+
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF CMD_TYPES</caption>
+		<thead>
+			<tr>
+				<th> CMD_TYPE_ID</th>
+				<th> CMD_TYPE  </th>
+				<th> CMD_TYPES_TBL_CMD_TYPE</th>
+
+
+			</tr>
+		</thead>
+<tbody>
 <% @cmd_types.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.CMD_TYPE%></div>
+	<tr data-href="<%= edit_cmd_types_tbl_path(f) %>" class="theShower text-center">
+		
+			<td><%=f.CMD_TYPE_ID%></td>
+			<td><%=f.CMD_TYPE%></td>
+			<td><%=f.CMD_TYPES_TBL_CMD_TYPE%></td>
+			<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+		</tr>
 		<% end %>
+	</tbody>
+</table>
 	</div>
-<% end %>
-
-<%= link_to 'New', new_cmd_types_tbl_path %>
+<div class="lower-options">
+	<%= link_to 'Add', new_cmd_types_tbl_path, class: "add-new-table" %>
+</div>

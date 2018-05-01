@@ -1,11 +1,34 @@
-<h1>ALL UI_TYPES_TBLS </h1>
 
-<% @ui_types.each do |f| %>
-	<div class="theShower text-center">
-		<%= link_to f do %>
-			<div><%=f.UI_TYPE%></div>
+
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF SUBSYSTEM COMMANDS</caption>
+		<thead>
+			<tr>
+				<th> UI_TYPE_ID   </th>
+				<th> UI_TYPE </th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @ui_types.each do |f| %>
+		<tr data-href="<%= edit_ui_types_tbl_path(f) %>"  class="theShower text-center">
+	
+		
+		<td><%= f.UI_TYPE_ID    %></td>
+				<td><%= f.UI_TYPE%></td>
+				
+				
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
 		<% end %>
-	</div>
-<% end %>
+		</tbody>
+	</table>
 
-<%= link_to 'New', new_ui_types_tbl_path %>
+	</div>
+<div class="lower-options">
+	<%= link_to 'Add', new_ui_types_tbl_path, class: "add-new-table" %>
+</div>
