@@ -60,6 +60,7 @@ $(document).on("turbolinks:load", function() {
 	$("#expand").click(function(){
 		$(".column-hider").show();
 	})
+	
 	$("#advanced_button").click(function(e){
 		e.preventDefault();
 		$(this).detach();
@@ -196,7 +197,7 @@ $(document).on("turbolinks:load", function() {
 	});
 
 	$('.question_mark span').click(function () {
-		$('.question_mark div').slideToggle(50);
+		$('.question_mark > div').slideToggle(50);
 	});
 
 

@@ -38,14 +38,24 @@ class BASE_CMD_TBL < ExternalDbAccess
         self.CONFIRMATION_TYPE = value
     end
 
-   def DecoderArray(confirmer)
-        conf = self.CONFIRMATION_TYPE.to_s.split("")
-        @valv = confirmer.values_at(*conf)
+   def DecoderArray(confirmer) 
+        conf = self.CONFIRMATION_TYPE.to_s
+        if(conf == "-1")
+            arr = conf.split(" ")
+        else
+            arr = conf.split("")
+        end
+        @valv = confirmer.values_at(*arr)
     end
 
     def DecoderForEdit
-        conf = self.CONFIRMATION_TYPE.to_s.split("")
-        self.CONFIRMATION_TYPE = conf
+        conf = self.CONFIRMATION_TYPE.to_s
+        if(conf == "-1")
+            arr = conf.split(" ")
+        else
+            arr = conf.split("")
+        end
+        self.CONFIRMATION_TYPE = arr
     end
 
 

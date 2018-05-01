@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 			database_change(user, defaults, host, db_name, db_username, db_password)	
 		else
 			flash.now[:danger] = "Invalid username/password combination"
-			render 'edit'
+			render 'new'
 		end
 	end
 
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
 	end
 
 	private
-
+	
 	def is_logged_in?
 		if	logged_in?
 			redirect_to user_path(current_user)

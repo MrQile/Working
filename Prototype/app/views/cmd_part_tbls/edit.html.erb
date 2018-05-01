@@ -42,7 +42,7 @@
   <%= f.text_field :OFFSET, class: 'form-control' %>
 
   <%= f.label :INPUT_FORMAT %>
-  <%= f.text_field :INPUT_FORMAT, class: 'form-control' %>
+  <%= f.collection_select(:INPUT_FORMAT, INPUT_FORMAT_TBL.all, :INPUT_FORMAT, :INPUT_FORMAT, {:prompt => "Please select"},{class: 'form-control'})%>
 
   <%= f.label :LL %>
   <%= f.text_field :LL, class: 'form-control' %>

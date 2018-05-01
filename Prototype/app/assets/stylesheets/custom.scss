@@ -209,7 +209,7 @@ table {
 
   				div{
   					white-space: nowrap; 
-  					overflow: auto;;
+  					overflow: auto;
   				}
 			}
 			.deleter a{
@@ -243,6 +243,7 @@ table {
 		}
 	}
 }
+
 .footer{
 	position: static;
 	background: #333333;
@@ -398,19 +399,29 @@ div.dropdown {
 	margin: 5px 0;
 	padding: 2px 6px;
 	z-index: 900;
-	div{
+	> div{
 		position: absolute;
 		width: 15vw;
 		right: 0px;
 		background-color: $dim-white;
 		display: none;
-		th,td {
-			font-size: 0.7vw;
+		table {
+			width: 100%;
+			th,td {
+				font-size: 0.7vw;
+			}
+			.scroller {
+				max-width: 5vw;
+				td > div{
+					white-space: nowrap; 
+					overflow: auto;
+					display: block !important;
+				}
+			}
 		}
 	}
-
 }
-
+				
 p.nav_arrow {
 	display: flex;
 	margin: 0px 5px;

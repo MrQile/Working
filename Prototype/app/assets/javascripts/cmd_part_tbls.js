@@ -71,9 +71,6 @@ $(document).on("turbolinks:load", function() {
 		setTimeout(resolutionChanger, 1);
 
 		theSelector.on("change", resolutionChanger);
-		user.on("focus","#USER_DATA", divShower);
-		bit_sel.on("change", divShower);
-		lkup.on("change", divShower);
 	});
 	
 	$(".bit_sel_tbl_infos.show").ready( function() {

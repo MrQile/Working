@@ -35,6 +35,13 @@ class FormLogicPartDataTblsController < ParentController
 		redirect_to form_logic_part_data_tbls_path
 	end
 
+	def fetch_sub_logic_val
+		@logic_level = FORMATION_LOGIC_TBL.where(FORMATION_LOGIC: params[:form_logic_name]).pluck(:FORMATION_LOGIC_LEVEL)*""
+		respond_to do |format|
+			format.js
+		end
+	end
+
 	private
 		def form_logic_data_params
 			params.require(:form_logic_part_data_tbl).permit(:CMD_ID, :PART_NO, :LOGIC_LEVEL, :LOGIC_PART_NO, :FORM_LOGIC_PART_TYPE, :PART_MNEMONIC, :SUB_LOGIC_TYPE, :PART_TYPE, :START_BIT, :NO_OF_BITS, :PART_MASK, :RESOLUTION, :OFFSET , :INPUT_FORMAT, :LL, :UL , :UNITS, :REMARKS)

@@ -3,49 +3,49 @@
 <% if (session[:cmd_id].present? && session[:cmd_id]!=0) %>
 
   <div class="question_mark"><span class="btn btn-xs btn-warning">&malt;</span>
-    <div>
+    <div class="normal">
       <table border='1' class="saved_table">
         <tr>
-          <th>CMD_ID</th><td><%=@base_cmds.CMD_ID%></td>
+          <th>CMD_ID</th><td class="scroller"><div><%=@base_cmds.CMD_ID%></div></td>
         </tr>
         <tr>
-          <th>DESCRIPTION</th><td><%=@base_cmds.DESCRIPTION%></td>
+          <th>DESCRIPTION</th><td class="scroller"><div><%=@base_cmds.DESCRIPTION%></div></td>
         </tr>
         <tr>
-          <th>SUBSYSTEM</th><td><%=@base_cmds.SUBSYSTEM%></td>
+          <th>SUBSYSTEM</th><td class="scroller"><div><%=@base_cmds.SUBSYSTEM%></div></td>
         </tr>
         <tr>
-          <th>FORMATION_TYPE</th><td><%=@base_cmds.FORMATION_TYPE%></td>
+          <th>FORMATION_TYPE</th><td class="scroller"><div><%=@base_cmds.FORMATION_TYPE%></div></td>
         </tr>
         <tr>
-          <th>CMD_TYPE</th><td><%=@base_cmds.CMD_TYPE%></td>
+          <th>CMD_TYPE</th><td class="scroller"><div><%=@base_cmds.CMD_TYPE%></div></td>
         </tr>
         <tr>
-          <th>BASE_CMD_CODE</th><td><%=@base_cmds.BASE_CMD_CODE%></td>
+          <th>BASE_CMD_CODE</th><td class="scroller"><div><%=@base_cmds.BASE_CMD_CODE%></div></td>
         </tr>
         <tr>
-          <th>BASE_CMD_MASK</th><td><%=@base_cmds.BASE_CMD_MASK%></td>
+          <th>BASE_CMD_MASK</th><td class="scroller"><div><%=@base_cmds.BASE_CMD_MASK%></div></td>
         </tr>
         <tr>
-          <th>CRITICALITY</th><td><%=@base_cmds.CRITICALITY%></td>
+          <th>CRITICALITY</th><td class="scroller"><div><%=@base_cmds.CRITICALITY%></div></td>
         </tr>
         <tr>
-          <th>PULSE_WIDTH</th><td><%=@base_cmds.PULSE_WIDTH%></td>
+          <th>PULSE_WIDTH</th><td class="scroller"><div><%=@base_cmds.PULSE_WIDTH%></div></td>
         </tr>
         <tr>
-          <th>MAP_ID</th><td><%=@base_cmds.MAP_ID%></td>
+          <th>MAP_ID</th><td class="scroller"><div><%=@base_cmds.MAP_ID%></div></td>
         </tr>
         <tr>
-          <th>UI_TYPE</th><td><%=@base_cmds.UI_TYPE%></td>
+          <th>UI_TYPE</th><td class="scroller"><div><%=@base_cmds.UI_TYPE%></div></td>
         </tr>
         <tr>
-          <th>PREFERRABLE_DECODER</th><td><%=@base_cmds.PREFERRABLE_DECODER%></td>
+          <th>PREFERRABLE_DECODER</th><td class="scroller"><div><%=@base_cmds.PREFERRABLE_DECODER%></div></td>
         </tr>
         <tr>
-          <th>CONFIRMATION_TYPE</th><td><%=@base_cmds.CONFIRMATION_TYPE%></td>
+          <th>CONFIRMATION_TYPE</th><td class="scroller"><div><%=@base_cmds.CONFIRMATION_TYPE%></div></td>
         </tr>
         <tr>
-          <th>REMARKS</th><td><%=@base_cmds.REMARKS%></td>
+          <th>REMARKS</th><td class="scroller"><div><%=@base_cmds.REMARKS%></div></td>
         </tr> 
       </table>
     </div>

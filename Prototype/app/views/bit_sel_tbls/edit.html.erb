@@ -23,8 +23,7 @@
   <%= f.text_field :VALUE_MNEMONICS, class: 'form-control' %>
 
   <%= f.label :LOGICAL_OP%>
-  <%= f.text_field :LOGICAL_OP, class: 'form-control' %>
-
+  <%= f.collection_select(:LOGICAL_OP, LOGICAL_OP_TBL.all, :LOGICAL_OP, :LOGICAL_OP, {:prompt => "Please select"},{class: 'form-control'})%>
 
   <%= f.submit 'Update', class: "btn btn-primary" %>
 <% end %>

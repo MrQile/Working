@@ -63,7 +63,9 @@ Rails.application.routes.draw do
   	resources :rel_op_tbls
   	resources :form_logic_part_type_tbls
   	resources :formation_logic_tbls
-  	resources :form_logic_part_data_tbls
+  	resources :form_logic_part_data_tbls do
+  		post :fetch_sub_logic_val, on: :collection
+ 	end
   	resources :expr_type_tbls
   	
 end

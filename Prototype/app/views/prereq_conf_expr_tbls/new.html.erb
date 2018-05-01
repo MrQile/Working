@@ -5,7 +5,7 @@
   <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
 
   <%= f.label :ENTRY_TYPE %>
-  <%= f.text_field :ENTRY_TYPE, class: 'form-control' %></br>
+  <%= f.collection_select(:ENTRY_TYPE, ENTRY_TYPE_TBL.all, :ID, :ENTRY_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
 
   <%= f.label :FIELD_NO%>
   <%= f.text_field :FIELD_NO, class: 'form-control' %></br>
@@ -14,7 +14,7 @@
   <%= f.collection_select(:EXPR_ID, EXPRESSION.all, :EXPR_ID, :concat_three_fields, {:prompt => "Please select"})%><%=link_to "Doesn't exist?", new_expression_path%></br>
 
   <%= f.label :LOGICAL_OP%>
-  <%= f.text_field :LOGICAL_OP, class: 'form-control' %></br>
+  <%= f.collection_select(:LOGICAL_OP, LOGICAL_OP_TBL.all, :LOGICAL_OP, :LOGICAL_OP, {:prompt => "Please select"},{class: 'form-control'})%>
 
   <%= f.submit 'Create', class: "btn btn-primary" %>
 <% end %>
