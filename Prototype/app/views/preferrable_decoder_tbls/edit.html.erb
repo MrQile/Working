@@ -1,8 +1,14 @@
 <h1>EDIT PREFERRABLE_DECODER_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@pref_decoder) do |f| %>
 
+  <div class="form-row">
   <%= f.label :PREFERRABLE_DECODER %>
   <%= f.text_field :PREFERRABLE_DECODER, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.submit 'Update', class: "btn btn-primary" %>
+  </div>
 <% end %>
+</div>

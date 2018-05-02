@@ -4,18 +4,26 @@
 	<% breadcrumb :new_lkup_info, [@base_cmds,@lkup_infos] %>
 <% end %>
 <h1>CREATE LKUP_TBL_INFO </h1>
+<div class="perfect-forms">
 <%= form_for(@lkup_infos) do |f| %>
-
   <%= render 'shared/error_messages', object: f.object %>
-
+<div class="form-row">
+  
   <%= f.label :LKUP_TBL_NO %>
   <%= f.text_field :LKUP_TBL_NO, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.label :LKUP_TBL_NAME %>
   <%= f.text_field :LKUP_TBL_NAME, class: 'form-control' %>
-
+  </div>
+  
+  <div class="form-row">
   <%= f.label :LKUP_TBL_TYPE%>
   <%= f.collection_select(:LKUP_TBL_TYPE, LKUP_TBL_TYPE_TBL.all, :LKUP_TBL_TYPE, :LKUP_TBL_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
-
+  </div>
+  <div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>
+</div>
 <% end %>
+</div>

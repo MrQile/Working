@@ -15,6 +15,7 @@ class PrereqConfExprTblsController < ParentController
 	def create
 		@prereqs = PREREQ_CONF_EXPR_TBL.new(prereq_params)
 		if @prereqs.save
+			flash[:success] = "Successfully created prereqs #{@prereqs.CMD_ID}, #{@prereqs.ENTRY_TYPE} ,#{@prereqs.FIELD_NO}"
 			redirect_to prereq_conf_expr_tbls_path
 		else
 			render 'new'
@@ -22,13 +23,21 @@ class PrereqConfExprTblsController < ParentController
 	end
 
 	def update
-		@prereqs = PREREQ_CONF_EXPR_TBL.find(params[:id])
+		begin
+			@prereqs = PREREQ_CONF_EXPR_TBL.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Take extra care while changing key fields. Please start afresh"
+			redirect_to prereq_conf_expr_tbls_path
+			return
+		end
 		begin
 			if @prereqs.update(prereq_params)
+				flash[:success] = "Successfully updated prereqs #{@prereqs.CMD_ID}, #{@prereqs.ENTRY_TYPE} ,#{@prereqs.FIELD_NO}"
 				redirect_to prereq_conf_expr_tbls_path
 			else
-				flash[:danger] = "Doesn't pass validations. Please enter proper data"
-				redirect_to edit_prereq_conf_expr_tbl_path
+				# flash[:danger] = "Doesn't pass validations. Please enter proper data"
+				# redirect_to edit_prereq_conf_expr_tbl_path
+				render 'edit'
 			end
 		rescue ActiveRecord::RecordNotUnique => e
 			flash[:danger] = "Doesn't Form a unique record"

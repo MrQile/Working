@@ -1,11 +1,20 @@
 
 <h1>CREATE BASE_FORMATION_LOGIC_TBL </h1>
-<%= form_for(@base_form_logic) do |f| %>
 
-  <%= render 'shared/error_messages', object: f.object %>
+<div class="perfect-forms">
+	<%= form_for(@base_form_logic) do |f| %>
 
-  <%= f.label :BASE_FORMATION_LOGIC %>
-  <%= f.text_field :BASE_FORMATION_LOGIC, class: 'form-control' %>
+	<%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.submit 'Update', class: "btn btn-primary" %>
-<% end %>
+	<div class="form-row">
+	  <%= f.label :BASE_FORMATION_LOGIC %>
+	  <%= f.text_field :BASE_FORMATION_LOGIC, class: 'form-control' %>
+	</div>
+	
+	<div class="form-row">
+	  <%= f.submit 'Create', class: "btn btn-primary" %>
+	</div>
+	  
+	<% end %>
+</div>
+

@@ -1,64 +1,92 @@
 <% breadcrumb :new_cmd_part, @base_cmds%>
 <h1 onload="location.reload(true);">CREATE CMD_PART_TBL </h1><!-- onload is to refresh the page sho the jquery can work its magic, as turbokinks prevents it as default -->
-<%= form_for(@cmd_parts) do |f| %>
+<div class="perfect-forms">
 
+<%= form_for(@cmd_parts) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
+  <div class="form-row">
   <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
-  
+  </div>
+
+  <div class="form-row">
   <%= f.label :CMD_PART_NO %>
   <%= f.text_field :CMD_PART_NO, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.label :CMD_PART_MNEMONIC%>
   <%= f.text_field :CMD_PART_MNEMONIC, class: 'form-control' %>
+  </div>
 
-  <div id="CMD_PART_SELECTOR">
+  <div class="form-row" id="CMD_PART_SELECTOR">
     <%= f.label :CMD_PART_TYPE %>
     <%= f.collection_select(:CMD_PART_TYPE, CMD_PART_TYPES_TBL.all, :CMD_PART_TYPE, :CMD_PART_TYPE, {:prompt => "Please select"},{class: 'form-control'})%></br>
   </div>
-  <div id="user_data">
+  <div class="form-row" id="user_data">
     <%= f.label :USER_DATA %>
     <%= f.text_field :RESOLUTION, class: 'form-control', id: 'USER_DATA' %>
   </div>
 
-  <div id="bit_sel_tbl">
+  <div class="form-row" id="bit_sel_tbl">
     <%= f.label :BIT_SEL_TBL_INFO %>
-    <%= f.collection_select(:RESOLUTION, BIT_SEL_TBL_INFO.all, :BIT_SEL_TBL_NO, :BIT_SEL_TBL_NAME, {:prompt => "Please select"},{class: 'form-control', id: 'BIT_SEL_TBL_INFO'})%><%= link_to "Bit_sel Doesn't exist?", new_bit_sel_tbl_info_path%>
+    <%= f.collection_select(:RESOLUTION, BIT_SEL_TBL_INFO.all, :BIT_SEL_TBL_NO, :BIT_SEL_TBL_NAME, {:prompt => "Please select"},{class: 'form-control', id: 'BIT_SEL_TBL_INFO'})%><%= link_to "Doesn't exist?", new_bit_sel_tbl_info_path%>
   </div>
   
-  <div id="lkup_tbl">
+  <div class="form-row" id="lkup_tbl">
     <%= f.label :LKUP_TBL_INFO %>
-    <%= f.collection_select(:RESOLUTION, LKUP_TBL_INFO.all, :LKUP_TBL_NO, :LKUP_TBL_NAME, {:prompt => "Please select"},{class: 'form-control', id: 'LKUP_TBL_INFO'})%><%= link_to "lkup Doesn't exist?", new_lkup_tbl_info_path%>
+    <%= f.collection_select(:RESOLUTION, LKUP_TBL_INFO.all, :LKUP_TBL_NO, :LKUP_TBL_NAME, {:prompt => "Please select"},{class: 'form-control', id: 'LKUP_TBL_INFO'})%><%= link_to "Doesn't exist?", new_lkup_tbl_info_path%>
   </div>
-
   <div class="hidden-attrs">
+    <div class="form-row">
     <%= f.label :START_BIT %>
     <%= f.text_field :START_BIT, class: 'form-control' %>
+    </div>
 
+    <div class="form-row">
     <%= f.label :NO_OF_BITS%>
     <%= f.text_field :NO_OF_BITS, class: 'form-control' %>
+    </div>
 
+    <div class="form-row">
     <%= f.label :PART_MASK %>
     <%= f.text_field :PART_MASK, class: 'form-control' %>
-    
+    </div>
+
+    <div class="form-row">
     <%= f.label :OFFSET%>
     <%= f.text_field :OFFSET, class: 'form-control' %>
+    </div>
 
+    <div class="form-row">
     <%= f.label :INPUT_FORMAT %>
     <%= f.collection_select(:INPUT_FORMAT, INPUT_FORMAT_TBL.all, :INPUT_FORMAT, :INPUT_FORMAT, {:prompt => "Please select"},{class: 'form-control'})%>
+    </div>
 
+    <div class="form-row">
     <%= f.label :LL %>
     <%= f.text_field :LL, class: 'form-control' %>
+    </div>
 
+    <div class="form-row">
     <%= f.label :UL%>
     <%= f.text_field :UL, class: 'form-control' %>
+    </div>
 
+    <div class="form-row">
     <%= f.label :UNITS %>
     <%= f.text_field :UNITS, class: 'form-control' %>
+    </div>
 
+    <div class="form-row">
     <%= f.label :REMARKS%>
     <%= f.text_field :REMARKS, class: 'form-control' %>
+    </div>
   </div>
-  
+
+  <div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>
+  </div>
+
 <% end %>
+</div>

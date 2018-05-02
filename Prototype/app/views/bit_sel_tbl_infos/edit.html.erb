@@ -9,16 +9,24 @@
 <% end %>
 
 <h1>EDIT BIT_SEL_TBL_INFO </h1>
-<%= form_for(@bit_infos) do |f| %>
+<div class="perfect-forms">
 
-  <%= render 'shared/error_messages', object: f.object %>
+	<%= form_for(@bit_infos) do |f| %>
 
-  <%= f.label :BIT_SEL_TBL_NO %>
-  <%= f.text_field :BIT_SEL_TBL_NO, class: 'form-control' %>
+ 	 <%= render 'shared/error_messages', object: f.object %>
+	<div class="form-row">
+	  <%= f.label :BIT_SEL_TBL_NO %>
+	  <%= f.text_field :BIT_SEL_TBL_NO, class: 'form-control' %>
+	  </div>
 
-  <%= f.label :BIT_SEL_TBL_NAME %>
-  <%= f.text_field :BIT_SEL_TBL_NAME, class: 'form-control' %>
+	<div class="form-row"> 
+	  <%= f.label :BIT_SEL_TBL_NAME %>
+	  <%= f.text_field :BIT_SEL_TBL_NAME, class: 'form-control' %>
+	</div>
 
-  <%= f.submit 'Update', class: "btn btn-primary" %>
-<% end %>
-
+	<div class="form-row">
+	  <%= f.submit 'Update', class: "btn btn-primary" %>
+	</div>
+	
+	<% end %>
+</div>

@@ -58,21 +58,34 @@ class BaseCmdTblsController < ParentController
 		if params[:commit] == "Create"	
 			@base_cmds = BASE_CMD_TBL.new(base_cmd_params)
 			if @base_cmds.save
-				flash[:success] = "Successfully created BASE CMD #{@base_cmds.CMD_ID}"
+				flash[:success] = "Successfully created base cmd #{@base_cmds.CMD_ID}"
 				redirect_to base_cmd_tbls_path
 			else
 				render 'edit'
 			end
 		else
-			@base_cmds = BASE_CMD_TBL.find(params[:id])
-			if @base_cmds.update_attributes(base_cmd_params)
-				flash[:success] = "Successfully updated BASE CMD #{@base_cmds.CMD_ID}"
+			begin
+				@base_cmds = BASE_CMD_TBL.find(params[:id])
+			rescue ActiveRecord::RecordNotFound
+				flash[:danger] = "Caution: Take extra care while changing key fields. Please start afresh"
 				redirect_to base_cmd_tbls_path
-			else
-				render 'edit'
+				return
 			end
+			begin
+				if @base_cmds.update_attributes(base_cmd_params)
+					flash[:success] = "Successfully updated base cmd #{@base_cmds.CMD_ID}"
+					redirect_to base_cmd_tbls_path
+				else
+					render 'edit'
+				end
+			rescue ActiveRecord::RecordNotUnique => e
+				flash[:danger] = "Doesn't Form a unique record"
+	    		redirect_to edit_base_cmd_tbl_path
+	    		return
+	 		end
 		end
 	end
+
 
 	def destroy
 		flash.now[:success] = "Please wait.."

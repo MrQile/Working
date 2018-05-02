@@ -1,12 +1,21 @@
 
 <h1>CREATE UI_TYPES_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@ui_types) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
 
+<div class="form-row">
   <%= f.label :UI_TYPE_ID %>
   <%= f.text_field :UI_TYPE_ID, class: 'form-control' %>
+  </div>
 
+<div class="form-row">
   <%= f.label :UI_TYPE %>
   <%= f.text_field :UI_TYPE, class: 'form-control' %>
+  </div>
 
+<div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>
+  </div>
 <% end %>
+</div>

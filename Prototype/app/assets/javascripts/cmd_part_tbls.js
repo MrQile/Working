@@ -41,7 +41,7 @@ $(document).on("turbolinks:load", function() {
 		$(".options_bar").css("display", "block");
 	});
 
-	$(".cmd_part_tbls.edit").ready( function() {
+	$(".cmd_part_tbls.edit, .cmd_part_tbls.create, .cmd_part_tbls.update").ready( function() {
 		console.log("good luck");
 		var user;
 		var bit_sel;
@@ -67,7 +67,7 @@ $(document).on("turbolinks:load", function() {
 					bit_sel.detach();
 			}
 		}
-		
+		$(".hidden-attrs").css("display","block");
 		setTimeout(resolutionChanger, 1);
 
 		theSelector.on("change", resolutionChanger);

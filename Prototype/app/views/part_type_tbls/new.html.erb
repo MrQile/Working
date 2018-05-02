@@ -1,9 +1,17 @@
 
 <h1>CREATE PART_TYPE_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@part_type) do |f| %>
 
+
+<div class="form-row">
   <%= f.label :PART_TYPE %>
   <%= f.text_field :PART_TYPE, class: 'form-control' %>
+  </div>
 
+
+<div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>
+</div>
 <% end %>
+</div>

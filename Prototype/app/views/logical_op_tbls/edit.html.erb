@@ -1,8 +1,15 @@
 <h1>EDIT LOGICAL_OP_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@logic_op) do |f| %>
 
+  <div class="form-row">
   <%= f.label :LOGICAL_OP %>
   <%= f.text_field :LOGICAL_OP, class: 'form-control' %>
+  </div>
 
+<div class="form-row">
   <%= f.submit 'Update', class: "btn btn-primary" %>
+</div>
+
 <% end %>
+</div>

@@ -22,6 +22,7 @@ class ExpressionsController < ParentController
 	def create
 		@exprs = EXPRESSION.new(expr_params)
 		if @exprs.save
+			flash[:success] = "Successfully created expression #{@exprs.EXPR_ID}, #{@exprs.EXPR_TYPE}"
 			redirect_to edit_expression_path(@exprs)
 		else
 			render 'new'
@@ -29,13 +30,28 @@ class ExpressionsController < ParentController
 	end
 
 	def update
-		@exprs = EXPRESSION.find(params[:id])
-		if @exprs.update_attributes(expr_params)
+		begin
+			@exprs = EXPRESSION.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Caution: Take extra care while changing key fields. Please start afresh"
 			redirect_to expressions_path
-		else
-			render 'edit'
+			return
 		end
+		begin
+			if  @exprs.update_attributes(expr_params)
+				flash[:success] = "Successfully updated expression #{@exprs.EXPR_ID}, #{@exprs.EXPR_TYPE}"
+				redirect_to expressions_path
+			else
+				render 'edit'
+			end
+		rescue ActiveRecord::RecordNotUnique => e
+			flash[:danger] = "Doesn't Form a unique record"
+    		redirect_to edit_expression_path
+    		return
+ 		end
 	end
+
+		
 
 	def destroy
 		EXPRESSION.find(params[:id]).destroy

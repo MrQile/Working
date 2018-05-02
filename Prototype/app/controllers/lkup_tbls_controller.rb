@@ -1,6 +1,6 @@
 class LkupTblsController < ParentController
 	before_action :find_base_cmd, except: :destroy
-	before_action :lkup_var, only: [:index, :new, :edit]
+	before_action :lkup_var, except: :destroy
 
 	def index
 		@lkups = LKUP_TBL.where(LKUP_TBL_NO: session[:lkup_id])
@@ -21,6 +21,7 @@ class LkupTblsController < ParentController
 	def create
 		@lkups = LKUP_TBL.new(lkup_params)
 		if @lkups.save
+			flash[:success] = "Successfully updated cpid #{@lkups.LKUP_TBL_NO}, #{@lkups.LKUP_ENTRY_INDEX}"
 			redirect_to lkup_tbls_path
 		else
 			render 'new'
@@ -28,13 +29,27 @@ class LkupTblsController < ParentController
 	end
 
 	def update
-		@lkups = LKUP_TBL.find(params[:id])
-		if @lkups.update_attributes(lkup_params)
+		begin
+			@lkups = LKUP_TBL.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Caution: Take extra care while changing key fields. Please start afresh"
 			redirect_to lkup_tbls_path
-		else
-			render 'edit'
+			return
 		end
+		begin
+			if  @lkups.update_attributes(lkup_params)
+				flash[:success] = "Successfully updated cpid #{@lkups.LKUP_TBL_NO}, #{@lkups.LKUP_ENTRY_INDEX}"
+				redirect_to lkup_tbls_path
+			else
+				render 'edit'
+			end
+		rescue ActiveRecord::RecordNotUnique => e
+			flash[:danger] = "Doesn't Form a unique record"
+    		redirect_to edit_lkup_tbl_path
+    		return
+ 		end	
 	end
+		
 
 	def destroy
 		LKUP_TBL.find(params[:id]).destroy

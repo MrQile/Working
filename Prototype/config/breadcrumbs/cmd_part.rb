@@ -16,12 +16,12 @@ end
 # bit sels
 crumb :new_bit_info do |base_cmd|
 	link "New Bit Info"
-	parent :cmd_part_index, base_cmd
+	parent :edit_base_cmds, base_cmd
 end
 
 crumb :edit_bit_sel_info do |base_cmd,bit_sel|
 	link "Edit Bit Info", edit_bit_sel_tbl_info_path(bit_sel)
-	parent :cmd_part_index, base_cmd
+	parent :edit_base_cmds, base_cmd
 end
 
 crumb :bit_sel_index do |base_cmd,bit_sel|
@@ -42,12 +42,12 @@ end
 # lk ups
 crumb :new_lkup_info do |base_cmd|
 	link "New Lkup Info"
-	parent :cmd_part_index, base_cmd
+	parent :edit_base_cmds, base_cmd
 end
 
 crumb :edit_lkup_info do |base_cmd,lkup|
 	link "Edit Lkup Info", edit_lkup_tbl_info_path(lkup)
-	parent :cmd_part_index, base_cmd
+	parent :edit_base_cmds, base_cmd
 end
 
 crumb :lkup_index do |base_cmd,lkup|

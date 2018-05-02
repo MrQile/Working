@@ -1,12 +1,21 @@
 
 <h1>CREATE ENTRY_TYPE_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@entry_type) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
 
+<div class="form-row">
   <%= f.label :ID %>
   <%= f.text_field :ID, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.label :ENTRY_TYPE %>
   <%= f.text_field :ENTRY_TYPE, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>
+  </div>
 <% end %>
+</div>

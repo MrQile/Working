@@ -1,10 +1,15 @@
 
 <h1>CREATE LKUP_TBL_TYPE_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@lkup_type) do |f| %>
 
-
+<div class="form-row">
   <%= f.label :LKUP_TBL_TYPE %>
   <%= f.text_field :LKUP_TBL_TYPE, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>
+</div>
 <% end %>
+</div>

@@ -15,6 +15,7 @@ class CmdPartTblsController < ParentController
 	def create
 		@cmd_parts = CMD_PART_TBL.new(cmd_part_params)
 		if @cmd_parts.save
+			flash[:success] = "Successfully created cmd part #{@cmd_parts.CMD_ID}, #{@cmd_parts.CMD_PART_NO}"
 			redirect_to cmd_part_tbls_path
 		else
 			render 'new'
@@ -22,13 +23,28 @@ class CmdPartTblsController < ParentController
 	end
 
 	def update
-		@cmd_parts = CMD_PART_TBL.find(params[:id])
-		if @cmd_parts.update_attributes(cmd_part_params)
+		begin
+			@cmd_parts = CMD_PART_TBL.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Caution: Take extra care while changing key fields. Please start afresh"
 			redirect_to cmd_part_tbls_path
-		else
-			render 'edit'
+			return
 		end
+		begin
+			if  @cmd_parts.update_attributes(cmd_part_params)
+				flash[:success] = "Successfully updated cmd part #{@cmd_parts.CMD_ID}, #{@cmd_parts.CMD_PART_NO}"
+				redirect_to cmd_part_tbls_path
+			else
+				render 'edit'
+			end
+		rescue ActiveRecord::RecordNotUnique => e
+			flash[:danger] = "Doesn't Form a unique record"
+    		redirect_to edit_cmd_part_tbl_path
+    		return
+ 		end
 	end
+
+		
 
 	def destroy
 		CMD_PART_TBL.find(params[:id]).destroy

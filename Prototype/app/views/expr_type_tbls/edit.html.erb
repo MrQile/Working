@@ -1,11 +1,20 @@
 <h1>EDIT EXPR_TYPE_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@expr_type) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
 
+  <div class="form-row">
   <%= f.label :ID %>
-  <%= f.text_field :ID, class: 'form-control' %>
+  <%= f.text_field :ID, class: 'form-control' %> 
+	</div>
 
+  <div class="form-row">
   <%= f.label :EXPR_TYPE %>
   <%= f.text_field :EXPR_TYPE, class: 'form-control' %>
+   </div>
 
+  <div class="form-row">
   <%= f.submit 'Update', class: "btn btn-primary" %>
+   </div>
 <% end %>
+</div>

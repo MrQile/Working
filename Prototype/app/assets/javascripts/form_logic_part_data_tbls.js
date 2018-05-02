@@ -2,16 +2,41 @@ $(document).on("turbolinks:load", function() {
 	$(".form_logic_part_data_tbls.new").ready( function() {
 		console.log("working in form logic");
 
-		var user;
 		var all_logic;
 		var form_logic;
 		var form_logic_selector;
 		var form_logic_val;
-		// user = $("#user_data").detach();
-		user = $("#user_data");
-		user.on("input","#USER_DATA", function(){
+		var user;
+		var bit_sel;
+		var lkup;
+		user = $("#user_data").detach();
+		bit_sel = $("#bit_sel_tbl").detach();
+		lkup = $("#lkup_tbl").detach();
+		var theSelector = $('#form_logic_part_data_tbl_PART_TYPE');
+		var theDivOfSelector = $('#PART_SELECTOR');
+		function resolutionChanger() {
+			console.log($(this).val());
+			if ($(this).val() == "BIT_SEL_TBL_INFO"){
+				bit_sel.insertAfter(theDivOfSelector);
+				user.detach();											//Changed to detach as the select doesn't repond with the select2 gem when we try to use remove() 
+				lkup.detach();
+			} else if ($(this).val() == "LKUP_TBL_INFO") {
+				lkup.insertAfter(theDivOfSelector);     
+				user.detach();
+				bit_sel.detach();
+			} else if ($(this).val() == "USER_DATA") {
+					user.insertAfter(theDivOfSelector);
+					lkup.detach();
+					bit_sel.detach();
+			}
+		}
+		function divShower() {
 			$(".hidden-attrs").css("display", "block");
-		})
+		}
+		theSelector.on("change", resolutionChanger);
+		user.on("focus","#USER_DATA", divShower);
+		bit_sel.on("change", divShower);
+		lkup.on("change", divShower);
 		all_logic = $("#all_sub_logic");
 		form_logic_selector = $("#form_logic_part_data_tbl_SUB_LOGIC_TYPE");
 		form_logic = $("#form_sub_logic").detach();
@@ -39,7 +64,7 @@ $(document).on("turbolinks:load", function() {
 			});
 		});
 	});
-	$(".form_logic_part_data_tbls.edit").ready( function() {
+	$(".form_logic_part_data_tbls.edit, .form_logic_part_data_tbls.create, .form_logic_part_data_tbls.update").ready( function() {
 		console.log("working in form logic edit");
 
 		var value_of_sublogic;
@@ -48,6 +73,34 @@ $(document).on("turbolinks:load", function() {
 		var form_logic;
 		var form_logic_selector;
 		var form_logic_val;
+		var user;
+		var bit_sel;
+		var lkup;
+		user = $("#user_data").detach();
+		bit_sel = $("#bit_sel_tbl").detach();
+		lkup = $("#lkup_tbl").detach();
+		var theSelector = $('#form_logic_part_data_tbl_PART_TYPE');
+		var theDivOfSelector = $('#PART_SELECTOR');
+		function resolutionChanger() {
+
+			if (theSelector.val() == "BIT_SEL_TBL_INFO"){
+				bit_sel.insertAfter(theDivOfSelector);
+				user.detach();											//Changed to detach as the select doesn't repond with the select2 gem when we try to use remove() 
+				lkup.detach();
+			} else if (theSelector.val() == "LKUP_TBL_INFO") {
+				lkup.insertAfter(theDivOfSelector);     
+				user.detach();
+				bit_sel.detach();
+			} else if (theSelector.val() == "USER_DATA") {
+					user.insertAfter(theDivOfSelector);
+					lkup.detach();
+					bit_sel.detach();
+			}
+		}
+		$(".hidden-attrs").css("display","block");
+		setTimeout(resolutionChanger, 1);
+
+		theSelector.on("change", resolutionChanger);
 
 		value_of_sublogic = $("span#value_holder").data("value");
 		console.log(value_of_sublogic);

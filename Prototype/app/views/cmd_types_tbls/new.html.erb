@@ -1,17 +1,27 @@
 
 <h1>CREATE CMD_TYPES_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@cmd_types) do |f| %>
 
-  <%= render 'shared/error_messages', object: f.object %>
-
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="form-row">
   <%= f.label :CMD_TYPE_ID %>
   <%= f.text_field :CMD_TYPE_ID, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.label :CMD_TYPE %>
   <%= f.text_field :CMD_TYPE, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.label :CMD_TYPES_TBL_CMD_TYPE %>
   <%= f.text_field :CMD_TYPES_TBL_CMD_TYPE, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>
+</div>
 <% end %>
+</div>
+

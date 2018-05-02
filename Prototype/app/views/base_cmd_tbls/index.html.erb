@@ -3,7 +3,7 @@
 	<table>
 		<caption>LIST OF BASE COMMANDS</caption>
 		<thead>
-			<tr>
+			<tr><th>CMD_ID</th>
 				<th>DESCRIPTION </th>
 				<th> SUBSYSTEM </th>
 				<th class="column-hider"> FORMATION_TYPE </th>
@@ -21,6 +21,7 @@
 		<tbody>
 		<% @base_cmds.each do |f| %>
 			<tr data-href="<%= edit_base_cmd_tbl_path(f) %>" data-value="<%=f.CMD_ID%>" class="theShower text-center">	<!-- add this too, but change the value inside href according to the controller , data-value attribute not needed-->
+				<td><%=f.CMD_ID%></td>
 				<td class="scroller"><div><%= f.DESCRIPTION %></div></td>
 				<td><%= f.SUBSYSTEM %></td>
 				<td class="column-hider"><%= f.FORMATION_TYPE %></td>

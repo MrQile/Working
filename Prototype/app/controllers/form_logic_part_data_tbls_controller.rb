@@ -15,6 +15,7 @@ class FormLogicPartDataTblsController < ParentController
 	def create
 		@form_logic_data = FORM_LOGIC_PART_DATA_TBL.new(form_logic_data_params)
 		if @form_logic_data.save
+			flash[:success] = "Successfully created form data #{@form_logic_data.CMD_ID}, #{@form_logic_data.PART_NO}, #{@form_logic_data.LOGIC_LEVEL}"
 			redirect_to form_logic_part_data_tbls_path
 		else
 			render 'new'
@@ -22,13 +23,28 @@ class FormLogicPartDataTblsController < ParentController
 	end
 
 	def update
-		@form_logic_data = FORM_LOGIC_PART_DATA_TBL.find(params[:id])
-		if @form_logic_data.update_attributes(form_logic_data_params)
+		begin
+			@form_logic_data = FORM_LOGIC_PART_DATA_TBL.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Take extra care while changing key fields. Please start afresh"
 			redirect_to form_logic_part_data_tbls_path
-		else
-			render 'edit'
+			return
 		end
+		begin
+			if  @form_logic_data.update_attributes(form_logic_data_params)
+				flash[:success] = "Successfully updated form data #{@form_logic_data.CMD_ID}, #{@form_logic_data.PART_NO}, #{@form_logic_data.LOGIC_LEVEL}"
+				redirect_to form_logic_part_data_tbls_path
+			else
+				render 'edit'
+			end
+		rescue ActiveRecord::RecordNotUnique => e
+			flash[:danger] = "Doesn't Form a unique record"
+    		redirect_to edit_form_logic_part_data_tbl_path
+    		return
+ 		end
 	end
+
+		
 
 	def destroy
 		FORM_LOGIC_PART_DATA_TBL.find(params[:id]).destroy

@@ -1,8 +1,14 @@
 <h1>CREATE VALUE_TYPE_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@value_type) do |f| %>
 
+ <div class="form-row">
   <%= f.label :VALUE_TYPE %>
   <%= f.text_field :VALUE_TYPE, class: 'form-control' %>
+  </div>
 
+ <div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>
+  </div>
 <% end %>
+</div>

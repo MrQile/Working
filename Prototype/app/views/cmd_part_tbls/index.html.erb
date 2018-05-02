@@ -53,9 +53,9 @@
 <div class="lower-options">	<!-- add this only for cmd_part_tbl and form_logic_part_data_tbl as they have a lot of attributes -->
 	<form action="" class="resizer_form">
 		<input id="shrink" type="radio" name="table_resize" checked="checked">
-		<label for="shrink">Shrink</label>
+		<label for="shrink">-</label>
 		<input id="expand" type="radio" name="table_resize">
-		<label for="expand">Expand</label>
-	</form>	
+		<label for="expand">+</label>
+	</form>
 	<%= link_to 'Add', new_cmd_part_tbl_path, class: "add-new-table" %>	<!-- add this for all but dont forget to change links -->
 </div>

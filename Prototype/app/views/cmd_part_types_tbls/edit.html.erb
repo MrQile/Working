@@ -1,13 +1,21 @@
 <h1>EDIT CMD_PART_TYPES_TBL </h1>
+<div class="perfect-forms">
+
 <%= form_for(@cmd_part_types) do |f| %>
-
-  <%= render 'shared/error_messages', object: f.object %>
-
-  <%= f.label :CMD_PART_TYPE_ID %>
-  <%= f.text_field :CMD_PART_TYPE_ID, class: 'form-control' %>
-
-  <%= f.label :CMD_PART_TYPE %>
-  <%= f.text_field :CMD_PART_TYPE, class: 'form-control' %>
-
-  <%= f.submit 'Update', class: "btn btn-primary" %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="form-row">
+	  <%= f.label :CMD_PART_TYPE_ID %>
+	  <%= f.text_field :CMD_PART_TYPE_ID, class: 'form-control' %>
+	</div>
+	
+	<div class="form-row">  
+	  <%= f.label :CMD_PART_TYPE %>
+	  <%= f.text_field :CMD_PART_TYPE, class: 'form-control' %>
+	</div>
+	
+	<div class="form-row"> 
+	  <%= f.submit 'Update', class: "btn btn-primary" %>
+	</div>
+	  
 <% end %>
+</div>

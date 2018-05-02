@@ -1,8 +1,14 @@
 <h1>EDIT INPUT_FORMAT_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@input_format) do |f| %>
 
+  <div class="form-row">
   <%= f.label :INPUT_FORMAT %>
   <%= f.text_field :INPUT_FORMAT, class: 'form-control' %>
+  </div>
 
+  <div class="form-row">
   <%= f.submit 'Update', class: "btn btn-primary" %>
+  </div>
 <% end %>
+</div>

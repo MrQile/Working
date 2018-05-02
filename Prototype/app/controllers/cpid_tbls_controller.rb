@@ -15,6 +15,7 @@ class CpidTblsController < ParentController
 	def create
 		@cpids = CPID_TBL.new(cpid_params)
 		if @cpids.save
+			flash[:success] = "Successfully created cpid #{@cpids.CMD_ID}, #{@cpids.CPID}"
 			redirect_to cpid_tbls_path
 		else
 			render 'new'
@@ -22,13 +23,27 @@ class CpidTblsController < ParentController
 	end
 
 	def update
-		@cpids = CPID_TBL.find(params[:id])
-		if @cpids.update_attributes(cpid_params)
+		begin
+			@cpids = CPID_TBL.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Caution: Take extra care while changing key fields. Please start afresh"
 			redirect_to cpid_tbls_path
-		else
-			render 'edit'
+			return
 		end
+		begin
+			if  @cpids.update_attributes(cpid_params)
+				flash[:success] = "Successfully updated cpid #{@cpids.CMD_ID}, #{@cpids.CPID}"
+				redirect_to cpid_tbls_path
+			else
+				render 'edit'
+			end
+		rescue ActiveRecord::RecordNotUnique => e
+			flash[:danger] = "Doesn't Form a unique record"
+    		redirect_to edit_cpid_tbl_path
+    		return
+ 		end
 	end
+		
 
 	def destroy
 		CPID_TBL.find(params[:id]).destroy

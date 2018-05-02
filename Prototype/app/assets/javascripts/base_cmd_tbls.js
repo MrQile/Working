@@ -229,7 +229,11 @@ $(document).on("turbolinks:load", function() {
 			url: '/base_cmd_tbls/sub_short_name',
 			data: {'subsystem_name' : sub_name}
 		});
-	})
+	});
+
+	$(".base_cmd_tbls.create").ready(function(){
+		$(".hidden-attrs").css("display", "block");
+	});
 
 	
 });

@@ -1,22 +1,32 @@
 <% breadcrumb :edit_preconf, @base_cmds %>
 <h1>EDIT PREREQ_CONF_EXPR_TBL </h1>
+<div class="perfect-forms">
 <%= form_for(@prereqs) do |f| %>
 
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.hidden_field :CMD_ID, :value => @prereqs.CMD_ID, class: 'form-control' %>
+  <%= f.hidden_field :CMD_ID, :value => @prereqs.CMD_ID %>
+  <div class="form-row">
+    <%= f.label :ENTRY_TYPE %>
+    <%= f.collection_select(:ENTRY_TYPE, ENTRY_TYPE_TBL.all, :ID, :ENTRY_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
+  </div>
 
-  <%= f.label :ENTRY_TYPE %>
-  <%= f.collection_select(:ENTRY_TYPE, ENTRY_TYPE_TBL.all, :ID, :ENTRY_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
+  <div class="form-row">
+    <%= f.label :FIELD_NO%>
+    <%= f.text_field :FIELD_NO, class: 'form-control' %>
+  </div>
 
-  <%= f.label :FIELD_NO%>
-  <%= f.text_field :FIELD_NO, class: 'form-control' %></br>
-
+  <div class="form-row">
   <%= f.label :EXPR_ID %>
-  <%= f.collection_select(:EXPR_ID, EXPRESSION.all, :EXPR_ID, :concat_three_fields, {:prompt => "Please select"})%><%=link_to "Doesn't exist?", new_expression_path%></br>
+  <%= f.collection_select(:EXPR_ID, EXPRESSION.all, :EXPR_ID, :concat_three_fields, {:prompt => "Please select"})%><%=link_to "Doesn't exist?", new_expression_path%>
+  </div>
 
+  <div class="form-row">
   <%= f.label :LOGICAL_OP%>
   <%= f.collection_select(:LOGICAL_OP, LOGICAL_OP_TBL.all, :LOGICAL_OP, :LOGICAL_OP, {:prompt => "Please select"},{class: 'form-control'})%>
-
+  </div>
+  <div class="form-row">
   <%= f.submit 'Update', class: "btn btn-primary" %>
+  </div>
 <% end %>
+</div>
