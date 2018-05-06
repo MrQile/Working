@@ -5,7 +5,7 @@
 
   <%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
+	<%= f.hidden_field :CMD_ID, :value => @form_logic_data.CMD_ID %>
 
 	<div class="form-row">
 	<%= f.label :PART_NO %>
@@ -15,6 +15,7 @@
 	<div class="form-row">
 	<%= f.label :LOGIC_LEVEL %>
 	<%= f.text_field :LOGIC_LEVEL, class: 'form-control'%>
+	<div id="details_holder" data-original_1="<%=@form_logic_data.CMD_ID%>" data-original_2="<%=@form_logic_data.PART_NO%>" data-original_3="<%=@form_logic_data.LOGIC_LEVEL%>"></div>
 	</div>
 
 

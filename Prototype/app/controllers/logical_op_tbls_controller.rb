@@ -1,5 +1,5 @@
 class LogicalOpTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -17,6 +17,7 @@ class LogicalOpTblsController < ParentController
 	def create
 		@logic_op = LOGICAL_OP_TBL.new(logical_op_params)
 		if @logic_op.save
+			flash[:success] = "Successfully created logical op #{@logic_op.LOGICAL_OP}"
 			redirect_to logical_op_tbls_path
 		else
 			render 'new'
@@ -26,6 +27,7 @@ class LogicalOpTblsController < ParentController
 	def update
 		@logic_op = LOGICAL_OP_TBL.find(params[:id])
 		if @logic_op.update_attributes(logical_op_params)
+			flash[:success] = "Successfully updated logical op #{@logic_op.LOGICAL_OP}"
 			redirect_to logical_op_tbls_path
 		else
 			render 'edit'
@@ -33,7 +35,9 @@ class LogicalOpTblsController < ParentController
 	end
 
 	def destroy
-		LOGICAL_OP_TBL.find(params[:id]).destroy
+		@logic_op = LOGICAL_OP_TBL.find(params[:id])
+		@logic_op.destroy
+		flash[:warning] = "Successfully deleted logical op #{@logic_op.LOGICAL_OP}"
 		redirect_to logical_op_tbls_path
 	end
 

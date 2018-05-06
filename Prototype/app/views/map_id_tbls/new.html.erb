@@ -2,11 +2,16 @@
 <h1>CREATE MAP_ID_TBL </h1>
 <div class="perfect-forms">
 <%= form_for(@map_id) do |f| %>
-
+<%= render 'shared/error_messages', object: f.object %>
   <div class="form-row">
   <%= f.label :MAP_ID %>
   <%= f.text_field :MAP_ID, class: 'form-control' %>
   </div>
+
+  <div class="form-row">
+	  <%= f.label :MAP_BIT %>
+	  <%= f.text_field :MAP_BIT, class: 'form-control' %>
+  </div>  
 
   <div class="form-row">
   <%= f.submit 'Create', class: "btn btn-primary" %>

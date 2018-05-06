@@ -1,4 +1,6 @@
-<% breadcrumb :cmd_part_index, @base_cmds %>
+<% if params[:val] != "1" %>
+	<% breadcrumb :cmd_part_index, @base_cmds %>
+<% end %>
 
 <div class="table-view">   <!-- add everything from here on but change the instance variable and the attributes according to the table -->
 	<table>
@@ -24,8 +26,13 @@
 			</tr>
 		</thead>
 		<tbody>
+
 			<% @cmd_parts.each do |f| %>
-			<tr data-href="<%= edit_cmd_part_tbl_path(f) %>"  class="theShower text-center">	<!-- add this too, but change the value inside href according to the controller , data-value attribute not needed-->
+			<% if params[:val] != "1" %>
+				<tr data-href="<%= edit_cmd_part_tbl_path(f) %>"  class="theShower text-center">	<!-- add this too, but change the value inside href according to the controller , data-value attribute not needed-->
+			<% else %>
+				<tr class="theShower text-center">
+			<% end %>
 				<td><%= f.CMD_ID %></td>
 				<td><%= f.CMD_PART_NO %></td>
 				<td><%= f.CMD_PART_MNEMONIC %></td>
@@ -57,5 +64,7 @@
 		<input id="expand" type="radio" name="table_resize">
 		<label for="expand">+</label>
 	</form>
+<% if params[:val] != "1" %>
 	<%= link_to 'Add', new_cmd_part_tbl_path, class: "add-new-table" %>	<!-- add this for all but dont forget to change links -->
+<% end %>
 </div>

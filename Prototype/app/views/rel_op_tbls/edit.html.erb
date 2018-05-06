@@ -1,7 +1,7 @@
 <h1>EDIT REL_OP_TBL </h1>
 <div class="perfect-forms">
 <%= form_for(@rel_op) do |f| %>
-
+<%= render 'shared/error_messages', object: f.object %>
  <div class="form-row">
   <%= f.label :REL_OP %>
   <%= f.text_field :REL_OP, class: 'form-control' %>

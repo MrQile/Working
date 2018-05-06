@@ -30,32 +30,34 @@ class ExpressionsController < ParentController
 	end
 
 	def update
-		begin
+ 		begin
 			@exprs = EXPRESSION.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-			flash[:danger] = "Caution: Take extra care while changing key fields. Please start afresh"
+			flash[:danger] = "Update fail: Make sure all fields are valid before changing the key fields"
 			redirect_to expressions_path
 			return
 		end
-		begin
-			if  @exprs.update_attributes(expr_params)
-				flash[:success] = "Successfully updated expression #{@exprs.EXPR_ID}, #{@exprs.EXPR_TYPE}"
-				redirect_to expressions_path
-			else
-				render 'edit'
-			end
-		rescue ActiveRecord::RecordNotUnique => e
-			flash[:danger] = "Doesn't Form a unique record"
-    		redirect_to edit_expression_path
-    		return
- 		end
+		if  @exprs.update_attributes(expr_params)
+			flash[:success] = "Successfully updated expression #{@exprs.EXPR_ID}, #{@exprs.EXPR_TYPE}"
+			redirect_to expressions_path
+		else
+			render 'edit'
+		end
 	end
 
-		
-
 	def destroy
-		EXPRESSION.find(params[:id]).destroy
+		@exprs = EXPRESSION.find(params[:id])
+		@exprs.destroy
+		flash[:warning] = "Successfully deleted expression #{@exprs.EXPR_ID}, #{@exprs.EXPR_TYPE}"
 		redirect_to expressions_path
+	end
+
+	def check_unique
+		if EXPRESSION.find_by(EXPR_ID: params[:key1],EXPR_TYPE: params[:key2])
+			render json: { valid: false }
+		else
+			render json: { valid: true }
+		end
 	end
 
 	private

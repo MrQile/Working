@@ -16,9 +16,9 @@ module SessionsHelper
 	# conn_config = ActiveRecord::Base.connection_config  /* Brings out the first entry in database.yml , check in rails console */
 	# conn_config[:database] = database_name
 	# ExternalDbAccess.establish_connection conn_config
-	def database_change(user,defaults, host, db_name, db_username, db_password)
+	def database_change(user, host, db_name, db_username, db_password)
 		begin
-			config = ActiveRecord::Base.configurations["#{defaults}"]
+			config = ActiveRecord::Base.configurations["development"]
 			config["host"] = host
 			config["database"] = db_name
 			config["username"] = db_username
@@ -36,6 +36,10 @@ module SessionsHelper
     		return
  		end
 	end
+
+	# def database_session_clear
+	# 	[:host, :database_name, :database_username, :database_password].each { |k| session.delete(k) }
+	# end
 	
 	# ExternalDbAccess.establish_connection({"#{database}"=>{"host"=>"#{server}"}})
 	def save_bit(bit)

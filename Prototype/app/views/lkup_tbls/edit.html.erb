@@ -9,11 +9,12 @@
 <%= form_for(@lkups) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.hidden_field :LKUP_TBL_NO, :value => @lkup_infos.LKUP_TBL_NO %>
+  <%= f.hidden_field :LKUP_TBL_NO, :value => @lkups.LKUP_TBL_NO %>
 
 <div class="form-row">
   <%= f.label :LKUP_ENTRY_INDEX %>
   <%= f.text_field :LKUP_ENTRY_INDEX, class: 'form-control' %>
+  <div id="details_holder" data-original_1="<%=@lkups.LKUP_TBL_NO%>" data-original_2="<%=@lkups.LKUP_ENTRY_INDEX%>"></div>
  </div>
 
   <div class="form-row">

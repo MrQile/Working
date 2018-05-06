@@ -2,7 +2,7 @@
 <h1>CREATE PREFERRABLE_DECODER_TBL </h1>
 <div class="perfect-forms">
 <%= form_for(@pref_decoder) do |f| %>
-
+<%= render 'shared/error_messages', object: f.object %>
   <div class="form-row">
   <%= f.label :PREFERRABLE_DECODER %>
   <%= f.text_field :PREFERRABLE_DECODER, class: 'form-control' %>

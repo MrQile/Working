@@ -8,20 +8,21 @@
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
               <li><%= link_to "Home", base_cmd_tbls_path %></li>
-                <li><%= link_to "Track Changes", versions_path %></li>
+              <li><%= link_to "Track Changes", versions_path %></li>
               <li><%= link_to "Profile", current_user %></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                      
-                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "Log out", logout_path, method: :delete %>
-                  </li>
-
-                </ul>
-              </li>
+              <% if  current_user.admin? %>   
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "Satellites", satellite_tables_path %></li>
+                    <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                    <li class="divider"></li>
+                    <li><%= link_to "Log out", logout_path, method: :delete %></li>
+                 </ul>
+                </li>
+              <% else %>
+                <li><%= link_to "Log out", logout_path, method: :delete %></li>  
+              <% end %>            
             <% else %>
               <li><%= link_to "Log in", login_path %></li>
             <% end %>

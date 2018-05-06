@@ -19,6 +19,7 @@ class LkupTblInfosController < ParentController
 	def create
 		@lkup_infos = LKUP_TBL_INFO.new(lkup_info_params)
 		if @lkup_infos.save
+			flash[:success] = "Successfully created lkup info #{@lkup_infos.LKUP_TBL_NO}"
 			redirect_to edit_lkup_tbl_info_path(@lkup_infos)
 		else
 			render 'new'
@@ -26,8 +27,15 @@ class LkupTblInfosController < ParentController
 	end
 
 	def update
-		@lkup_infos = LKUP_TBL_INFO.find(params[:id])
+		begin
+			@lkup_infos = LKUP_TBL_INFO.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Update fail: Make sure all fields are valid before changing the key fields."
+			redirect_to lkup_tbl_infos_path
+			return
+		end
 		if @lkup_infos.update_attributes(lkup_info_params)
+			flash[:success] = "Successfully updated lkup info #{@lkup_infos.LKUP_TBL_NO}"
 			redirect_to lkup_tbl_infos_path
 		else
 			render 'edit'
@@ -35,8 +43,18 @@ class LkupTblInfosController < ParentController
 	end
 
 	def destroy
-		LKUP_TBL_INFO.find(params[:id]).destroy
+		@lkup_infos = LKUP_TBL_INFO.find(params[:id])
+		@lkup_infos.destroy
+		flash[:warning] = "Successfully deleted lkup info #{@lkup_infos.LKUP_TBL_NO}"
 		redirect_to lkup_tbl_infos_path
+	end
+
+	def check_unique
+		if LKUP_TBL_INFO.find_by(LKUP_TBL_NO: params[:key])
+			render json: { valid: false }
+		else
+			render json: { valid: true }
+		end
 	end
 
 	private

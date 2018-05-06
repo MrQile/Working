@@ -1,5 +1,5 @@
 class ValueTypeTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -17,6 +17,7 @@ class ValueTypeTblsController < ParentController
 	def create
 		@value_type = VALUE_TYPE_TBL.new(value_type_params)
 		if @value_type.save
+			flash[:success] = "Successfully created value type #{@value_type.VALUE_TYPE}"
 			redirect_to value_type_tbls_path
 		else
 			render 'new'
@@ -26,6 +27,7 @@ class ValueTypeTblsController < ParentController
 	def update
 		@value_type = VALUE_TYPE_TBL.find(params[:id])
 		if @value_type.update_attributes(value_type_params)
+			flash[:success] = "Successfully updated value type #{@value_type.VALUE_TYPE}"
 			redirect_to value_type_tbls_path
 		else
 			render 'edit'
@@ -33,7 +35,9 @@ class ValueTypeTblsController < ParentController
 	end
 
 	def destroy
-		VALUE_TYPE_TBL.find(params[:id]).destroy
+		@value_type = VALUE_TYPE_TBL.find(params[:id])
+		@value_type.destroy
+		flash[:warning] = "Successfully deleted value type #{@value_type.VALUE_TYPE}"
 		redirect_to value_type_tbls_path
 	end
 

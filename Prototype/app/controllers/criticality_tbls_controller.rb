@@ -1,5 +1,5 @@
 class CriticalityTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 
@@ -18,6 +18,7 @@ class CriticalityTblsController < ParentController
 	def create
 		@crity = CRITICALITY_TBL.new(criticality_params)
 		if @crity.save
+			flash[:success] = "Successfully created criticality #{@crity.CRITICALITY}"
 			redirect_to criticality_tbls_path
 		else
 			render 'new'
@@ -27,6 +28,7 @@ class CriticalityTblsController < ParentController
 	def update
 		@crity = CRITICALITY_TBL.find(params[:id])
 		if @crity.update_attributes(criticality_params)
+			flash[:success] = "Successfully updated criticality #{@crity.CRITICALITY}"
 			redirect_to criticality_tbls_path
 		else
 			render 'edit'
@@ -34,7 +36,9 @@ class CriticalityTblsController < ParentController
 	end
 
 	def destroy
-		CRITICALITY_TBL.find(params[:id]).destroy
+		@crity = CRITICALITY_TBL.find(params[:id])
+		@crity.destroy
+		flash[:warning] = "Successfully deleted criticality #{@crity.CRITICALITY}"
 		redirect_to criticality_tbls_path
 	end
 

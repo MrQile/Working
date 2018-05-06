@@ -1,7 +1,7 @@
 <h1>EDIT PULSE_WIDTH_TBL </h1>
 <div class="perfect-forms">
 <%= form_for(@pulse_width) do |f| %>
-
+<%= render 'shared/error_messages', object: f.object %>
   <div class="form-row">
   <%= f.label :PULSE_WIDTH %>
   <%= f.text_field :PULSE_WIDTH, class: 'form-control' %>

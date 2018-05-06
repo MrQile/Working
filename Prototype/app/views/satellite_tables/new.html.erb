@@ -1,0 +1,42 @@
+
+<h1>CREATE SATELLITE_TABLE </h1>
+<div class="perfect-forms">
+<%= form_for(@sat) do |f| %>
+
+  <div class="form-row">
+  <%= f.label :SATNAME %>
+  <%= f.text_field :SATNAME, class: 'form-control' %>
+  </div>
+
+  <div class="form-row">
+  <%= f.label :SCSHORTNAME %>
+  <%= f.text_field :SCSHORTNAME, class: 'form-control' %>
+  </div>
+
+
+  <div class="form-row">
+  <%= f.label :DB_NAME %>
+  <%= f.text_field :DB_NAME, class: 'form-control' %>
+  </div>
+
+  <div class="form-row">
+  <%= f.label :DB_USERNAME %>
+  <%= f.text_field :DB_USERNAME, class: 'form-control' %>
+  </div>
+
+  <div class="form-row">
+  <%= f.label :DB_PASSWORD %>
+  <%= f.text_field :DB_PASSWORD, class: 'form-control' %>
+  </div>
+
+  <%= f.check_box :EDIT_ENABLE%> 
+  <%= f.label :EDIT_ENABLE %>
+
+  <%= f.check_box :CCSDS_FLAG%> 
+  <%= f.label :CCSDS_FLAG %>
+  
+  <div class="form-row">
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+</div>
+<% end %>
+</div>

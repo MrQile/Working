@@ -1,7 +1,9 @@
-<% if session[:cmd_id]==0 %>
-  <% breadcrumb :bit_sels, @bit_infos %>
-<% else %>
-  <% breadcrumb :bit_sel_index, [@base_cmds,@bit_infos] %>
+<% if params[:val] != "1" %>
+	<% if session[:cmd_id]==0 %>
+  		<% breadcrumb :bit_sels, @bit_infos %>
+	<% else %>
+ 		<% breadcrumb :bit_sel_index, [@base_cmds,@bit_infos] %>
+	<% end %>
 <% end %>
 
 <% content_for(:option_bar) do %>
@@ -27,8 +29,12 @@
 			</tr>
 		</thead>
 <tbody>
-<% @bit_sels.each do |f| %>
-	<tr data-href="<%= edit_bit_sel_tbl_path(f) %>" class="theShower text-center">
+	<% @bit_sels.each do |f| %>
+		<% if params[:val] != "1" %>
+			<tr data-href="<%= edit_bit_sel_tbl_path(f) %>"  class="theShower text-center">
+		<% else %>
+			<tr class="theShower text-center">
+		<% end %>
 		
 			<td><%=f.BIT_SEL_TBL_NO%></td>
 			<td><%=f.FIELD_NO%></td>
@@ -42,11 +48,13 @@
 			<% if current_user.admin? %>	<!-- add this too -->
 					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
 				<% end %>
-		</tr>
+			</tr>
 		<% end %>
 	</tbody>
 </table>
 	</div>
-<div class="lower-options">
-<%= link_to 'Add', new_bit_sel_tbl_path, class: "add-new-table" %>
-</div>
+<% if params[:val] != "1" %>	
+	<div class="lower-options add_to_right">
+	<%= link_to 'Add', new_bit_sel_tbl_path, class: "add-new-table" %>
+	</div>
+<% end %>

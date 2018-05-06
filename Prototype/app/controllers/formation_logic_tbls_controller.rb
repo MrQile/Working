@@ -1,5 +1,5 @@
 class FormationLogicTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -17,6 +17,7 @@ class FormationLogicTblsController < ParentController
 	def create
 		@form_logic = FORMATION_LOGIC_TBL.new(form_logic_params)
 		if @form_logic.save
+			flash[:success] = "Successfully created form logic #{@form_logic.FORMATION_LOGIC}"
 			redirect_to formation_logic_tbls_path
 		else
 			render 'new'
@@ -26,6 +27,7 @@ class FormationLogicTblsController < ParentController
 	def update
 		@form_logic = FORMATION_LOGIC_TBL.find(params[:id])
 		if @form_logic.update_attributes(form_logic_params)
+			flash[:success] = "Successfully updated form logic #{@form_logic.FORMATION_LOGIC}"
 			redirect_to formation_logic_tbls_path
 		else
 			render 'edit'
@@ -33,7 +35,9 @@ class FormationLogicTblsController < ParentController
 	end
 
 	def destroy
-		FORMATION_LOGIC_TBL.find(params[:id]).destroy
+		@form_logic = FORMATION_LOGIC_TBL.find(params[:id])
+		@form_logic.destroy
+		flash[:warning] = "Successfully deleted form logic #{@form_logic.FORMATION_LOGIC}"
 		redirect_to formation_logic_tbls_path
 	end
 

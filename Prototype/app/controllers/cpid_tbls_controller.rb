@@ -1,7 +1,12 @@
 class CpidTblsController < ParentController
 	before_action :find_base_cmd, except: :destroy
 	def index
-		@cpids = @base_cmds.cpid_tbls
+		if params[:val] == "1"
+			session[:cmd_id] = 0
+			@cpids = CPID_TBL.all
+		else
+			@cpids = @base_cmds.cpid_tbls
+		end
 	end
 
 	def new
@@ -23,31 +28,35 @@ class CpidTblsController < ParentController
 	end
 
 	def update
-		begin
+ 		begin
 			@cpids = CPID_TBL.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-			flash[:danger] = "Caution: Take extra care while changing key fields. Please start afresh"
+			flash[:danger] = "Update fail: Make sure all fields are valid before changing the key fields"
 			redirect_to cpid_tbls_path
 			return
 		end
-		begin
-			if  @cpids.update_attributes(cpid_params)
-				flash[:success] = "Successfully updated cpid #{@cpids.CMD_ID}, #{@cpids.CPID}"
-				redirect_to cpid_tbls_path
-			else
-				render 'edit'
-			end
-		rescue ActiveRecord::RecordNotUnique => e
-			flash[:danger] = "Doesn't Form a unique record"
-    		redirect_to edit_cpid_tbl_path
-    		return
- 		end
+		if  @cpids.update_attributes(cpid_params)
+			flash[:success] = "Successfully updated cpid #{@cpids.CMD_ID}, #{@cpids.CPID}"
+			redirect_to cpid_tbls_path
+		else
+			render 'edit'
+		end
 	end
 		
 
 	def destroy
-		CPID_TBL.find(params[:id]).destroy
+		@cpids = CPID_TBL.find(params[:id])
+		@cpids.destroy
+		flash[:warning] = "Successfully deleted cpid #{@cpids.CMD_ID}, #{@cpids.CPID}"
 		redirect_to cpid_tbls_path
+	end
+
+	def check_unique
+		if CPID_TBL.find_by(CMD_ID: params[:key1],CPID: params[:key2])
+			render json: { valid: false }
+		else
+			render json: { valid: true }
+		end
 	end
 
 	private

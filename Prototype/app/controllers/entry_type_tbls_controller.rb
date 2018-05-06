@@ -1,5 +1,5 @@
 class EntryTypeTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 
@@ -18,6 +18,7 @@ class EntryTypeTblsController < ParentController
 	def create
 		@entry_type = ENTRY_TYPE_TBL.new(entry_type_params)
 		if @entry_type.save
+			flash[:success] = "Successfully created entry type #{@entry_type.ENTRY_TYPE}"
 			redirect_to entry_type_tbls_path
 		else
 			render 'new'
@@ -27,6 +28,7 @@ class EntryTypeTblsController < ParentController
 	def update
 		@entry_type = ENTRY_TYPE_TBL.find(params[:id])
 		if @entry_type.update_attributes(entry_type_params)
+			flash[:success] = "Successfully updated entry type #{@entry_type.ENTRY_TYPE}"
 			redirect_to entry_type_tbls_path
 		else
 			render 'edit'
@@ -34,12 +36,14 @@ class EntryTypeTblsController < ParentController
 	end
 
 	def destroy
-		ENTRY_TYPE_TBL.find(params[:id]).destroy
+		@entry_type = ENTRY_TYPE_TBL.find(params[:id])
+		@entry_type.destroy
+		flash[:warning] = "Successfully deleted entry type #{@entry_type.ENTRY_TYPE}"
 		redirect_to entry_type_tbls_path
 	end
 
 	private
 		def entry_type_params
-			params.require(:entry_type_tbl).permit(:ID, :ENTRY_TYPE)
+			params.require(:entry_type_tbl).permit(:ENTRY_TYPE)
 		end
 end

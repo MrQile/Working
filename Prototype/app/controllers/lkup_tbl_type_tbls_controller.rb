@@ -1,5 +1,5 @@
 class LkupTblTypeTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -17,6 +17,7 @@ class LkupTblTypeTblsController < ParentController
 	def create
 		@lkup_type = LKUP_TBL_TYPE_TBL.new(lkup_tbl_type_params)
 		if @lkup_type.save
+			flash[:success] = "Successfully created lkup tbl type #{@lkup_type.LKUP_TBL_TYPE}"
 			redirect_to lkup_tbl_type_tbls_path
 		else
 			render 'new'
@@ -26,6 +27,7 @@ class LkupTblTypeTblsController < ParentController
 	def update
 		@lkup_type = LKUP_TBL_TYPE_TBL.find(params[:id])
 		if @lkup_type.update_attributes(lkup_tbl_type_params)
+			flash[:success] = "Successfully updated lkup tbl type #{@lkup_type.LKUP_TBL_TYPE}"
 			redirect_to lkup_tbl_type_tbls_path
 		else
 			render 'edit'
@@ -33,7 +35,9 @@ class LkupTblTypeTblsController < ParentController
 	end
 
 	def destroy
-		LKUP_TBL_TYPE_TBL.find(params[:id]).destroy
+		@lkup_type = LKUP_TBL_TYPE_TBL.find(params[:id])
+		@lkup_type.destroy
+		flash[:warning] = "Successfully deleted lkup tbl type #{@lkup_type.LKUP_TBL_TYPE}"
 		redirect_to lkup_tbl_type_tbls_path
 	end
 

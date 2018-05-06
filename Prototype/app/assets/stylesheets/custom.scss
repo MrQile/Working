@@ -22,7 +22,7 @@ body {
 .HolyGrail-body {
   padding-top: 50px;
   display: flex;
-  height: 96vh;
+  height: 96.8vh;
 }
 
 .HolyGrail-content {
@@ -50,6 +50,7 @@ body {
     }
     .search_input{
     	width: 100%;
+    	padding-left: 10px;
     }
     span {
     	width: 100% !important;
@@ -127,12 +128,13 @@ h1 {
 }
 
 .flash {
+	z-index: 1;
 	position: fixed;
 	top: 50px;
 	width: 100%;
 }
 
-.value_error_text{
+.value_error_text, #details_holder{
 	display: none;
 	color: $state-danger-text;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -142,6 +144,11 @@ h1 {
 
 .select2 {
         width: 100% !important;
+}
+
+.select2-results__group {
+	text-align: center;
+	text-transform: uppercase;
 }
 
 
@@ -310,6 +317,10 @@ table {
 	}
 }
 
+.add_to_right{
+	width: 10%;
+	float: right;
+}
 hr {
 	border: none;
     height: 3px;
@@ -516,14 +527,32 @@ p.nav_arrow {
 	background-color: $light-blue;
 	}
 	h3{
-	text-align: left;
+	font-size: 1.3vw;
+	text-align: center;
 	background-color: $light-gray;
 	}
+}
+
+.prof_center{
+	float: none;
+	margin: 0 auto;
+	padding-top: 5vh;
+	padding-bottom: 5vh;
 }
 
 .user_profile_button {
 	width: 50%;
 }
+
+.user_changer{
+	background-color: $light-gray;
+	display: flex;
+	justify-content: space-around;
+	a{
+		font-weight: 900;
+	}
+}
+	
 
 /* Pagination alignment */
 

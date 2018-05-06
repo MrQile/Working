@@ -35,6 +35,29 @@ class ApplicationController < ActionController::Base
     session[:cmd_id] = 0
   end
 
+  def satellite_editable
+
+    if session[:mod_sat] == 0
+      flash[:warning] = "Satellite is not editable"
+      redirect_back(fallback_location: user_path(current_user))
+    elsif !session[:mod_sat].present?
+      flash[:danger] = "Please log-in again"
+      redirect_to user_path(current_user)
+    end
+    
+  end
+
+
+  def user_modifiability
+
+    if !current_user.modifiability?
+      flash[:warning] = "You don't have the required privileges. Contact the admin"
+      redirect_back(fallback_location: user_path(current_user))
+    end
+
+  end
+
+
   # def user_for_paper_trail        #for overriding the whoduunit value stored in the versions model
   #   if logged_in?
   #     current_user.name

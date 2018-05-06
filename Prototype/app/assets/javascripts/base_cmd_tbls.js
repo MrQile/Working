@@ -1,7 +1,7 @@
 $(document).on("turbolinks:load", function() {
 	// $("#mainRow").height($(window).height()); //same thing as setting 100vh in css, but not good in terms of resized window
 	
-
+	/* for flash message to disapper */
 	$(function() {
 	  setTimeout(function(){
 	    $('.alert').slideUp(500);
@@ -11,7 +11,7 @@ $(document).on("turbolinks:load", function() {
 
 	$('select').select2({
 		theme: "bootstrap",
-		placeholder: "Please Select",
+		placeholder: "Selectable",
 		allowClear: true
 	});
 

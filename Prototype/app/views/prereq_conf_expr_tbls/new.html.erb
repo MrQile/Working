@@ -5,7 +5,7 @@
 
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
+  <%= f.hidden_field :CMD_ID, :value => @prereqs.CMD_ID %>
   <div class="form-row">
     <%= f.label :ENTRY_TYPE %>
     <%= f.collection_select(:ENTRY_TYPE, ENTRY_TYPE_TBL.all, :ID, :ENTRY_TYPE, {:prompt => "Please select"},{class: 'form-control'})%>
@@ -14,6 +14,7 @@
   <div class="form-row">
     <%= f.label :FIELD_NO%>
     <%= f.text_field :FIELD_NO, class: 'form-control' %>
+    <div id="details_holder" data-original_1="<%=@prereqs.CMD_ID%>" data-original_2="<%=@prereqs.ENTRY_TYPE%>" data-original_3="<%=@prereqs.FIELD_NO%>"></div>
   </div>
 
   <div class="form-row">

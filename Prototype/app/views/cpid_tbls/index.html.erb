@@ -1,9 +1,10 @@
-<% breadcrumb :cpid_index, @base_cmds %>
-
+<% if params[:val] != "1" %>
+	<% breadcrumb :cpid_index, @base_cmds %>
+<% end %>
 
 <div class="table-view">
 	<table>
-		<caption>LIST OF CP_IDS</caption>
+		<caption>LIST OF CPIDS</caption>
 		<thead>
 			<tr>
 				<th> CMD_ID</th>
@@ -18,7 +19,11 @@
 <tbody>
 
 <% @cpids.each do |f| %>
-				<tr data-href="<%= edit_cpid_tbl_path(f) %>"  class="theShower text-center">
+			<% if params[:val] != "1" %>
+				<tr data-href="<%= edit_cpid_tbl_path(f) %>"  class="theShower text-center">	<!-- add this too, but change the value inside href according to the controller , data-value attribute not needed-->
+			<% else %>
+				<tr class="theShower text-center">
+			<% end %>
 		
 			<td><%=f.CMD_ID%></td>
 			<td><%=f.CPID%></td>
@@ -35,6 +40,8 @@
 	</tbody>
 </table>
 	</div>
-<div class="lower-options">
-<%= link_to 'Add', new_cpid_tbl_path, class: "add-new-table" %>	
-</div>
+<% if params[:val] != "1" %>
+	<div class="lower-options add_to_right">
+	<%= link_to 'Add', new_cpid_tbl_path, class: "add-new-table" %>	
+	</div>
+<% end %>	

@@ -1,7 +1,12 @@
 class CmdPartTblsController < ParentController
 	before_action :find_base_cmd, except: :destroy
 	def index
-		@cmd_parts = @base_cmds.cmd_part_tbls
+		if params[:val] == "1"
+			session[:cmd_id] = 0
+			@cmd_parts = CMD_PART_TBL.all
+		else
+			@cmd_parts = @base_cmds.cmd_part_tbls
+		end
 	end
 
 	def new
@@ -23,32 +28,34 @@ class CmdPartTblsController < ParentController
 	end
 
 	def update
-		begin
+ 		begin
 			@cmd_parts = CMD_PART_TBL.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-			flash[:danger] = "Caution: Take extra care while changing key fields. Please start afresh"
+			flash[:danger] = "Update fail: Make sure all fields are valid before changing the key fields"
 			redirect_to cmd_part_tbls_path
 			return
 		end
-		begin
-			if  @cmd_parts.update_attributes(cmd_part_params)
-				flash[:success] = "Successfully updated cmd part #{@cmd_parts.CMD_ID}, #{@cmd_parts.CMD_PART_NO}"
-				redirect_to cmd_part_tbls_path
-			else
-				render 'edit'
-			end
-		rescue ActiveRecord::RecordNotUnique => e
-			flash[:danger] = "Doesn't Form a unique record"
-    		redirect_to edit_cmd_part_tbl_path
-    		return
- 		end
+		if  @cmd_parts.update_attributes(cmd_part_params)
+			flash[:success] = "Successfully updated cmd part #{@cmd_parts.CMD_ID}, #{@cmd_parts.CMD_PART_NO}"
+			redirect_to cmd_part_tbls_path
+		else
+			render 'edit'
+		end
 	end
 
-		
-
 	def destroy
-		CMD_PART_TBL.find(params[:id]).destroy
+		@cmd_parts = CMD_PART_TBL.find(params[:id])
+		@cmd_parts.destroy
+		flash[:warning] = "Successfully deleted cmd part #{@cmd_parts.CMD_ID}, #{@cmd_parts.CMD_PART_NO}"
 		redirect_to cmd_part_tbls_path
+	end
+
+	def check_unique
+		if CMD_PART_TBL.find_by(CMD_ID: params[:key1],CMD_PART_NO: params[:key2])
+			render json: { valid: false }
+		else
+			render json: { valid: true }
+		end
 	end
 
 	private

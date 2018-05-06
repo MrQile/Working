@@ -4,6 +4,5 @@ class User < AllConfigAccess
 	validates :name, presence: true, length: { minimum: 3 },
 											   uniqueness: true
 	validates :password, presence: true, length: { minimum: 6 }
-	validates :satellite_name, presence: true, length: { minimum: 3 }
 
 end

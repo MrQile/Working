@@ -1,4 +1,5 @@
 class ConfirmationTypeTblsController < ParentController
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -23,6 +24,7 @@ class ConfirmationTypeTblsController < ParentController
 	def create
 		@confs = CONFIRMATION_TYPE_TBL.new(conf_params)
 		if @confs.save
+			flash[:success] = "Successfully created confirmation type #{@confs.CONFIRMATION_TYPE}"
 			redirect_to confirmation_type_tbls_path
 		else
 			render 'new'
@@ -32,6 +34,7 @@ class ConfirmationTypeTblsController < ParentController
 	def update
 		@confs = CONFIRMATION_TYPE_TBL.find(params[:id])
 		if @confs.update_attributes(conf_params)
+			flash[:success] = "Successfully updated confirmation type #{@confs.CONFIRMATION_TYPE}"
 			redirect_to confirmation_type_tbls_path
 		else
 			render 'edit'
@@ -39,7 +42,9 @@ class ConfirmationTypeTblsController < ParentController
 	end
 
 	def destroy
-		CONFIRMATION_TYPE_TBL.find(params[:id]).destroy
+		@confs = CONFIRMATION_TYPE_TBL.find(params[:id])
+		@confs.destroy
+		flash[:warning] = "Successfully deleted confirmation type #{@confs.CONFIRMATION_TYPE}"
 		redirect_to confirmation_type_tbls_path
 	end
 

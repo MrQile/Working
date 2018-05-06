@@ -1,0 +1,42 @@
+
+
+<div class="table-view">
+	<table>
+		<caption>LIST OF SATELLITE_TABLES</caption>
+		<thead>
+			<tr>
+				<th> SATID </th>
+				<th> SATNAME </th>
+				<th> SCSHORTNAME </th>
+				<th> EDIT_ENABLE </th>
+				<th> CCSDS_FLAG </th>
+				<th> DB_NAME </th>
+				<th> DB_USERNAME </th>
+				<th> DB_PASSWORD </th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @sat.each do |f| %>
+		<tr data-href="<%= edit_satellite_table_path(f) %>"  class="theShower text-center">
+	
+				<td><%= f.SATID %></td>
+				<td><%= f.SATNAME %></td>
+				<td><%= f.SCSHORTNAME %></td>
+				<td><%= f.EDIT_ENABLE %></td>
+				<td><%= f.CCSDS_FLAG %></td>
+				<td><%= f.DB_NAME %></td>
+				<td><%= f.DB_USERNAME %></td>
+				<td><%= f.DB_PASSWORD %></td>
+				<% if current_user.admin? %>	<!-- add this too -->
+					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
+				<% end %>
+			
+		</tr>	
+		<% end %>
+		</tbody>
+	</table>
+
+	</div>
+<div class="lower-options add_to_right">
+	<%= link_to 'Add', new_satellite_table_path, class: "add-new-table" %>
+</div>

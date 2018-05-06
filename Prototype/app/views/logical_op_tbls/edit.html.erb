@@ -1,7 +1,7 @@
 <h1>EDIT LOGICAL_OP_TBL </h1>
 <div class="perfect-forms">
 <%= form_for(@logic_op) do |f| %>
-
+<%= render 'shared/error_messages', object: f.object %>
   <div class="form-row">
   <%= f.label :LOGICAL_OP %>
   <%= f.text_field :LOGICAL_OP, class: 'form-control' %>

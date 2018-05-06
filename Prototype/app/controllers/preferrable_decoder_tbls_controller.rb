@@ -1,5 +1,5 @@
 class PreferrableDecoderTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -17,6 +17,7 @@ class PreferrableDecoderTblsController < ParentController
 	def create
 		@pref_decoder = PREFERRABLE_DECODER_TBL.new(preferrable_decoder_params)
 		if @pref_decoder.save
+			flash[:success] = "Successfully created preferreable decoder #{@pref_decoder.PREFERRABLE_DECODER}"
 			redirect_to preferrable_decoder_tbls_path
 		else
 			render 'new'
@@ -26,6 +27,7 @@ class PreferrableDecoderTblsController < ParentController
 	def update
 		@pref_decoder = PREFERRABLE_DECODER_TBL.find(params[:id])
 		if @pref_decoder.update_attributes(preferrable_decoder_params)
+			flash[:success] = "Successfully updated preferreable decoder #{@pref_decoder.PREFERRABLE_DECODER}"
 			redirect_to preferrable_decoder_tbls_path
 		else
 			render 'edit'
@@ -33,7 +35,9 @@ class PreferrableDecoderTblsController < ParentController
 	end
 
 	def destroy
-		PREFERRABLE_DECODER_TBL.find(params[:id]).destroy
+		@pref_decoder = PREFERRABLE_DECODER_TBL.find(params[:id])
+		@pref_decoder.destroy
+		flash[:warning] = "Successfully deleted preferreable decoder #{@pref_decoder.PREFERRABLE_DECODER}"
 		redirect_to preferrable_decoder_tbls_path
 	end
 

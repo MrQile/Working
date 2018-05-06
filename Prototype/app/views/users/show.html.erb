@@ -1,9 +1,44 @@
-<div class="user_profile"><h1> Profile </h1></div>
-<div class="user_profile"><h3>Name:	<%= @user.name%></h3></div>
-<div class="user_profile"><h3>Satellite:   <%= @user.satellite_name%></h3></div>
-<div class="btn-group btn-group-sm user_profile">
+<div class="user_profile"><h1> PROFILE </h1></div>
+<div class="row">
+	<div class="col col-md-6 col-xs-12 prof_center">
 
-	<%= link_to "Get Started", base_cmd_tbls_path, class: "btn btn-primary user_profile_button" %>
-	<%= link_to "Users", users_path, class: "btn btn-warning user_profile_button" %>
+		<div class="user_profile"><h3>  Name:  <%=@user.name%>  </h3></div>
+		
+		<% if @user.admin? %>
 
+			<div class="user_profile"><h3>  Privilege:  Admin  </h3></div>
+
+		<% elsif @user.modifiability? %>
+
+			<div class="user_profile"><h3>  Privilege:  Extreme User  </h3></div>
+
+		<% else %>
+
+			<div class="user_profile"><h3>  Privilege:  Normal User  </h3></div>
+
+		<% end %>
+
+		<% if @user==current_user %>
+
+			<div class="user_profile"><h3>  Satellite:  <%= session[:satellite]%>  </h3></div>
+
+			<% if session[:mod_sat] == 1 %>
+
+				<div class="user_profile"><h3>  Editable:  Yes  </h3></div>
+
+			<% else %>
+
+				<div class="user_profile"><h3>  Editable:  No  </h3></div>
+
+			<% end %>
+
+		<% end %>
+
+		<div class="btn-group btn-group-sm user_profile">
+
+			<%= link_to "Get Started", base_cmd_tbls_path, class: "btn btn-primary user_profile_button" %>
+			<%= link_to "Users", users_path, class: "btn btn-warning user_profile_button" %>
+
+		</div>
+	</div>
 </div>

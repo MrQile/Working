@@ -15,6 +15,7 @@
   <div class="form-row">
     <%= f.label :CMD_ID %>
     <%= f.text_field :CMD_ID, class: 'form-control'%>
+    <div id="details_holder" data-original_1="<%=@base_cmds.CMD_ID%>"></div>
   </div>
 
   <div class="form-row">
@@ -59,7 +60,7 @@
 
   <div class="form-row">
     <%= f.label :MAP_ID %>
-    <%= f.collection_select(:MAP_ID, MAP_ID_TBL.all, :MAP_ID, :MAP_ID, {:prompt => "Please select"},{class: 'form-control'})%>
+    <%= f.collection_select(:MAP_ID, MAP_ID_TBL.all, :MAP_BIT, :MAP_ID, {:prompt => "Please select"},{class: 'form-control'})%>
   </div>
 
   <div class="form-row">

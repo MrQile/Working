@@ -2,12 +2,29 @@
 <div class="row">
 	<% @users.each do |user| %>
 		<div class="col col-md-6 col-xs-12">
-
-			<h3><%= user.name %></h3>
-			<h3><%= user.satellite_name %></h3>
-			<% if current_user.admin? %>
-				<%= link_to "Remove", user, method: :delete, data: {confirm: "Are You Sure?"} %>
+			<%= link_to user do %>
+				<div>
+					<h3><%= user.name %></h3>
+					<% if user.admin? %>
+						<h3> Admin </h3>
+					<% elsif user.modifiability? %>
+						<h3> Extreme User </h3>
+					<% else %>
+						<h3> Normal User </h3>
+					<% end %>
+				</div>
 			<% end %>
+			<div>
+				<% if current_user.admin? %>
+					<div class="user_changer">
+						<%= link_to "Edit", edit_user_path(user), data: {confirm: "Proceed to edit user #{user.name} ?"}, class: 'btn btn-success btn-xs' %>
+						<%= link_to "Remove", user, method: :delete, data: {confirm: "Are You Sure?"}, class: 'btn btn-danger btn-xs' %>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	<% end %>
+</div>
+<div class="lower-options">
+	<%= link_to 'Add', new_user_path, class: "add-new-table" %>
 </div>

@@ -11,15 +11,15 @@ $(document).on("turbolinks:load", function() {
 		var theDivOfSelector = $('#CMD_PART_SELECTOR');
 		function resolutionChanger() {
 			console.log($(this).val());
-			if ($(this).val() == "BIT_SEL_TBL_INFO"){
+			if ($(this).val() == "BIT_SEL_PART_TYPE"){
 				bit_sel.insertAfter(theDivOfSelector);
 				user.detach();											//Changed to detach as the select doesn't repond with the select2 gem when we try to use remove() 
 				lkup.detach();
-			} else if ($(this).val() == "LKUP_TBL_INFO") {
+			} else if ($(this).val() == "LKUP_PART_TYPE") {
 				lkup.insertAfter(theDivOfSelector);     
 				user.detach();
 				bit_sel.detach();
-			} else if ($(this).val() == "USER_DATA") {
+			} else if ( ($(this).val() == "USER_DATA_PART_TYPE") || ($(this).val() == "SHARED_PART_TYPE") ) {
 					user.insertAfter(theDivOfSelector);
 					lkup.detach();
 					bit_sel.detach();
@@ -53,22 +53,23 @@ $(document).on("turbolinks:load", function() {
 		var theDivOfSelector = $('#CMD_PART_SELECTOR');
 		function resolutionChanger() {
 
-			if (theSelector.val() == "BIT_SEL_TBL_INFO"){
+			if (theSelector.val() == "BIT_SEL_PART_TYPE"){
 				bit_sel.insertAfter(theDivOfSelector);
 				user.detach();											//Changed to detach as the select doesn't repond with the select2 gem when we try to use remove() 
 				lkup.detach();
-			} else if (theSelector.val() == "LKUP_TBL_INFO") {
+			} else if (theSelector.val() == "LKUP_PART_TYPE") {
 				lkup.insertAfter(theDivOfSelector);     
 				user.detach();
 				bit_sel.detach();
-			} else if (theSelector.val() == "USER_DATA") {
+			} else if ( (theSelector.val() == "USER_DATA_PART_TYPE") || ($(this).val() == "SHARED_PART_TYPE") ) {
 					user.insertAfter(theDivOfSelector);
 					lkup.detach();
 					bit_sel.detach();
 			}
 		}
-		$(".hidden-attrs").css("display","block");
 		setTimeout(resolutionChanger, 1);
+		$(".hidden-attrs").css("display","block");
+		
 
 		theSelector.on("change", resolutionChanger);
 	});
@@ -90,12 +91,12 @@ $(document).on("turbolinks:load", function() {
 		if(validate_type == "INTEGER_TYPE"){
 			is_valid = integer_regex.test(input);
 			if (is_valid){
-				$(".btn").removeAttr("disabled");
+				$("input[type='submit']").css("display","block");
 				$(this).css("color", "green");
 				$(this).css("border-color","green");
 				error_text.css("display","none");
 			} else{
-				$(".btn").attr("disabled", true);
+				$("input[type='submit']").css("display","none");
 				$(this).css("color", "#a94442");
 				$(this).css("border-color","#a94442");
 				error_text.text("Enter a proper integer").css("display","block");
@@ -103,16 +104,18 @@ $(document).on("turbolinks:load", function() {
 		}else if(validate_type == "FLOAT_TYPE"){
 			is_valid = float_regex.test(input);
 			if (is_valid){
-				$(".btn").removeAttr("disabled");
+				$("input[type='submit']").css("display","block");
 				$(this).css("color", "green");
 				$(this).css("border-color","green");
 				error_text.css("display","none");
 			} else{
-				$(".btn").attr("disabled", true);
+				$("input[type='submit']").css("display","none")
 				$(this).css("color", "#a94442");
 				$(this).css("border-color","#a94442");
 				error_text.text("Enter a proper floating point number").css("display","block");
 			}
+		} else {
+			$("input[type='submit']").css("display","block");
 		}
 	}
 	$(".lkup_tbls").ready( function(){

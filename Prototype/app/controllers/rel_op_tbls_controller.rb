@@ -1,5 +1,5 @@
 class RelOpTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -17,6 +17,7 @@ class RelOpTblsController < ParentController
 	def create
 		@rel_op = REL_OP_TBL.new(rel_op_params)
 		if @rel_op.save
+			flash[:success] = "Successfully created rel op #{@rel_op.REL_OP}"
 			redirect_to rel_op_tbls_path
 		else
 			render 'new'
@@ -26,6 +27,7 @@ class RelOpTblsController < ParentController
 	def update
 		@rel_op = REL_OP_TBL.find(params[:id])
 		if @rel_op.update_attributes(rel_op_params)
+			flash[:success] = "Successfully updated rel op #{@rel_op.REL_OP}"
 			redirect_to rel_op_tbls_path
 		else
 			render 'edit'
@@ -33,7 +35,9 @@ class RelOpTblsController < ParentController
 	end
 
 	def destroy
-		REL_OP_TBL.find(params[:id]).destroy
+		@rel_op = REL_OP_TBL.find(params[:id])
+		@rel_op.destroy
+		flash[:warning] = "Successfully deleted rel op #{@rel_op.REL_OP}"
 		redirect_to rel_op_tbls_path
 	end
 

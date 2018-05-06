@@ -14,35 +14,34 @@
 		</div>
 
 		<div class="form-row">
-			<%= f.label :default_db_env %>
-			<%= f.select :default_db_env, options_for_select(MinorConfig.pluck(:default_db_env), "development"), {}%>
+			<%= f.label :satellite %>
+			<%= f.select :satellite, options_for_select(SATELLITE_TABLE.pluck(:SATNAME)), {}%>
 		</div>
+
+		<div class="form-row">
+			<%= f.label :host %>
+			<%= f.text_field :host, value: "localhost"%>
+		</div>	
 
 		<div class="advanced_options">
 
 			<div class="form-row">
 				<%= f.label :database_name %>
-				<%= f.text_field :database_name, value: "rubyappdb" %>
+				<%= f.text_field :database_name%>
 			</div>
 		
 			<div class="form-row">
 				<%= f.label :database_username %>
-				<%= f.text_field :database_username, value: "Ruby" %>
+				<%= f.text_field :database_username%>
 			</div>
 
 			<div class="form-row">
 				<%= f.label :database_password %> 
-				<%= f.password_field :database_password, value: "Ruby_123" %>
+				<%= f.password_field :database_password%>
 			</div>
 
-			<div class="form-row">
-				<%= f.label :host %>
-				<%= f.text_field :host, value: "localhost"%>
-			</div>
 
 		</div>
-
-		<div style="text-align: left">New user? <%= link_to "Sign up now!", signup_path %></div>
 
 		<div class="form-row btn-group btn-group-sm">
 

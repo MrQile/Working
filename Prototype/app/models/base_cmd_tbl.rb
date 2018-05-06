@@ -13,7 +13,7 @@ class BASE_CMD_TBL < ExternalDbAccess
 	before_save :ConverterArray
 
 
-    validates :CMD_ID, presence: true, length: { is: 8 }, uniqueness: true
+    validates :CMD_ID, presence: true, length: { is: 8 }
     validates :DESCRIPTION, presence: true, length: { maximum: 40 }
     validates :SUBSYSTEM, presence: true
     validates :FORMATION_TYPE, presence: true

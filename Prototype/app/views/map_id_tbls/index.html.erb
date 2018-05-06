@@ -7,6 +7,7 @@
 			<tr>
 				<th> ID </th>
 				<th> MAP_ID </th>
+				<th> MAP_BIT </th>
 
 			</tr>
 		</thead>
@@ -15,8 +16,9 @@
 		<tr data-href="<%= edit_map_id_tbl_path(f) %>"  class="theShower text-center">
 	
 		
-		<td><%= f.ID  %></td>
+				<td><%= f.ID  %></td>
 				<td><%= f.MAP_ID %></td>
+				<td><%= f.MAP_BIT %></td>
 				<% if current_user.admin? %>	<!-- add this too -->
 					<td class="deleter"><%= link_to "x", f , method: :delete, data: { confirm: "You sure?" } %></td>	<!-- add this too -->
 				<% end %>
@@ -27,6 +29,6 @@
 	</table>
 
 	</div>
-<div class="lower-options">
+<div class="lower-options add_to_right">
 	<%= link_to 'Add', new_map_id_tbl_path, class: "add-new-table" %>
 </div>

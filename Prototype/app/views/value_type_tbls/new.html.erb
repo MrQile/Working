@@ -1,7 +1,7 @@
 <h1>CREATE VALUE_TYPE_TBL </h1>
 <div class="perfect-forms">
 <%= form_for(@value_type) do |f| %>
-
+<%= render 'shared/error_messages', object: f.object %>
  <div class="form-row">
   <%= f.label :VALUE_TYPE %>
   <%= f.text_field :VALUE_TYPE, class: 'form-control' %>

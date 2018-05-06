@@ -1,5 +1,5 @@
 class FormLogicPartTypeTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -17,6 +17,7 @@ class FormLogicPartTypeTblsController < ParentController
 	def create
 		@form_logic_part = FORM_LOGIC_PART_TYPE_TBL.new(form_logic_part_params)
 		if @form_logic_part.save
+			flash[:success] = "Successfully created form logic part #{@form_logic_part.FORM_LOGIC_PART_TYPE}"
 			redirect_to form_logic_part_type_tbls_path
 		else
 			render 'new'
@@ -26,6 +27,7 @@ class FormLogicPartTypeTblsController < ParentController
 	def update
 		@form_logic_part = FORM_LOGIC_PART_TYPE_TBL.find(params[:id])
 		if @form_logic_part.update_attributes(form_logic_part_params)
+			flash[:success] = "Successfully updated form logic part #{@form_logic_part.FORM_LOGIC_PART_TYPE}"
 			redirect_to form_logic_part_type_tbls_path
 		else
 			render 'edit'
@@ -33,7 +35,9 @@ class FormLogicPartTypeTblsController < ParentController
 	end
 
 	def destroy
-		FORM_LOGIC_PART_TYPE_TBL.find(params[:id]).destroy
+		@form_logic_part = FORM_LOGIC_PART_TYPE_TBL.find(params[:id])
+		@form_logic_part.destroy
+		flash[:warning] = "Successfully deleted form logic part #{@form_logic_part.FORM_LOGIC_PART_TYPE}"
 		redirect_to form_logic_part_type_tbls_path
 	end
 

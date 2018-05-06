@@ -1,4 +1,7 @@
-<% breadcrumb :preconf_index, @base_cmds %>
+<% if params[:val] != "1" %>
+	<% breadcrumb :preconf_index, @base_cmds %>
+<% end %>
+
 
 
 
@@ -16,7 +19,11 @@
 		</thead>
 		<tbody>
 		<% @prereqs.each do |f| %>
-		<tr data-href="<%= edit_prereq_conf_expr_tbl_path(f) %>"  class="theShower text-center">
+		<% if params[:val] != "1" %>
+				<tr data-href="<%= edit_prereq_conf_expr_tbl_path(f) %>"  class="theShower text-center">	<!-- add this too, but change the value inside href according to the controller , data-value attribute not needed-->
+			<% else %>
+				<tr class="theShower text-center">
+			<% end %>
 	
 		
 		<td><%= f.CMD_ID   %></td>
@@ -35,6 +42,8 @@
 	</table>
 
 	</div>
-<div class="lower-options">
-	<%= link_to 'Add', new_prereq_conf_expr_tbl_path, class: "add-new-table" %>
-</div>
+<% if params[:val] != "1" %>
+	<div class="lower-options add_to_right">
+		<%= link_to 'Add', new_prereq_conf_expr_tbl_path, class: "add-new-table" %>
+	</div>
+<% end %>	

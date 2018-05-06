@@ -1,7 +1,9 @@
-<% if session[:cmd_id]==0 %>
-  <% breadcrumb :lkups, @lkup_infos %>
-<% else %>
-  <% breadcrumb :lkup_index, [@base_cmds,@lkup_infos] %>
+<% if params[:val] != "1" %>
+	<% if session[:cmd_id]==0 %>
+	  <% breadcrumb :lkups, @lkup_infos %>
+	<% else %>
+	  <% breadcrumb :lkup_index, [@base_cmds,@lkup_infos] %>
+	<% end %>
 <% end %>
 
 <div class="table-view">
@@ -17,8 +19,11 @@
 		</thead>
 		<tbody>
 		<% @lkups.each do |f| %>
-		<tr data-href="<%= edit_lkup_tbl_path(f) %>"  class="theShower text-center">
-	
+		<% if params[:val] != "1" %>
+				<tr data-href="<%= edit_lkup_tbl_path(f) %>"  class="theShower text-center">
+		<% else %>
+				<tr class="theShower text-center">
+		<% end %>
 		
 		<td><%= f.LKUP_TBL_NO  %></td>
 				<td><%= f.LKUP_ENTRY_INDEX %></td>
@@ -35,6 +40,8 @@
 	</table>
 
 	</div>
-<div class="lower-options">
-	<%= link_to 'Add', new_lkup_tbl_path, class: "add-new-table" %>
-</div>
+<% if params[:val] != "1" %>
+	<div class="lower-options add_to_right">
+		<%= link_to 'Add', new_lkup_tbl_path, class: "add-new-table" %>
+	</div>
+<% end %>	

@@ -1,5 +1,5 @@
 class SubsystemTblsController < ParentController
-	before_action :admin_user, except: [:index]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 	
 	def index
@@ -24,6 +24,7 @@ class SubsystemTblsController < ParentController
 	def create
 		@subs = SUBSYSTEM_TBL.new(sub_params)
 		if @subs.save
+			flash[:success] = "Successfully created subsystem #{@subs.SUBSYSTEM_NAME}"
 			redirect_to subsystem_tbls_path
 		else
 			render 'new'
@@ -31,8 +32,15 @@ class SubsystemTblsController < ParentController
 	end
 
 	def update
-		@subs = SUBSYSTEM_TBL.find(params[:id])
+		begin
+			@subs = SUBSYSTEM_TBL.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Update fail: Make sure all fields are valid before changing the key fields."
+			redirect_to subsystem_tbls_path
+			return
+		end
 		if @subs.update_attributes(sub_params)
+			flash[:success] = "Successfully updated subsystem #{@subs.SUBSYSTEM_NAME}"
 			redirect_to subsystem_tbls_path
 		else
 			render 'edit'
@@ -40,9 +48,18 @@ class SubsystemTblsController < ParentController
 	end
 
 	def destroy
-		SUBSYSTEM_TBL.find(params[:id]).destroy
-		flash[:success] = "Delete Successful"
+		@subs = SUBSYSTEM_TBL.find(params[:id])
+		@subs.destroy
+		flash[:warning] = "Successfully deleted  subsystem #{@subs.SUBSYSTEM_NAME}"
 		redirect_to subsystem_tbls_path
+	end
+
+	def check_unique
+		if SUBSYSTEM_TBL.find_by(SUBSYSTEM_NAME: params[:key])
+			render json: { valid: false }
+		else
+			render json: { valid: true }
+		end
 	end
 
 	private

@@ -1,5 +1,5 @@
 class CmdTypesTblsController < ParentController
-	before_action :admin_user, except: [:index]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -23,6 +23,7 @@ class CmdTypesTblsController < ParentController
 	def create
 		@cmd_types = CMD_TYPES_TBL.new(cmd_type_params)
 		if @cmd_types.save
+			flash[:success] = "Successfully created cmd type #{@cmd_types.CMD_TYPE}"
 			redirect_to cmd_types_tbls_path
 		else
 			render 'new'
@@ -30,8 +31,15 @@ class CmdTypesTblsController < ParentController
 	end
 
 	def update
-		@cmd_types = CMD_TYPES_TBL.find(params[:id])
+		begin
+			@cmd_types = CMD_TYPES_TBL.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			flash[:danger] = "Update fail: Make sure all fields are valid before changing the key fields."
+			redirect_to cmd_types_tbls_path
+			return
+		end
 		if @cmd_types.update_attributes(cmd_type_params)
+			flash[:success] = "Successfully updated cmd type #{@cmd_types.CMD_TYPE}"
 			redirect_to cmd_types_tbls_path
 		else
 			render 'edit'
@@ -39,8 +47,18 @@ class CmdTypesTblsController < ParentController
 	end
 
 	def destroy
-		CMD_TYPES_TBL.find(params[:id]).destroy
+		@cmd_types = CMD_TYPES_TBL.find(params[:id])
+		@cmd_types.destroy
+		flash[:warning] = "Successfully deleted cmd type #{@cmd_types.CMD_TYPE}"
 		redirect_to cmd_types_tbls_path
+	end
+
+	def check_unique
+		if CMD_TYPES_TBL.find_by(CMD_TYPE: params[:key])
+			render json: { valid: false }
+		else
+			render json: { valid: true }
+		end
 	end
 
 	private

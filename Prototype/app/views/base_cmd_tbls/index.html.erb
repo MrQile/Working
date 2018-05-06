@@ -29,7 +29,7 @@
 				<td class="column-hider"><%= f.BASE_CMD_CODE %></td>
 				<td class="column-hider"><%= f.CRITICALITY %></td>
 				<td class="column-hider"><%= f.PULSE_WIDTH %></td>
-				<td class="column-hider"><%= f.MAP_ID %></td>
+				<td class="column-hider"><%= @map_id_hash.values_at(*f.MAP_ID)*"" %></td>
 				<td><%= f.UI_TYPE %></td>
 				<td class="column-hider"><%= f.PREFERRABLE_DECODER %></td>
 				<td class="column-hider scroller">	<!-- dont add this td from here -->

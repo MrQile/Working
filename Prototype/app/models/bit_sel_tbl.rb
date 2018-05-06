@@ -5,7 +5,7 @@ class BIT_SEL_TBL < ExternalDbAccess
 	belongs_to :bit_sel_tbl_info, class_name: "BIT_SEL_TBL_INFO", primary_key: "BIT_SEL_TBL_NO", foreign_key: "BIT_SEL_TBL_NO"
 
 	HEXA_REGEX =  /\A^[0-9A-F]+$\z/
-	validates :BIT_SEL_TBL_NO, presence: true, numericality: { only_integer: true }, uniqueness: { scope: [:FIELD_NO] }
+	validates :BIT_SEL_TBL_NO, presence: true, numericality: { only_integer: true }
     validates :FIELD_NO, presence: true, numericality: { only_integer: true }
     validates :START_BIT, presence: true, numericality: { only_integer: true }
     validates :NO_OF_BITS, presence: true, numericality: { only_integer: true }

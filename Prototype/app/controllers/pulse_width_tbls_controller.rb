@@ -1,5 +1,5 @@
 class PulseWidthTblsController < ParentController
-	before_action :admin_user, only: [:destroy]
+	before_action :admin_user, except: :index
 	before_action :set_base_cmd_session_to_nil
 
 	def index
@@ -17,6 +17,7 @@ class PulseWidthTblsController < ParentController
 	def create
 		@pulse_width = PULSE_WIDTH_TBL.new(pulse_width_params)
 		if @pulse_width.save
+			flash[:success] = "Successfully created pulse width #{@pulse_width.PULSE_WIDTH}"
 			redirect_to pulse_width_tbls_path
 		else
 			render 'new'
@@ -26,6 +27,7 @@ class PulseWidthTblsController < ParentController
 	def update
 		@pulse_width = PULSE_WIDTH_TBL.find(params[:id])
 		if @pulse_width.update_attributes(pulse_width_params)
+			flash[:success] = "Successfully updated pulse width #{@pulse_width.PULSE_WIDTH}"
 			redirect_to pulse_width_tbls_path
 		else
 			render 'edit'
@@ -33,7 +35,9 @@ class PulseWidthTblsController < ParentController
 	end
 
 	def destroy
-		PULSE_WIDTH_TBL.find(params[:id]).destroy
+		@pulse_width = PULSE_WIDTH_TBL.find(params[:id])
+		@pulse_width.destroy
+		flash[:warning] = "Successfully deleted pulse width #{@pulse_width.PULSE_WIDTH}"
 		redirect_to pulse_width_tbls_path
 	end
 

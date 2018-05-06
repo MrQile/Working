@@ -11,7 +11,7 @@ class EXPRESSION < ExternalDbAccess
 		field
 	end
 
-	validates :EXPR_ID, presence: true, numericality: { only_integer: true }, uniqueness: { scope: [:EXPR_TYPE] }
+	validates :EXPR_ID, presence: true, numericality: { only_integer: true }
     validates :EXPR_TYPE, presence: true, numericality: { only_integer: true }
     validates :TM_PID, presence: true, length: { maximum: 8 }
     validates :REL_OP, presence: true

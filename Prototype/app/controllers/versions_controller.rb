@@ -13,6 +13,7 @@ class VersionsController < ApplicationController
 
 	def destroy
 		Version.find(params[:id]).destroy
+		flash[:warning] = "Successfully deleted"
 		redirect_to versions_path
 	end
 

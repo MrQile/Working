@@ -6,12 +6,13 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-row">
-  <%= f.hidden_field :CMD_ID, :value => @base_cmds.CMD_ID %>
+  <%= f.hidden_field :CMD_ID, :value => @cmd_parts.CMD_ID %>
   </div>
 
   <div class="form-row">
   <%= f.label :CMD_PART_NO %>
   <%= f.text_field :CMD_PART_NO, class: 'form-control' %>
+  <div id="details_holder" data-original_1="<%=@cmd_parts.CMD_ID%>" data-original_2="<%=@cmd_parts.CMD_PART_NO%>"></div>
   </div>
 
   <div class="form-row">

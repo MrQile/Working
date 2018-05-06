@@ -1,7 +1,12 @@
 class PrereqConfExprTblsController < ParentController
 	before_action :find_base_cmd, except: :destroy
 	def index
-		@prereqs = @base_cmds.prereq_conf_expr_tbls
+		if params[:val] == "1"
+			session[:cmd_id] = 0
+			@prereqs = PREREQ_CONF_EXPR_TBL.all
+		else
+			@prereqs = @base_cmds.prereq_conf_expr_tbls	
+		end
 	end
 
 	def new
@@ -23,32 +28,34 @@ class PrereqConfExprTblsController < ParentController
 	end
 
 	def update
-		begin
+ 		begin
 			@prereqs = PREREQ_CONF_EXPR_TBL.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-			flash[:danger] = "Take extra care while changing key fields. Please start afresh"
+			flash[:danger] = "Update fail: Make sure all fields are valid before changing the key fields"
 			redirect_to prereq_conf_expr_tbls_path
 			return
 		end
-		begin
-			if @prereqs.update(prereq_params)
-				flash[:success] = "Successfully updated prereqs #{@prereqs.CMD_ID}, #{@prereqs.ENTRY_TYPE} ,#{@prereqs.FIELD_NO}"
-				redirect_to prereq_conf_expr_tbls_path
-			else
-				# flash[:danger] = "Doesn't pass validations. Please enter proper data"
-				# redirect_to edit_prereq_conf_expr_tbl_path
-				render 'edit'
-			end
-		rescue ActiveRecord::RecordNotUnique => e
-			flash[:danger] = "Doesn't Form a unique record"
-    		redirect_to edit_prereq_conf_expr_tbl_path
-    		return
- 		end
+		if @prereqs.update(prereq_params)
+			flash[:success] = "Successfully updated prereqs #{@prereqs.CMD_ID}, #{@prereqs.ENTRY_TYPE} ,#{@prereqs.FIELD_NO}"
+			redirect_to prereq_conf_expr_tbls_path
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
-		PREREQ_CONF_EXPR_TBL.find(params[:id]).destroy
+		@prereqs = PREREQ_CONF_EXPR_TBL.find(params[:id])
+		@prereqs.destroy
+		flash[:warning] = "Successfully deleted prereqs #{@prereqs.CMD_ID}, #{@prereqs.ENTRY_TYPE} ,#{@prereqs.FIELD_NO}"
 		redirect_to prereq_conf_expr_tbls_path
+	end
+
+	def check_unique
+		if PREREQ_CONF_EXPR_TBL.find_by(CMD_ID: params[:key1],ENTRY_TYPE: params[:key2],FIELD_NO: params[:key3])
+			render json: { valid: false }
+		else
+			render json: { valid: true }
+		end
 	end
 
 	private

@@ -1,7 +1,7 @@
 <div class="field">
   <div class="search_field">
     <%= f.attribute_fields do |a| %>
-      <%= a.attribute_select associations: [:cpid_tbls,:cmd_part_tbls,:prereq_conf_expr_tbls,:expressions], class: "radius" %>
+      <%= a.attribute_select associations: [:cpid_tbls,:cmd_part_tbls,:prereq_conf_expr_tbls,:form_logic_part_data_tbls,:expressions], class: "radius" %>
     <% end %>
   </div>
   <div class="search_field">
@@ -9,7 +9,7 @@
   </div>
   <div class="insert_field">
     <%= f.value_fields do |v| %>
-      <%= v.text_field :value, class: "radius search_input", placeholder: '  Search Input' %>
+      <%= v.text_field :value, class: "radius search_input", placeholder: 'Search Input' %>
     <% end %>
     <p class="remove_fields"><%= link_to "Remove", "", class: "remove_fields" %></p>
   </div>

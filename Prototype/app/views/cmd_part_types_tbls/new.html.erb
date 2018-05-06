@@ -4,11 +4,7 @@
 
 <%= form_for(@cmd_part_types) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
-	<div class="form-row">
-	  <%= f.label :CMD_PART_TYPE_ID %>
-	  <%= f.text_field :CMD_PART_TYPE_ID, class: 'form-control' %>
-	</div>
-	
+
 	<div class="form-row">  
 	  <%= f.label :CMD_PART_TYPE %>
 	  <%= f.text_field :CMD_PART_TYPE, class: 'form-control' %>
