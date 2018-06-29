@@ -106,3 +106,11 @@ end
           :presence => {:message => "Title can't be blank." },
           :uniqueness => {:message => "Title already exists."},
           :length => { :maximum => 100, :message => "Must be less than 100 characters"}
+
+
+In the VM network settings, using 'Bridged Adapter'.
+Turn on the port of CenOS7: using the following command in terminal(for example port 8080): 
+$ firewall-cmd --permanent --add-port=8080/tcp
+$ firewall-cmd --reload
+$ firewall-cmd --permanent --add-port=3000/tcp
+$ firewall-cmd --reload
